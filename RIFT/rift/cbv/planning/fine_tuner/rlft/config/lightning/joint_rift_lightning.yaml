@@ -1,0 +1,27 @@
+distributed_training:
+  equal_variance_scaling_strategy: true
+
+trainer:
+  checkpoint:
+    save_top_k: 1
+    monitor: joint/val_loss
+    mode: min
+  early_stopping:
+    monitor: joint/val_loss
+    mode: min
+    patience: 5
+  params:
+    max_epochs: ${epochs}
+    val_check_interval: 1.0
+    limit_train_batches:
+    limit_val_batches:
+    limit_test_batches:
+    devices: 1
+    accelerator: gpu
+    precision: 32
+    num_sanity_val_steps: 1
+    fast_dev_run: false
+    gradient_clip_val: 0.5
+    gradient_clip_algorithm: norm
+    sync_batchnorm: false
+    strategy: auto

@@ -1,0 +1,39 @@
+hydra:
+  run:
+    dir: ${output_dir}
+  output_subdir: ${output_dir}/code/hydra
+
+defaults:
+  - lightning: joint_rift_lightning
+  - datamodule: joint_rift_datamodule
+  - custom_trainer: joint_rift_trainer
+
+py_func: train
+frame_rate: 10
+epochs: 16
+warmup_epochs: 3
+lr: 1e-4
+cl_lr_decay: 0.9
+min_lr: 1e-6
+weight_decay: 1e-5
+checkpoint:
+# Joint-RIFT owns its freeze policy.  Keep this empty in both stages: Stage 2
+# selectively enables only the shared planning_decoder.pi_head in its trainer.
+trainable_layers: []
+
+# Defaults are overridden by ``training`` in joint_rift_pluto.yaml, keeping
+# the policy stage and its optimiser settings in one user-facing config.
+joint_training:
+  lr: 1e-4
+  pi_lr: 1e-5
+  train_pi_head: false
+  clip_ratio: 0.2
+  dual_clip: 3.0
+
+wandb:
+  dir: ${output_dir}
+  mode: offline
+  project: RIFT
+  group: 'train_cbv-${name}'
+  log_model: false
+  resume: false

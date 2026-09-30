@@ -1,0 +1,11 @@
+type: rlft-joint-rift
+train_batch_size: 32
+val_batch_size: 64
+shuffle: true
+num_workers: 0
+pin_memory: true
+persistent_workers: false
+train_ratio: 0.9
+
+# Joint advantages are state-local and are already finalized at collection.
+gamma: 0.98

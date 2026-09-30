@@ -1,0 +1,60 @@
+policy_name: 'joint_rift_pluto'
+policy_type: 'il'
+
+# Reuse the Pluto observation builder; PairManager enforces the two-CBV
+# contract inside the policy before a state is admitted to the joint buffer.
+obs_type: 'cbv_rift_pluto_obs'
+reward_model: 'dense'
+
+data_keys:
+ - CBVs_actions
+ - joint_rollout_states
+ - CBVs_obs
+ - CBVs_next_obs
+ - CBVs_reward
+ - CBVs_terminated
+ - CBVs_done
+
+buffer_capacity: 4096
+num_joint_cbv: 2
+num_modes: 12
+joint_horizon: 40
+gamma: 0.98
+save_freq: 50
+
+rlft_config_path: 'config'
+rlft_config_name: 'joint_rift_training.yaml'
+
+ckpt_path: 'rift/cbv/planning/model_ckpt/pluto/pluto_1M_aux_cil.ckpt'
+model_path: 'rift/cbv/planning/model_ckpt/joint_rift_pluto'
+model_type: 'cbv'
+use_prediction: False
+# Required by the shared Pluto constructor; Joint-RIFT never calls trimming.
+topk: 10
+
+obs:
+  max_agent: 48
+  radius: 120
+  history_horizon: 2.0
+  sample_interval: 0.1
+
+CBV_action_dim: 3
+
+joint:
+  lambda_delta: 1.0
+  latent_dim: 64
+  traj_sample_interval: 5
+  stage: 1
+# For Stage 2, set ``stage: 2`` together with
+# ``training.train_pi_head: true``.  The policy then rejects every buffer not
+# recollected by that exact loaded checkpoint.
+
+reward:
+  lambda_pressure: 1.0
+  lambda_coalition: 1.0
+  lambda_pair_collision: 1.0
+
+training:
+  lr_joint: 1.0e-4
+  lr_pi: 1.0e-5
+  train_pi_head: false
