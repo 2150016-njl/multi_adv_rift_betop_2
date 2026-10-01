@@ -1,1 +1,1 @@
-_target_: rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_trainer.JointRIFTLightningTrainer
+_target_: rift.cbv.planning.fine_tuner.rlft.joint_rift.audited_joint_trainer.AuditedJointRIFTLightningTrainer

@@ -1,0 +1,70 @@
+policy_name: 'joint_rift_audited'
+policy_type: 'il'
+
+obs_type: 'cbv_rift_pluto_obs'
+reward_model: 'dense'
+
+data_keys:
+ - CBVs_actions
+ - joint_rollout_states
+ - CBVs_obs
+ - CBVs_next_obs
+ - CBVs_reward
+ - CBVs_terminated
+ - CBVs_done
+
+buffer_capacity: 4096
+num_joint_cbv: 2
+num_modes: 12
+joint_horizon: 40
+gamma: 0.98
+save_freq: 50
+eval_joint_diagnostics: true
+
+rlft_config_path: 'config'
+rlft_config_name: 'joint_rift_training.yaml'
+
+# ``ckpt_path`` is only retained because the shared Pluto constructor expects
+# it.  Audited Joint-RIFT Stage 1 refuses to use it as the policy prior and
+# instead discovers the latest trained RIFT checkpoint below.
+ckpt_path: 'rift/cbv/planning/model_ckpt/pluto/pluto_1M_aux_cil.ckpt'
+base_rift_model_path: 'rift/cbv/planning/model_ckpt/rift_pluto'
+# Optional explicit override; leave empty to auto-discover latest checkpoint.
+base_rift_ckpt_path:
+# Keep audited stages separate from the previous prototype directory so an old
+# IL-Pluto-initialized Joint-RIFT checkpoint cannot be resumed accidentally.
+model_path: 'rift/cbv/planning/model_ckpt/joint_rift_pluto_stage1_audited'
+model_type: 'cbv'
+use_prediction: False
+topk: 10
+
+obs:
+  max_agent: 48
+  radius: 120
+  history_horizon: 2.0
+  sample_interval: 0.1
+
+CBV_action_dim: 3
+
+joint:
+  lambda_delta: 1.0
+  representation_dim: 128
+  latent_dim: 64
+  traj_sample_interval: 5
+  stage: 1
+
+reward:
+  lambda_pressure: 1.0
+  lambda_coalition: 1.0
+  # Match the scale of RIFT's collision penalty rather than treating a CBV-CBV
+  # crash as a negligible -1 event.
+  lambda_pair_collision: 20.0
+  pair_collision_chunk_size: 32
+  # Spatial crossings are weighted by exp(-|arrival gap| / tau).
+  arrival_time_tau: 1.0
+  both_necessary_epsilon: 0.1
+
+training:
+  lr_joint: 1.0e-4
+  lr_pi: 1.0e-5
+  train_pi_head: false
