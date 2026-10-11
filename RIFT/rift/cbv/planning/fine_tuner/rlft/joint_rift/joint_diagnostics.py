@@ -45,6 +45,45 @@ def rank_and_nll(logits: np.ndarray, index: int) -> Tuple[int, float]:
     return rank, nll
 
 
+def select_oracle_pair(joint_q: np.ndarray, valid_pair_mask: np.ndarray) -> Tuple[int, int]:
+    """Return the evaluator-oracle argmax over valid joint candidates only."""
+    joint_q = np.asarray(joint_q, dtype=np.float64)
+    valid_pair_mask = np.asarray(valid_pair_mask, dtype=bool)
+    if joint_q.shape != valid_pair_mask.shape or joint_q.ndim != 2:
+        raise ValueError("joint_q and valid_pair_mask must share shape [G1, G2]")
+    if not valid_pair_mask.any():
+        raise ValueError("at least one valid pair is required")
+    flat_index = int(np.argmax(np.where(valid_pair_mask, joint_q, -np.inf)))
+    return tuple(int(v) for v in np.unravel_index(flat_index, joint_q.shape))
+
+
+def oracle_gate_decision(
+    diagnostics: Dict[str, float],
+    min_joint_gain: float,
+    min_nonfactorizable_ratio: float,
+    require_both_necessary: bool,
+    max_pair_collision_rate: float,
+) -> Tuple[bool, Tuple[str, ...]]:
+    """Return an auditable, safety-first oracle intervention decision."""
+    if min_joint_gain < 0 or min_nonfactorizable_ratio < 0:
+        raise ValueError("oracle gate minima must be non-negative")
+    if not 0 <= max_pair_collision_rate <= 1:
+        raise ValueError("max_pair_collision_rate must be in [0, 1]")
+
+    failures = []
+    if diagnostics['oracle_joint_gain'] < min_joint_gain:
+        failures.append('joint_gain')
+    if diagnostics['nonfactorizable_reward_ratio'] < min_nonfactorizable_ratio:
+        failures.append('nonfactorizable_ratio')
+    if require_both_necessary and diagnostics['oracle_both_necessary'] < 0.5:
+        failures.append('both_necessary')
+    if diagnostics['oracle_pair_collision'] > 0:
+        failures.append('oracle_pair_collision')
+    if diagnostics['pair_collision_rate'] > max_pair_collision_rate:
+        failures.append('candidate_pair_collision_rate')
+    return not failures, tuple(failures)
+
+
 def build_feasibility_diagnostics(
     joint_q: np.ndarray,
     valid_pair_mask: np.ndarray,
@@ -73,9 +112,7 @@ def build_feasibility_diagnostics(
     if not valid_pair_mask.any():
         raise ValueError("at least one valid pair is required")
 
-    masked_q = np.where(valid_pair_mask, joint_q, -np.inf)
-    oracle_flat = int(np.argmax(masked_q))
-    oracle_indices = tuple(int(v) for v in np.unravel_index(oracle_flat, joint_q.shape))
+    oracle_indices = select_oracle_pair(joint_q, valid_pair_mask)
     oracle_q = float(joint_q[oracle_indices])
     selected_q = float(joint_q[selected_indices])
     independent_q = float(joint_q[independent_indices])
@@ -108,6 +145,10 @@ def build_feasibility_diagnostics(
         "oracle_marginal_1": float(marginal_1[oracle_indices]),
         "oracle_marginal_2": float(marginal_2[oracle_indices]),
         "oracle_both_necessary": float(both_necessary[oracle_indices]),
+        "oracle_index_1": float(oracle_indices[0]),
+        "oracle_index_2": float(oracle_indices[1]),
+        "oracle_pair_collision": float(pair_collision[oracle_indices]),
+        "policy_pair_collision": float(pair_collision[selected_indices]),
         "both_necessary_rate": float(both_necessary[valid_pair_mask].mean()),
         "nonfactorizable_reward_ratio": masked_additive_residual_ratio(joint_q, valid_pair_mask),
         "pair_collision_rate": float(pair_collision[valid_pair_mask].mean()),

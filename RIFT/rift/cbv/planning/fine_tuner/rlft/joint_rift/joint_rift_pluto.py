@@ -6,7 +6,9 @@ full candidate groups are ready for the later joint argmax and RL stages.
 """
 
 import gc
+import json
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Dict, Optional, Tuple
 
 import numpy as np
@@ -105,6 +107,7 @@ class JointRIFTPluto(RIFTPluto):
         """Run validated Stage 1 or Stage 2 Joint-RIFT PPO training."""
         stage = self._training_stage()
         self.buffer.assert_on_policy_collection(stage, self.checkpoint)
+        self._write_joint_rollout_audit(e_i)
         self.logger.log(f'>> Starting Joint-RIFT Stage {stage} fine-tuning...', color='yellow')
         dir_path = self.model_path / self.load_agent_info
         decay = self.cfg.cl_lr_decay ** self.current_epoch
@@ -146,6 +149,59 @@ class JointRIFTPluto(RIFTPluto):
         self.buffer.reset_buffer()
         self.logger.log(f'>> Finishing Joint-RIFT Stage {stage} fine-tuning...', color='yellow')
 
+    def _write_joint_rollout_audit(self, carla_episode: int) -> None:
+        """Persist collection composition before the buffer is reset by training."""
+        states = list(self.buffer.buffer_data)
+        if not states:
+            raise RuntimeError("cannot audit an empty Joint-RIFT rollout buffer")
+
+        def summarize(values):
+            values = np.asarray(values, dtype=np.float64)
+            return {
+                "mean": float(values.mean()),
+                "p50": float(np.median(values)),
+                "p90": float(np.quantile(values, 0.9)),
+                "min": float(values.min()),
+                "max": float(values.max()),
+            }
+
+        weights = np.asarray([state.get("state_weight", 1.0) for state in states])
+        diagnostics = [state.get("diagnostics", {}) for state in states]
+        eligible = np.asarray(
+            [state.get("high_value_eligible", 0.0) for state in diagnostics],
+            dtype=np.float64,
+        )
+        diagnostic_keys = (
+            "oracle_joint_gain",
+            "oracle_policy_gap",
+            "nonfactorizable_reward_ratio",
+            "both_necessary_rate",
+            "pair_collision_rate",
+            "oracle_pair_collision",
+            "high_value_eligible",
+        )
+        report = {
+            "schema_version": 1,
+            "carla_episode": int(carla_episode),
+            "collection_stage": int(self.buffer.collection_stage),
+            "collection_checkpoint": str(self.buffer.collection_checkpoint),
+            "states": len(states),
+            "state_weight": summarize(weights),
+            "high_value_states": int((weights > 1.0).sum()),
+            "high_value_rate": float((weights > 1.0).mean()),
+            "high_value_eligible_states": int(eligible.sum()),
+            "high_value_eligible_rate": float(eligible.mean()),
+            "diagnostics": {
+                key: summarize([state[key] for state in diagnostics if key in state])
+                for key in diagnostic_keys
+                if any(key in state for state in diagnostics)
+            },
+        }
+        output_path = Path(self.logger.output_dir) / (
+            f"joint_rollout_audit_episode={carla_episode}.json"
+        )
+        output_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+
     def _training_stage(self) -> int:
         """Validate the only two supported training regimes from the design."""
         stage = int(self.config.get('joint', {}).get('stage', 1))
@@ -178,6 +234,10 @@ class JointRIFTPluto(RIFTPluto):
 
     def _load_joint_head_checkpoint(self, checkpoint: Optional[str]) -> None:
         """Restore residual weights when available; pretrained Pluto has none."""
+        # Lightning may move the shared module to CPU during trainer teardown.
+        # Action collection continues on the policy device afterwards, so
+        # restore placement before using or loading its state.
+        self.joint_scorer.to(self.device)
         if not checkpoint:
             return
         state_dict = self.load_train_checkpoint(checkpoint, device_name=self.device)
@@ -393,15 +453,20 @@ class JointRIFTPluto(RIFTPluto):
         and trainer tensors.
         """
         candidates_1, candidates_2 = candidate_batch.candidates
+        # Lightning may release the scorer back to CPU after a fitting round.
+        # Candidate tensors are built on the policy device, so normalize both
+        # sides at the inference boundary before every CARLA action step.
+        device = torch.device(self.device)
+        self.joint_scorer.to(device)
         return self.joint_scorer(
-            candidates_1.candidate_features.unsqueeze(0),
-            candidates_1.common_trajectories.unsqueeze(0),
-            candidates_1.raw_trajectories.unsqueeze(0),
-            candidates_1.logits.unsqueeze(0),
-            candidates_2.candidate_features.unsqueeze(0),
-            candidates_2.common_trajectories.unsqueeze(0),
-            candidates_2.raw_trajectories.unsqueeze(0),
-            candidates_2.logits.unsqueeze(0),
+            candidates_1.candidate_features.unsqueeze(0).to(device),
+            candidates_1.common_trajectories.unsqueeze(0).to(device),
+            candidates_1.raw_trajectories.unsqueeze(0).to(device),
+            candidates_1.logits.unsqueeze(0).to(device),
+            candidates_2.candidate_features.unsqueeze(0).to(device),
+            candidates_2.common_trajectories.unsqueeze(0).to(device),
+            candidates_2.raw_trajectories.unsqueeze(0).to(device),
+            candidates_2.logits.unsqueeze(0).to(device),
         )
 
     @staticmethod

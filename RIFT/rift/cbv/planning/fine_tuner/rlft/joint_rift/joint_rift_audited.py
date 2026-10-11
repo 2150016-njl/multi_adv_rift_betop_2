@@ -24,6 +24,8 @@ from rift.cbv.planning.fine_tuner.rlft.joint_rift.audited_joint_traj_evaluator i
 )
 from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_diagnostics import (
     build_feasibility_diagnostics,
+    oracle_gate_decision,
+    select_oracle_pair,
 )
 from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_action import select_joint_pair
 from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_rift_pluto import (
@@ -45,6 +47,55 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
         joint_config = config.get("joint", {})
         self.eval_joint_diagnostics = bool(config.get("eval_joint_diagnostics", True))
         self.eval_metrics_path = Path(logger.output_dir) / "joint_rift_eval_metrics.jsonl"
+        self.oracle_eval_mode = str(config.get("oracle_eval_mode", "diagnose"))
+        if self.oracle_eval_mode not in {"disabled", "diagnose", "oracle_gated"}:
+            raise ValueError(
+                "oracle_eval_mode must be one of: disabled, diagnose, oracle_gated"
+            )
+        self.joint_eval_action_mode = str(
+            config.get("joint_eval_action_mode", "policy")
+        )
+        if self.joint_eval_action_mode not in {
+            "policy",
+            "independent",
+            "oracle_gated",
+        }:
+            raise ValueError(
+                "joint_eval_action_mode must be one of: policy, independent, oracle_gated"
+            )
+        if (
+            self.joint_eval_action_mode != "policy"
+            and self.oracle_eval_mode == "disabled"
+        ):
+            raise ValueError(
+                "independent/oracle_gated evaluation requires oracle diagnostics"
+            )
+        self.oracle_gate = {
+            "min_joint_gain": float(config.get("oracle_min_joint_gain", 10.0)),
+            "min_nonfactorizable_ratio": float(
+                config.get("oracle_min_nonfactorizable_ratio", 0.01)
+            ),
+            "require_both_necessary": bool(
+                config.get("oracle_require_both_necessary", True)
+            ),
+            "max_pair_collision_rate": float(
+                config.get("oracle_max_pair_collision_rate", 0.05)
+            ),
+        }
+        reweight_config = config.get("high_value_reweight", {})
+        self.high_value_reweight = {
+            "enabled": bool(reweight_config.get("enabled", False)),
+            "min_joint_gain": float(reweight_config.get("min_joint_gain", 10.0)),
+            "min_nonfactorizable_ratio": float(
+                reweight_config.get("min_nonfactorizable_ratio", 0.01)
+            ),
+            "max_pair_collision_rate": float(
+                reweight_config.get("max_pair_collision_rate", 0.05)
+            ),
+            "weight": float(reweight_config.get("weight", 1.0)),
+        }
+        if self.high_value_reweight["weight"] < 1.0:
+            raise ValueError("high_value_reweight.weight must be at least one")
         self.joint_traj_evaluator = AuditedJointTrajEvaluator(
             dt=self._step_interval,
             num_frames=int(config.get("joint_horizon", 40)),
@@ -69,6 +120,26 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
         checkpoint.  This keeps each stage's CARLA rollout/data-loader schedule
         fresh instead of accidentally resuming at the end of the previous one.
         """
+        explicit_joint = self.config.get("joint_ckpt_path")
+        if resume and explicit_joint:
+            checkpoint = self._resolve_path(Path(self.config["ROOT_DIR"]), explicit_joint)
+            if not checkpoint.is_file():
+                raise FileNotFoundError(
+                    f"Configured joint_ckpt_path does not exist: {checkpoint}"
+                )
+            self.checkpoint = checkpoint.as_posix()
+            self.continue_episode = 0
+            self.current_epoch = 0
+            self.pluto_model.load_state_dict(
+                self.load_infer_checkpoint(self.checkpoint, device_name=self.device)
+            )
+            self._load_joint_head_checkpoint(self.checkpoint)
+            self.logger.log(
+                f">> Joint-RIFT explicit evaluation checkpoint: {checkpoint.name}",
+                "green",
+            )
+            return
+
         own_dir = self.model_path / self.load_agent_info
         own_checkpoints = list(own_dir.glob("*.ckpt"))
         if resume and own_checkpoints:
@@ -213,7 +284,51 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
             self.last_joint_candidate_batches[env_id] = candidate_batch
             self.last_joint_score_outputs[env_id] = score_output
 
-            selected_indices = self.select_joint_pair(score_output)
+            policy_indices = self.select_joint_pair(score_output)
+            selected_indices = policy_indices
+            eval_diagnostics = None
+            independent_indices = None
+            oracle_indices = None
+            executed_q = None
+            oracle_gate_pass = False
+            oracle_gate_failures = ()
+
+            # The oracle is strictly evaluation-only.  It is an upper bound of
+            # the evaluator/candidate set, never a training target or a result
+            # that can be compared as a deployable policy.
+            if (
+                self.mode != "train"
+                and self.eval_joint_diagnostics
+                and self.oracle_eval_mode != "disabled"
+                and nominal is not None
+            ):
+                joint_evaluation = self.evaluate_joint_candidate_batch(
+                    env_id, candidate_batch
+                )
+                independent_indices = select_joint_pair(
+                    score_output.base_logits[0], score_output.valid_pair_mask[0]
+                )
+                eval_diagnostics = self._compute_feasibility_diagnostics(
+                    candidate_batch,
+                    joint_evaluation,
+                    policy_indices,
+                    independent_indices,
+                )
+                oracle_indices = select_oracle_pair(
+                    joint_evaluation["joint_q"], joint_evaluation["valid_mask"]
+                )
+                oracle_gate_pass, oracle_gate_failures = oracle_gate_decision(
+                    eval_diagnostics, **self.oracle_gate
+                )
+                if self.joint_eval_action_mode == "independent":
+                    selected_indices = independent_indices
+                elif (
+                    self.joint_eval_action_mode == "oracle_gated"
+                    and oracle_gate_pass
+                ):
+                    selected_indices = oracle_indices
+                executed_q = float(joint_evaluation["joint_q"][selected_indices])
+
             for candidate_set, selected_idx in zip(
                 candidate_batch.candidates, selected_indices
             ):
@@ -248,20 +363,19 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
                     selected_indices=selected_indices,
                     independent_indices=independent_indices,
                 )
-            elif self.eval_joint_diagnostics and nominal is not None:
-                joint_evaluation = self.evaluate_joint_candidate_batch(
-                    env_id, candidate_batch
-                )
-                independent_indices = select_joint_pair(
-                    score_output.base_logits[0], score_output.valid_pair_mask[0]
-                )
-                diagnostics = self._compute_feasibility_diagnostics(
+            elif eval_diagnostics is not None:
+                self._append_eval_diagnostics(
+                    info,
                     candidate_batch,
-                    joint_evaluation,
-                    selected_indices,
-                    independent_indices,
+                    eval_diagnostics,
+                    policy_indices=policy_indices,
+                    independent_indices=independent_indices,
+                    oracle_indices=oracle_indices,
+                    executed_indices=selected_indices,
+                    executed_q=executed_q,
+                    oracle_gate_pass=oracle_gate_pass,
+                    oracle_gate_failures=oracle_gate_failures,
                 )
-                self._append_eval_diagnostics(env_id, candidate_batch, diagnostics)
 
         self._clean_CBVs(infos, CBVs_obs_list)
         output = {"CBVs_actions": CBVs_actions}
@@ -296,13 +410,50 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
 
     def _append_eval_diagnostics(
         self,
-        env_id: int,
+        info: Dict,
         candidate_batch: JointCandidateBatch,
         diagnostics: Dict[str, float],
+        policy_indices: Tuple[int, int],
+        independent_indices: Tuple[int, int],
+        oracle_indices: Tuple[int, int],
+        executed_indices: Tuple[int, int],
+        executed_q: float,
+        oracle_gate_pass: bool,
+        oracle_gate_failures: Tuple[str, ...],
     ) -> None:
         record = {
-            "env_id": int(env_id),
+            "diagnostics_schema_version": 2,
+            "policy_name": self.name,
+            "env_id": int(info["env_id"]),
+            "route_id": str(info.get("route_id", "")),
+            "route_name": str(info.get("route_name", "")),
+            "town_name": str(info.get("town_name", "")),
+            "repetition_index": int(info.get("repetition_index", -1)),
+            "route_data_id": int(info.get("route_data_id", -1)),
+            "scenario_index": int(info.get("scenario_index", -1)),
+            "time_step": int(info.get("time_step", -1)),
             "pair_ids": [int(v) for v in candidate_batch.pair_ids],
+            "candidate_count_1": int(candidate_batch.candidates[0].logits.numel()),
+            "candidate_count_2": int(candidate_batch.candidates[1].logits.numel()),
+            "policy_indices": [int(v) for v in policy_indices],
+            "independent_indices": [int(v) for v in independent_indices],
+            "oracle_indices": [int(v) for v in oracle_indices],
+            "executed_indices": [int(v) for v in executed_indices],
+            "executed_q": float(executed_q),
+            "executed_is_policy": bool(executed_indices == policy_indices),
+            "executed_is_independent": bool(
+                executed_indices == independent_indices
+            ),
+            "executed_is_oracle": bool(executed_indices == oracle_indices),
+            "oracle_intervention": bool(
+                self.joint_eval_action_mode == "oracle_gated" and oracle_gate_pass
+            ),
+            "oracle_eval_mode": self.oracle_eval_mode,
+            "joint_eval_action_mode": self.joint_eval_action_mode,
+            "policy_checkpoint": str(self.checkpoint or ""),
+            "oracle_gate_pass": bool(oracle_gate_pass),
+            "oracle_gate_failures": list(oracle_gate_failures),
+            "oracle_gate": self.oracle_gate,
             **{key: float(value) for key, value in diagnostics.items()},
         }
         self.eval_metrics_path.parent.mkdir(parents=True, exist_ok=True)
@@ -337,9 +488,41 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
             independent_indices,
         )
         state["diagnostics"].update(diagnostics)
+        # Record eligibility independently from whether this particular run
+        # applies the reweight.  This makes the uniform control auditable and
+        # distinguishes a lack of eligible states from an intentionally
+        # disabled reweighting switch.
+        state["diagnostics"]["high_value_eligible"] = float(
+            self._is_high_value_state(diagnostics)
+        )
+        state["state_weight"] = self._high_value_state_weight(diagnostics)
         # Keep the legacy key for existing dashboards while giving it the same
         # audited value as the explicit oracle-policy gap.
         state["diagnostics"]["oracle_gap_if_debug"] = diagnostics[
             "oracle_policy_gap"
         ]
         return state
+
+    def _high_value_state_weight(self, diagnostics: Dict[str, float]) -> float:
+        """Upweight only safe relaxed-high-value collection states.
+
+        This deliberately does not require ``both_necessary``: the current
+        audit found too few such states for a viable Stage-1 buffer.  The
+        selection remains an explicit training ablation and is never used to
+        label an oracle execution result.
+        """
+        cfg = self.high_value_reweight
+        if not cfg["enabled"]:
+            return 1.0
+        return cfg["weight"] if self._is_high_value_state(diagnostics) else 1.0
+
+    def _is_high_value_state(self, diagnostics: Dict[str, float]) -> bool:
+        """Return the config-defined safe relaxed-high-value eligibility."""
+        cfg = self.high_value_reweight
+        return bool(
+            diagnostics["oracle_joint_gain"] >= cfg["min_joint_gain"]
+            and diagnostics["nonfactorizable_reward_ratio"]
+            >= cfg["min_nonfactorizable_ratio"]
+            and diagnostics["oracle_pair_collision"] <= 0.0
+            and diagnostics["pair_collision_rate"] <= cfg["max_pair_collision_rate"]
+        )

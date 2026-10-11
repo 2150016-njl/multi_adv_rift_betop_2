@@ -35,6 +35,7 @@ class JointRIFTCollate:
         )
         valid_mask_1 = torch.zeros((batch_size, max_group_1), dtype=torch.bool)
         valid_mask_2 = torch.zeros((batch_size, max_group_2), dtype=torch.bool)
+        state_weight = torch.ones(batch_size, dtype=torch.float32)
         pair_ids = []
 
         for batch_index, sample in enumerate(batch):
@@ -51,6 +52,10 @@ class JointRIFTCollate:
             joint_advantage[batch_index, :group_1, :group_2] = advantage
             valid_mask_1[batch_index, :group_1] = mask_1
             valid_mask_2[batch_index, :group_2] = mask_2
+            weight = float(sample.get("state_weight", 1.0))
+            if not np.isfinite(weight) or weight <= 0:
+                raise ValueError("state_weight must be finite and strictly positive")
+            state_weight[batch_index] = weight
             pair_ids.append(tuple(sample["pair_ids"]))
 
         joint_valid_mask = valid_mask_1[:, :, None] & valid_mask_2[:, None, :]
@@ -65,6 +70,7 @@ class JointRIFTCollate:
             "valid_mask_1": valid_mask_1,
             "valid_mask_2": valid_mask_2,
             "joint_valid_mask": joint_valid_mask,
+            "state_weight": state_weight,
             "pair_ids": pair_ids,
             "frame_1": _collate_frame_context(batch, "frame_1"),
             "frame_2": _collate_frame_context(batch, "frame_2"),

@@ -1,0 +1,16 @@
+{"time":"2026-10-02T15:45:29.454863543Z","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2026-10-02T15:45:29.454962029Z","level":"INFO","msg":"created symlink","path":"/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/joint_rift_stage1_seed0_train/train_cbv/pdm_lite-joint_rift_audited-rule-seed0/carla_episode=147/wandb/offline-run-20261002_154529-v7s3zc0b/logs/debug-core.log"}
+{"time":"2026-10-02T15:45:29.568054951Z","level":"INFO","msg":"created new stream","id":"v7s3zc0b"}
+{"time":"2026-10-02T15:45:29.568111259Z","level":"INFO","msg":"stream: started","id":"v7s3zc0b"}
+{"time":"2026-10-02T15:45:29.568133995Z","level":"INFO","msg":"writer: Do: started","stream_id":"v7s3zc0b"}
+{"time":"2026-10-02T15:45:29.568158489Z","level":"INFO","msg":"sender: started","stream_id":"v7s3zc0b"}
+{"time":"2026-10-02T15:45:29.568178544Z","level":"INFO","msg":"handler: started","stream_id":"v7s3zc0b"}
+{"time":"2026-10-02T15:45:29.573656247Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-10-02T17:17:46.105295589Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-10-02T17:17:46.108823343Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-10-02T17:17:46.10945157Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-10-02T17:17:47.114520339Z","level":"INFO","msg":"stream: closing","id":"v7s3zc0b"}
+{"time":"2026-10-02T17:17:47.114590212Z","level":"INFO","msg":"handler: closed","stream_id":"v7s3zc0b"}
+{"time":"2026-10-02T17:17:47.114604493Z","level":"INFO","msg":"writer: Close: closed","stream_id":"v7s3zc0b"}
+{"time":"2026-10-02T17:17:47.114621708Z","level":"INFO","msg":"sender: closed","stream_id":"v7s3zc0b"}
+{"time":"2026-10-02T17:17:47.116830428Z","level":"INFO","msg":"stream: closed","id":"v7s3zc0b"}

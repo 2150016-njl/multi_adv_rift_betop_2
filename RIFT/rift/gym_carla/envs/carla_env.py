@@ -372,7 +372,20 @@ class CarlaEnv(gym.Env):
         return data
 
     def get_info(self):
-        info = {'env_id': self.env_id}
+        # Preserve scenario provenance on every transition.  Joint-RIFT
+        # diagnostics are state-level records and cannot be replayed or
+        # grouped into independent events without route and simulation-step
+        # identifiers.
+        info = {
+            'env_id': self.env_id,
+            'route_id': str(self.config.route_id),
+            'route_name': str(self.config.name),
+            'town_name': str(self.config.town),
+            'repetition_index': int(self.config.repetition_index),
+            'route_data_id': int(self.config.data_id),
+            'scenario_index': int(self.config.index),
+            'time_step': int(self.time_step),
+        }
         # collect data
         info.update(self.get_collection_data()) if self.mode == 'collect_data' else None
 

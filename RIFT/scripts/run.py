@@ -138,6 +138,30 @@ if __name__ == '__main__':
     parser.add_argument('--pretrain_cbv', '-pre_cbv', type=str, default='standard', choices=['ppo', 'standard', 'frea', 'fppo_rs'])
     parser.add_argument('--cbv_cfg', type=str, default='standard_eval.yaml')
     parser.add_argument('--collect_data_cfg', type=str, default='collect_data.yaml')
+    parser.add_argument(
+        '--routes',
+        type=str,
+        default=None,
+        help='Optional route XML override. Defaults to the route set for --mode.',
+    )
+    parser.add_argument(
+        '--routes_subset',
+        type=str,
+        default='',
+        help='Comma-separated route IDs/ranges (for example: 24211,24224-24240).',
+    )
+    parser.add_argument(
+        '--oracle_eval_mode',
+        choices=('disabled', 'diagnose', 'oracle_gated'),
+        default=None,
+        help='Joint-RIFT eval only: retain diagnostics, or execute strictly gated oracle pairs.',
+    )
+    parser.add_argument(
+        '--joint_eval_action_mode',
+        choices=('policy', 'independent', 'oracle_gated'),
+        default=None,
+        help='Joint-RIFT eval only: execute learned, matched independent, or gated oracle pairs.',
+    )
     # simulation-related
     parser.add_argument('--spectator', '-sp', action='store_true', default=False)
     parser.add_argument('--render', action='store_true', default=False)
@@ -159,7 +183,13 @@ if __name__ == '__main__':
     args_dict = vars(args)
     
     # get the routes file
-    args_dict['routes'] = MODE_TO_ROUTES[args.mode]
+    args_dict['routes'] = args.routes or MODE_TO_ROUTES[args.mode]
+    # Preserve the policy-config default unless an explicit diagnostic mode was
+    # requested on the command line.  Passing ``None`` through ``update``
+    # would otherwise disable the audited default.
+    for optional_argument in ('oracle_eval_mode', 'joint_eval_action_mode'):
+        if args_dict[optional_argument] is None:
+            del args_dict[optional_argument]
     
     torch.set_num_threads(args.threads)
     set_seed(args.seed)

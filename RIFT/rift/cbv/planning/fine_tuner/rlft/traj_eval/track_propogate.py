@@ -355,6 +355,7 @@ class BatchPIDTorch:
     # ------------------------------------------------------------------ #
     # Optional: clear integral / derivative history
     # ------------------------------------------------------------------ #
+    @torch.inference_mode()
     def reset(self):
         if self._buf is not None:
             self._buf.zero_()

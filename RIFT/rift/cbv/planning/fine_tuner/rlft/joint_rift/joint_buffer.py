@@ -142,6 +142,9 @@ class JointRolloutBuffer(BaseBuffer):
             raise ValueError("collection_stage must be 1 or 2")
         if not str(state["collection_checkpoint"]):
             raise ValueError("collection_checkpoint must identify the policy checkpoint")
+        state_weight = float(state.get("state_weight", 1.0))
+        if not np.isfinite(state_weight) or state_weight <= 0:
+            raise ValueError("state_weight must be finite and strictly positive")
         diagnostic_keys = {
             "p12",
             "coalition_gain",

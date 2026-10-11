@@ -11,6 +11,7 @@ from rift.cbv.planning.fine_tuner.rlft.ppo_pluto.ppo_pluto import PPOPluto
 from rift.cbv.planning.fine_tuner.rlft.reinforce_pluto.reinforce_pluto import ReinforcePluto
 from rift.cbv.planning.fine_tuner.rlft.rift_pluto.rift_pluto import RIFTPluto
 from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_rift_pluto import JointRIFTPluto
+from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_rift_audited import AuditedJointRIFTPluto
 from rift.cbv.planning.fine_tuner.sft.rs_pluto.rs_pluto import RewardShapingPluto
 from rift.cbv.planning.fine_tuner.sft.rtr_pluto.rtr_pluto import RTRPluto
 from rift.cbv.planning.fine_tuner.sft.sft_pluto import SFTPluto
@@ -33,4 +34,5 @@ CBV_POLICY_LIST = {
     'grpo_pluto': GRPOPluto,
     'rift_pluto': RIFTPluto,
     'joint_rift_pluto': JointRIFTPluto,
+    'joint_rift_audited': AuditedJointRIFTPluto,
 }

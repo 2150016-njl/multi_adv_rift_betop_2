@@ -20,6 +20,19 @@ joint_horizon: 40
 gamma: 0.98
 save_freq: 50
 eval_joint_diagnostics: true
+oracle_eval_mode: 'diagnose'
+joint_eval_action_mode: 'policy'
+oracle_min_joint_gain: 10.0
+oracle_min_nonfactorizable_ratio: 0.01
+oracle_require_both_necessary: true
+oracle_max_pair_collision_rate: 0.05
+
+high_value_reweight:
+  enabled: false
+  min_joint_gain: 10.0
+  min_nonfactorizable_ratio: 0.01
+  max_pair_collision_rate: 0.05
+  weight: 4.0
 
 rlft_config_path: 'config'
 rlft_config_name: 'joint_rift_training.yaml'
@@ -31,6 +44,7 @@ ckpt_path: 'rift/cbv/planning/model_ckpt/pluto/pluto_1M_aux_cil.ckpt'
 stage1_model_path: 'rift/cbv/planning/model_ckpt/joint_rift_pluto_stage1_audited'
 # Optional explicit override; leave empty to auto-discover latest Stage-1 checkpoint.
 stage1_ckpt_path:
+joint_ckpt_path:
 model_path: 'rift/cbv/planning/model_ckpt/joint_rift_pluto_stage2_audited'
 model_type: 'cbv'
 use_prediction: False

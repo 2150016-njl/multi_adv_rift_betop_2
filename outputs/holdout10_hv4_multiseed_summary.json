@@ -1,0 +1,1721 @@
+{
+  "audit_note": "Primary inference unit is the seed-level global matched delta. Route rows are descriptive because routes within one seed are correlated.",
+  "comparison_files": [
+    "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_hv4_policy_vs_independent_seed0.json",
+    "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_hv4_policy_vs_independent_seed1.json",
+    "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_hv4_policy_vs_independent_seed2.json",
+    "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_hv4_policy_vs_independent_seed3.json"
+  ],
+  "per_seed_global_deltas": [
+    {
+      "comparison_json": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_hv4_policy_vs_independent_seed0.json",
+      "mean_duration_game": -0.41,
+      "mean_duration_system": -2.3655999999999993,
+      "score_composed": 1.2540000000000049,
+      "score_penalty": 0.020000000000000018,
+      "score_route": -0.7459999999999951,
+      "total_cbv_collision_count": -7.0,
+      "total_cbv_count": -6.0
+    },
+    {
+      "comparison_json": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_hv4_policy_vs_independent_seed1.json",
+      "mean_duration_game": -0.285,
+      "mean_duration_system": 4.3580499999999995,
+      "score_composed": 1.3310199999999952,
+      "score_penalty": 0.03200000000000003,
+      "score_route": -0.22450000000000614,
+      "total_cbv_collision_count": 2.0,
+      "total_cbv_count": -1.0
+    },
+    {
+      "comparison_json": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_hv4_policy_vs_independent_seed2.json",
+      "mean_duration_game": -1.23,
+      "mean_duration_system": -11.16885,
+      "score_composed": -6.471999999999994,
+      "score_penalty": 0.0,
+      "score_route": -6.471999999999994,
+      "total_cbv_collision_count": -1.0,
+      "total_cbv_count": 2.0
+    },
+    {
+      "comparison_json": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_hv4_policy_vs_independent_seed3.json",
+      "mean_duration_game": -0.6400000000000001,
+      "mean_duration_system": -4.797050000000008,
+      "score_composed": -2.6454999999999984,
+      "score_penalty": -0.020000000000000018,
+      "score_route": -0.6454999999999984,
+      "total_cbv_collision_count": 0.0,
+      "total_cbv_count": -1.0
+    }
+  ],
+  "route_level_descriptive_deltas": {
+    "RouteScenario_17569_rep0": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "duration_game": {
+        "max": 0.40000000000000036,
+        "mean": 0.1499999999999999,
+        "median": 0.1999999999999993,
+        "min": -0.1999999999999993,
+        "n": 4,
+        "negative": 1,
+        "positive": 3,
+        "std_sample": 0.2645751311064587,
+        "zero": 0
+      },
+      "duration_system": {
+        "max": 7.353999999999985,
+        "mean": -2.6995000000000076,
+        "median": -3.1310000000000144,
+        "min": -11.889999999999986,
+        "n": 4,
+        "negative": 2,
+        "positive": 2,
+        "std_sample": 8.948750843926012,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_17569_rep1": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "duration_game": {
+        "max": 0.40000000000000036,
+        "mean": -0.14999999999999947,
+        "median": -0.14999999999999947,
+        "min": -0.6999999999999993,
+        "n": 4,
+        "negative": 3,
+        "positive": 1,
+        "std_sample": 0.4509249752822893,
+        "zero": 0
+      },
+      "duration_system": {
+        "max": 8.393,
+        "mean": -3.711250000000007,
+        "median": -2.374500000000012,
+        "min": -18.489000000000004,
+        "n": 4,
+        "negative": 3,
+        "positive": 1,
+        "std_sample": 11.111602175954046,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_2091_rep0": {
+      "cbv_collision_count": {
+        "max": 2.0,
+        "mean": 0.25,
+        "median": 0.5,
+        "min": -2.0,
+        "n": 4,
+        "negative": 1,
+        "positive": 2,
+        "std_sample": 1.707825127659933,
+        "zero": 1
+      },
+      "cbv_count": {
+        "max": 1.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": -1.0,
+        "n": 4,
+        "negative": 1,
+        "positive": 1,
+        "std_sample": 0.816496580927726,
+        "zero": 2
+      },
+      "duration_game": {
+        "max": 3.0,
+        "mean": 1.7749999999999995,
+        "median": 1.9000000000000004,
+        "min": 0.29999999999999716,
+        "n": 4,
+        "negative": 0,
+        "positive": 4,
+        "std_sample": 1.2500000000000009,
+        "zero": 0
+      },
+      "duration_system": {
+        "max": 63.528000000000006,
+        "mean": 24.530499999999996,
+        "median": 13.219999999999992,
+        "min": 8.153999999999996,
+        "n": 4,
+        "negative": 0,
+        "positive": 4,
+        "std_sample": 26.108845672172748,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 40.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": -40.0,
+        "n": 4,
+        "negative": 1,
+        "positive": 1,
+        "std_sample": 32.65986323710904,
+        "zero": 2
+      },
+      "score_penalty": {
+        "max": 0.4,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": -0.4,
+        "n": 4,
+        "negative": 1,
+        "positive": 1,
+        "std_sample": 0.32659863237109044,
+        "zero": 2
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_2091_rep1": {
+      "cbv_collision_count": {
+        "max": 2.0,
+        "mean": 0.25,
+        "median": 0.5,
+        "min": -2.0,
+        "n": 4,
+        "negative": 1,
+        "positive": 2,
+        "std_sample": 1.707825127659933,
+        "zero": 1
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": -0.25,
+        "median": 0.0,
+        "min": -1.0,
+        "n": 4,
+        "negative": 1,
+        "positive": 0,
+        "std_sample": 0.5,
+        "zero": 3
+      },
+      "duration_game": {
+        "max": 0.7000000000000011,
+        "mean": -0.9249999999999996,
+        "median": 0.1499999999999999,
+        "min": -4.699999999999999,
+        "n": 4,
+        "negative": 2,
+        "positive": 2,
+        "std_sample": 2.5565275929145246,
+        "zero": 0
+      },
+      "duration_system": {
+        "max": 1.2920000000000016,
+        "mean": -18.563249999999996,
+        "median": -16.478499999999997,
+        "min": -42.587999999999994,
+        "n": 4,
+        "negative": 3,
+        "positive": 1,
+        "std_sample": 19.972848592944036,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": -7.77,
+        "median": 0.0,
+        "min": -31.08,
+        "n": 4,
+        "negative": 1,
+        "positive": 0,
+        "std_sample": 15.54,
+        "zero": 3
+      },
+      "score_penalty": {
+        "max": 0.4,
+        "mean": 0.1,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 1,
+        "std_sample": 0.2,
+        "zero": 3
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": -17.77,
+        "median": 0.0,
+        "min": -71.08,
+        "n": 4,
+        "negative": 1,
+        "positive": 0,
+        "std_sample": 35.54,
+        "zero": 3
+      }
+    },
+    "RouteScenario_25378_rep0": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": -0.25,
+        "median": 0.0,
+        "min": -1.0,
+        "n": 4,
+        "negative": 1,
+        "positive": 0,
+        "std_sample": 0.5,
+        "zero": 3
+      },
+      "duration_game": {
+        "max": -0.09999999999999964,
+        "mean": -0.6749999999999998,
+        "median": -0.2999999999999998,
+        "min": -2.0,
+        "n": 4,
+        "negative": 4,
+        "positive": 0,
+        "std_sample": 0.9032349269892821,
+        "zero": 0
+      },
+      "duration_system": {
+        "max": -0.6769999999999996,
+        "mean": -4.714250000000001,
+        "median": -3.537000000000001,
+        "min": -11.106000000000002,
+        "n": 4,
+        "negative": 4,
+        "positive": 0,
+        "std_sample": 4.669653404340269,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_25378_rep1": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "duration_game": {
+        "max": 0.29999999999999893,
+        "mean": -0.050000000000000266,
+        "median": 0.0,
+        "min": -0.5,
+        "n": 4,
+        "negative": 1,
+        "positive": 1,
+        "std_sample": 0.33166247903553964,
+        "zero": 2
+      },
+      "duration_system": {
+        "max": 3.6739999999999924,
+        "mean": 0.859499999999997,
+        "median": 1.7704999999999984,
+        "min": -3.777000000000001,
+        "n": 4,
+        "negative": 1,
+        "positive": 3,
+        "std_sample": 3.2947532532801276,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_25381_rep0": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "duration_game": {
+        "max": 0.3000000000000007,
+        "mean": 0.1499999999999999,
+        "median": 0.14999999999999947,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 3,
+        "std_sample": 0.1290994448735808,
+        "zero": 1
+      },
+      "duration_system": {
+        "max": 7.441999999999993,
+        "mean": 2.960999999999995,
+        "median": 2.105499999999992,
+        "min": 0.1910000000000025,
+        "n": 4,
+        "negative": 0,
+        "positive": 4,
+        "std_sample": 3.1463823671003475,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_25381_rep1": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "duration_game": {
+        "max": 0.0,
+        "mean": -0.02499999999999991,
+        "median": 0.0,
+        "min": -0.09999999999999964,
+        "n": 4,
+        "negative": 1,
+        "positive": 0,
+        "std_sample": 0.049999999999999815,
+        "zero": 3
+      },
+      "duration_system": {
+        "max": 0.9189999999999969,
+        "mean": -0.19924999999999926,
+        "median": 0.40100000000000335,
+        "min": -2.5180000000000007,
+        "n": 4,
+        "negative": 2,
+        "positive": 2,
+        "std_sample": 1.6033654969053899,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_25424_rep0": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "cbv_count": {
+        "max": 1.0,
+        "mean": 0.25,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 1,
+        "std_sample": 0.5,
+        "zero": 3
+      },
+      "duration_game": {
+        "max": 2.5,
+        "mean": 0.875,
+        "median": 1.1500000000000004,
+        "min": -1.3000000000000007,
+        "n": 4,
+        "negative": 1,
+        "positive": 3,
+        "std_sample": 1.800694310536911,
+        "zero": 0
+      },
+      "duration_system": {
+        "max": 28.199,
+        "mean": 8.754250000000003,
+        "median": 10.651,
+        "min": -14.483999999999998,
+        "n": 4,
+        "negative": 2,
+        "positive": 2,
+        "std_sample": 19.62375554228429,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_25424_rep1": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "duration_game": {
+        "max": 2.3999999999999986,
+        "mean": -0.4500000000000002,
+        "median": -1.0,
+        "min": -2.1999999999999993,
+        "n": 4,
+        "negative": 2,
+        "positive": 2,
+        "std_sample": 2.176388445720723,
+        "zero": 0
+      },
+      "duration_system": {
+        "max": 6.072000000000001,
+        "mean": -1.5834999999999995,
+        "median": -2.8729999999999993,
+        "min": -6.66,
+        "n": 4,
+        "negative": 3,
+        "positive": 1,
+        "std_sample": 5.795377554568814,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_26405_rep0": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "cbv_count": {
+        "max": 1.0,
+        "mean": 0.25,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 1,
+        "std_sample": 0.5,
+        "zero": 3
+      },
+      "duration_game": {
+        "max": 0.5,
+        "mean": 4.440892098500626e-16,
+        "median": -0.09999999999999876,
+        "min": -0.3000000000000007,
+        "n": 4,
+        "negative": 2,
+        "positive": 2,
+        "std_sample": 0.38297084310253526,
+        "zero": 0
+      },
+      "duration_system": {
+        "max": 10.173000000000002,
+        "mean": 2.1372500000000008,
+        "median": -0.24749999999999872,
+        "min": -1.1290000000000013,
+        "n": 4,
+        "negative": 2,
+        "positive": 2,
+        "std_sample": 5.380237068816454,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_26405_rep1": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "duration_game": {
+        "max": 0.0,
+        "mean": -0.10000000000000053,
+        "median": 0.0,
+        "min": -0.40000000000000213,
+        "n": 4,
+        "negative": 1,
+        "positive": 0,
+        "std_sample": 0.20000000000000107,
+        "zero": 3
+      },
+      "duration_system": {
+        "max": 4.268000000000001,
+        "mean": 0.045000000000001705,
+        "median": -0.12749999999999773,
+        "min": -3.8329999999999984,
+        "n": 4,
+        "negative": 2,
+        "positive": 2,
+        "std_sample": 3.60031600464922,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_27494_rep0": {
+      "cbv_collision_count": {
+        "max": 1.0,
+        "mean": -0.25,
+        "median": 0.0,
+        "min": -2.0,
+        "n": 4,
+        "negative": 1,
+        "positive": 1,
+        "std_sample": 1.2583057392117916,
+        "zero": 2
+      },
+      "cbv_count": {
+        "max": 3.0,
+        "mean": 0.25,
+        "median": 0.0,
+        "min": -2.0,
+        "n": 4,
+        "negative": 1,
+        "positive": 1,
+        "std_sample": 2.0615528128088303,
+        "zero": 2
+      },
+      "duration_game": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "duration_system": {
+        "max": 23.498999999999995,
+        "mean": 11.5225,
+        "median": 10.911500000000018,
+        "min": 0.7679999999999723,
+        "n": 4,
+        "negative": 0,
+        "positive": 4,
+        "std_sample": 9.9867834160955,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.21999999999999886,
+        "mean": -4.3125,
+        "median": -3.844999999999999,
+        "min": -9.780000000000001,
+        "n": 4,
+        "negative": 3,
+        "positive": 1,
+        "std_sample": 4.382110412423068,
+        "zero": 0
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.21999999999999886,
+        "mean": -4.3125,
+        "median": -3.844999999999999,
+        "min": -9.780000000000001,
+        "n": 4,
+        "negative": 3,
+        "positive": 1,
+        "std_sample": 4.382110412423068,
+        "zero": 0
+      }
+    },
+    "RouteScenario_27494_rep1": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": -0.5,
+        "median": -0.5,
+        "min": -1.0,
+        "n": 4,
+        "negative": 2,
+        "positive": 0,
+        "std_sample": 0.5773502691896257,
+        "zero": 2
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": -0.5,
+        "median": -0.5,
+        "min": -1.0,
+        "n": 4,
+        "negative": 2,
+        "positive": 0,
+        "std_sample": 0.5773502691896257,
+        "zero": 2
+      },
+      "duration_game": {
+        "max": 0.0,
+        "mean": -11.975,
+        "median": -12.149999999999999,
+        "min": -23.6,
+        "n": 4,
+        "negative": 3,
+        "positive": 0,
+        "std_sample": 10.48184939152756,
+        "zero": 1
+      },
+      "duration_system": {
+        "max": 28.397999999999968,
+        "mean": -101.24675000000002,
+        "median": -124.59100000000001,
+        "min": -184.20300000000003,
+        "n": 4,
+        "negative": 3,
+        "positive": 1,
+        "std_sample": 100.24664262831948,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 32.300399999999996,
+        "mean": -10.579900000000002,
+        "median": -9.135,
+        "min": -56.35000000000001,
+        "n": 4,
+        "negative": 3,
+        "positive": 1,
+        "std_sample": 36.376355434631805,
+        "zero": 0
+      },
+      "score_penalty": {
+        "max": 0.64,
+        "mean": 0.16,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 1,
+        "std_sample": 0.32,
+        "zero": 3
+      },
+      "score_route": {
+        "max": 1.1899999999999977,
+        "mean": -18.3575,
+        "median": -9.135,
+        "min": -56.35000000000001,
+        "n": 4,
+        "negative": 3,
+        "positive": 1,
+        "std_sample": 25.9972041766033,
+        "zero": 0
+      }
+    },
+    "RouteScenario_28198_rep0": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "duration_game": {
+        "max": 1.0999999999999996,
+        "mean": -0.04999999999999982,
+        "median": -0.20000000000000018,
+        "min": -0.8999999999999986,
+        "n": 4,
+        "negative": 2,
+        "positive": 1,
+        "std_sample": 0.8504900548115377,
+        "zero": 1
+      },
+      "duration_system": {
+        "max": 48.70700000000001,
+        "mean": 1.5067500000000038,
+        "median": -3.753,
+        "min": -35.17399999999999,
+        "n": 4,
+        "negative": 2,
+        "positive": 2,
+        "std_sample": 35.05654009715353,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_28198_rep1": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": -1.5,
+        "median": -1.5,
+        "min": -3.0,
+        "n": 4,
+        "negative": 3,
+        "positive": 0,
+        "std_sample": 1.2909944487358056,
+        "zero": 1
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": -1.25,
+        "median": -1.5,
+        "min": -2.0,
+        "n": 4,
+        "negative": 3,
+        "positive": 0,
+        "std_sample": 0.9574271077563381,
+        "zero": 1
+      },
+      "duration_game": {
+        "max": 1.6999999999999993,
+        "mean": -0.25,
+        "median": 0.09999999999999964,
+        "min": -2.8999999999999986,
+        "n": 4,
+        "negative": 2,
+        "positive": 2,
+        "std_sample": 2.028957039137759,
+        "zero": 0
+      },
+      "duration_system": {
+        "max": 24.22,
+        "mean": 1.2517500000000013,
+        "median": 6.896000000000001,
+        "min": -33.004999999999995,
+        "n": 4,
+        "negative": 1,
+        "positive": 3,
+        "std_sample": 24.28287429959641,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_3255_rep0": {
+      "cbv_collision_count": {
+        "max": 1.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": -1.0,
+        "n": 4,
+        "negative": 1,
+        "positive": 1,
+        "std_sample": 0.816496580927726,
+        "zero": 2
+      },
+      "cbv_count": {
+        "max": 1.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": -1.0,
+        "n": 4,
+        "negative": 1,
+        "positive": 1,
+        "std_sample": 0.816496580927726,
+        "zero": 2
+      },
+      "duration_game": {
+        "max": 6.9,
+        "mean": -0.2999999999999998,
+        "median": -0.40000000000000036,
+        "min": -7.299999999999999,
+        "n": 4,
+        "negative": 2,
+        "positive": 1,
+        "std_sample": 5.807466458505521,
+        "zero": 1
+      },
+      "duration_system": {
+        "max": 14.541000000000004,
+        "mean": 0.009749999999998593,
+        "median": 1.1329999999999956,
+        "min": -16.768,
+        "n": 4,
+        "negative": 2,
+        "positive": 2,
+        "std_sample": 12.909028245766605,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_3255_rep1": {
+      "cbv_collision_count": {
+        "max": 1.0,
+        "mean": 0.25,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 1,
+        "std_sample": 0.5,
+        "zero": 3
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "duration_game": {
+        "max": 0.8000000000000007,
+        "mean": -0.8250000000000002,
+        "median": -0.05000000000000071,
+        "min": -4.0,
+        "n": 4,
+        "negative": 2,
+        "positive": 2,
+        "std_sample": 2.1577380131362873,
+        "zero": 0
+      },
+      "duration_system": {
+        "max": 16.459000000000003,
+        "mean": -6.735499999999998,
+        "median": -3.5459999999999994,
+        "min": -36.309,
+        "n": 4,
+        "negative": 3,
+        "positive": 1,
+        "std_sample": 21.941291932488085,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": -10.0,
+        "median": 0.0,
+        "min": -40.0,
+        "n": 4,
+        "negative": 1,
+        "positive": 0,
+        "std_sample": 20.0,
+        "zero": 3
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": -0.1,
+        "median": 0.0,
+        "min": -0.4,
+        "n": 4,
+        "negative": 1,
+        "positive": 0,
+        "std_sample": 0.2,
+        "zero": 3
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_3514_rep0": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "cbv_count": {
+        "max": 1.0,
+        "mean": 0.5,
+        "median": 0.5,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 2,
+        "std_sample": 0.5773502691896257,
+        "zero": 2
+      },
+      "duration_game": {
+        "max": 1.1999999999999993,
+        "mean": 0.6749999999999998,
+        "median": 0.5999999999999996,
+        "min": 0.3000000000000007,
+        "n": 4,
+        "negative": 0,
+        "positive": 4,
+        "std_sample": 0.4112987559751015,
+        "zero": 0
+      },
+      "duration_system": {
+        "max": 52.559000000000005,
+        "mean": 24.950000000000003,
+        "median": 23.677500000000002,
+        "min": -0.11400000000000432,
+        "n": 4,
+        "negative": 1,
+        "positive": 3,
+        "std_sample": 28.219075120681524,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    },
+    "RouteScenario_3514_rep1": {
+      "cbv_collision_count": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "cbv_count": {
+        "max": 0.0,
+        "mean": -0.5,
+        "median": -0.5,
+        "min": -1.0,
+        "n": 4,
+        "negative": 2,
+        "positive": 0,
+        "std_sample": 0.5773502691896257,
+        "zero": 2
+      },
+      "duration_game": {
+        "max": -0.1999999999999993,
+        "mean": -0.6749999999999998,
+        "median": -0.4500000000000002,
+        "min": -1.5999999999999996,
+        "n": 4,
+        "negative": 4,
+        "positive": 0,
+        "std_sample": 0.6601767440112785,
+        "zero": 0
+      },
+      "duration_system": {
+        "max": -2.0390000000000015,
+        "mean": -8.942250000000001,
+        "median": -5.8215,
+        "min": -22.087000000000003,
+        "n": 4,
+        "negative": 4,
+        "positive": 0,
+        "std_sample": 9.384648719229366,
+        "zero": 0
+      },
+      "score_composed": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_penalty": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      },
+      "score_route": {
+        "max": 0.0,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "n": 4,
+        "negative": 0,
+        "positive": 0,
+        "std_sample": 0.0,
+        "zero": 4
+      }
+    }
+  },
+  "seed_level_global_deltas": {
+    "score_composed": {
+      "max": 1.3310199999999952,
+      "mean": -1.6331199999999981,
+      "median": -0.6957499999999968,
+      "min": -6.471999999999994,
+      "n": 4,
+      "negative": 2,
+      "positive": 2,
+      "std_sample": 3.7220630817151186,
+      "zero": 0
+    },
+    "score_penalty": {
+      "max": 0.03200000000000003,
+      "mean": 0.008000000000000007,
+      "median": 0.010000000000000009,
+      "min": -0.020000000000000018,
+      "n": 4,
+      "negative": 1,
+      "positive": 2,
+      "std_sample": 0.022861904265976347,
+      "zero": 1
+    },
+    "score_route": {
+      "max": -0.22450000000000614,
+      "mean": -2.0219999999999985,
+      "median": -0.6957499999999968,
+      "min": -6.471999999999994,
+      "n": 4,
+      "negative": 4,
+      "positive": 0,
+      "std_sample": 2.9752554232087896,
+      "zero": 0
+    }
+  },
+  "seed_level_safety_and_cost_deltas": {
+    "mean_duration_game": {
+      "max": -0.285,
+      "mean": -0.64125,
+      "median": -0.525,
+      "min": -1.23,
+      "n": 4,
+      "negative": 4,
+      "positive": 0,
+      "std_sample": 0.41913353083076843,
+      "zero": 0
+    },
+    "mean_duration_system": {
+      "max": 4.3580499999999995,
+      "mean": -3.493362500000002,
+      "median": -3.581325000000003,
+      "min": -11.16885,
+      "n": 4,
+      "negative": 3,
+      "positive": 1,
+      "std_sample": 6.416884913047115,
+      "zero": 0
+    },
+    "total_cbv_collision_count": {
+      "max": 2.0,
+      "mean": -1.5,
+      "median": -0.5,
+      "min": -7.0,
+      "n": 4,
+      "negative": 2,
+      "positive": 1,
+      "std_sample": 3.872983346207417,
+      "zero": 1
+    },
+    "total_cbv_count": {
+      "max": 2.0,
+      "mean": -1.5,
+      "median": -1.0,
+      "min": -6.0,
+      "n": 4,
+      "negative": 3,
+      "positive": 1,
+      "std_sample": 3.3166247903554,
+      "zero": 0
+    }
+  },
+  "status_transitions": {
+    "Completed -> Completed": 70,
+    "Completed -> Failed - Agent got blocked": 1,
+    "Failed - Agent got blocked -> Failed - Agent got blocked": 3,
+    "Failed - Agent timed out -> Failed - Agent got blocked": 1,
+    "Failed - Agent timed out -> Failed - Agent timed out": 5
+  }
+}

@@ -333,7 +333,21 @@ class CarlaRunner:
             while not self.env.all_scenario_done():
                 # get action from agent policy and scenario policy (assume using one batch)
                 ego_actions_dict = self.ego_policy.get_action(ego_obs_list, info_list, deterministic=True)
-                CBVs_actions_dict = self.cbv_policy.get_action(CBVs_obs_list, info_list, deterministic=True)
+                # Only Joint-RIFT consumes the PDM nominal trajectory.  Keep
+                # the established baseline API unchanged while supplying the
+                # trajectory needed for joint candidate construction and its
+                # feasibility diagnostics.
+                if self.cbv_policy_name in {'joint_rift_pluto', 'joint_rift_audited'}:
+                    CBVs_actions_dict = self.cbv_policy.get_action(
+                        CBVs_obs_list,
+                        info_list,
+                        deterministic=True,
+                        ego_nominal_trajectories=ego_actions_dict.get('ego_nominal_trajectories'),
+                    )
+                else:
+                    CBVs_actions_dict = self.cbv_policy.get_action(
+                        CBVs_obs_list, info_list, deterministic=True
+                    )
 
                 # apply action to env and get obs
                 data_dict = self.env.step(ego_actions_dict, CBVs_actions_dict, ego_obs_list, CBVs_obs_list, info_list)
@@ -462,7 +476,7 @@ class CarlaRunner:
             # cbv buffer
             buffer_class = (
                 JointRolloutBuffer
-                if self.cbv_policy_name == 'joint_rift_pluto'
+                if self.cbv_policy_name in {'joint_rift_pluto', 'joint_rift_audited'}
                 else CBVRolloutBuffer
             )
             buffer = buffer_class(self.num_scenario, self.mode, self.cbv_config, self.logger)

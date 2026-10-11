@@ -1,0 +1,29 @@
+2026-10-01 17:46:45,136 INFO    MainThread:958114 [wandb_setup.py:_flush():68] Current SDK version is 0.19.1
+2026-10-01 17:46:45,136 INFO    MainThread:958114 [wandb_setup.py:_flush():68] Configure stats pid to 958114
+2026-10-01 17:46:45,136 INFO    MainThread:958114 [wandb_setup.py:_flush():68] Loading settings from /home/riftuser/.config/wandb/settings
+2026-10-01 17:46:45,136 INFO    MainThread:958114 [wandb_setup.py:_flush():68] Loading settings from /tmp/wandb/settings
+2026-10-01 17:46:45,136 INFO    MainThread:958114 [wandb_setup.py:_flush():68] Loading settings from environment variables
+2026-10-01 17:46:45,136 INFO    MainThread:958114 [wandb_init.py:_log_setup():528] Logging user logs to /zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/joint_rift_stage1_seed0_train/train_cbv/pdm_lite-joint_rift_audited-rule-seed0/carla_episode=31/wandb/offline-run-20261001_174645-vj1faaeg/logs/debug.log
+2026-10-01 17:46:45,136 INFO    MainThread:958114 [wandb_init.py:_log_setup():529] Logging internal logs to /zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/joint_rift_stage1_seed0_train/train_cbv/pdm_lite-joint_rift_audited-rule-seed0/carla_episode=31/wandb/offline-run-20261001_174645-vj1faaeg/logs/debug-internal.log
+2026-10-01 17:46:45,136 INFO    MainThread:958114 [wandb_init.py:init():644] calling init triggers
+2026-10-01 17:46:45,136 INFO    MainThread:958114 [wandb_init.py:init():650] wandb.init called with sweep_config: {}
+config: {}
+2026-10-01 17:46:45,136 INFO    MainThread:958114 [wandb_init.py:init():680] starting backend
+2026-10-01 17:46:45,136 INFO    MainThread:958114 [wandb_init.py:init():684] sending inform_init request
+2026-10-01 17:46:45,178 INFO    MainThread:958114 [backend.py:_multiprocessing_setup():104] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2026-10-01 17:46:45,178 INFO    MainThread:958114 [wandb_init.py:init():697] backend started and connected
+2026-10-01 17:46:45,182 INFO    MainThread:958114 [wandb_init.py:init():790] updated telemetry
+2026-10-01 17:46:45,183 INFO    MainThread:958114 [wandb_init.py:init():822] communicating run to backend with 90.0 second timeout
+2026-10-01 17:46:45,300 INFO    MainThread:958114 [wandb_init.py:init():874] starting run threads in backend
+2026-10-01 17:46:45,495 INFO    MainThread:958114 [wandb_run.py:_console_start():2374] atexit reg
+2026-10-01 17:46:45,495 INFO    MainThread:958114 [wandb_run.py:_redirect():2224] redirect: wrap_raw
+2026-10-01 17:46:45,495 INFO    MainThread:958114 [wandb_run.py:_redirect():2289] Wrapping output streams.
+2026-10-01 17:46:45,495 INFO    MainThread:958114 [wandb_run.py:_redirect():2314] Redirects installed.
+2026-10-01 17:46:45,498 INFO    MainThread:958114 [wandb_init.py:init():916] run started, returning control to user process
+2026-10-01 17:46:45,821 INFO    MainThread:958114 [wandb_run.py:_config_callback():1279] config_cb None None {'lr': 0.0001, 'cl_lr_decay': 0.9, 'weight_decay': 1e-05, 'epochs': 16, 'warmup_epochs': 3, 'frame_rate': 10.0, 'trainable_layers': '[]', 'joint_lr': 0.0001, 'pi_lr': 1e-05, 'train_pi_head': False, 'clip_ratio': 0.2, 'dual_clip': 3.0}
+2026-10-01 19:19:33,708 INFO    MainThread:958114 [wandb_run.py:_finish():2100] finishing run RIFT/vj1faaeg
+2026-10-01 19:19:33,709 INFO    MainThread:958114 [wandb_run.py:_atexit_cleanup():2339] got exitcode: 0
+2026-10-01 19:19:33,709 INFO    MainThread:958114 [wandb_run.py:_restore():2321] restore
+2026-10-01 19:19:33,709 INFO    MainThread:958114 [wandb_run.py:_restore():2327] restore done
+2026-10-01 19:19:34,729 INFO    MainThread:958114 [wandb_run.py:_footer_history_summary_info():3892] rendering history
+2026-10-01 19:19:34,731 INFO    MainThread:958114 [wandb_run.py:_footer_history_summary_info():3924] rendering summary

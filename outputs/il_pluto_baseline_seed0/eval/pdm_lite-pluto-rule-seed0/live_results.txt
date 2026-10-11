@@ -1,0 +1,35 @@
+Route id: RouteScenario_28198_rep0
+
+Scenario: None
+
+Town name: Town15
+
+Weather id: 3
+
+Save name: RouteScenario_28198_rep0_Town15_None_3_10_01_12_55_41
+
+Scores:
+    Driving score:      100.000
+    Route completion:   100.000
+    Infraction penalty: 1.000
+
+    Route length:    84.225
+    Game duration:   12.700
+    System duration: 23.087
+
+Ego:
+    Throttle:           1.000
+    Brake:              0.000
+    Steer:              0.001
+
+    Speed:           7.755 m/s
+
+    Location:           (1017.229 417.370 122.688)
+
+Total infractions: 18
+Last 5 infractions:
+    MIN_SPEED_INFRACTION (value: 157.54%)
+    MIN_SPEED_INFRACTION (value: 158.76%)
+    MIN_SPEED_INFRACTION (value: 151.71%)
+    MIN_SPEED_INFRACTION (value: 119.3%)
+    MIN_SPEED_INFRACTION (value: 139.4%)

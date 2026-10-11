@@ -1,0 +1,139 @@
+{
+  "audit_note": "Primary effect: same-seed [HV4(policy-independent) minus Uniform(policy-independent)]. A positive score_composed interaction supports the high-value reweighting ablation.",
+  "hv4_policy_minus_independent": {
+    "score_composed": {
+      "max": 1.3310199999999952,
+      "mean": -1.6331199999999981,
+      "median": -0.6957499999999968,
+      "min": -6.471999999999994,
+      "n": 4,
+      "std_sample": 3.7220630817151186
+    },
+    "score_penalty": {
+      "max": 0.03200000000000003,
+      "mean": 0.008000000000000007,
+      "median": 0.010000000000000009,
+      "min": -0.020000000000000018,
+      "n": 4,
+      "std_sample": 0.022861904265976347
+    },
+    "score_route": {
+      "max": -0.22450000000000614,
+      "mean": -2.0219999999999985,
+      "median": -0.6957499999999968,
+      "min": -6.471999999999994,
+      "n": 4,
+      "std_sample": 2.9752554232087896
+    }
+  },
+  "per_seed": [
+    {
+      "hv4_comparison": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_hv4_policy_vs_independent_seed0.json",
+      "hv4_minus_uniform_score_composed_interaction": -0.29999999999999716,
+      "hv4_minus_uniform_score_penalty_interaction": 0.0,
+      "hv4_minus_uniform_score_route_interaction": -0.29999999999999716,
+      "hv4_score_composed_delta": 1.2540000000000049,
+      "hv4_score_penalty_delta": 0.020000000000000018,
+      "hv4_score_route_delta": -0.7459999999999951,
+      "seed": 0,
+      "uniform_comparison": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_uniform_policy_vs_independent_seed0.json",
+      "uniform_score_composed_delta": 1.554000000000002,
+      "uniform_score_penalty_delta": 0.020000000000000018,
+      "uniform_score_route_delta": -0.44599999999999795
+    },
+    {
+      "hv4_comparison": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_hv4_policy_vs_independent_seed1.json",
+      "hv4_minus_uniform_score_composed_interaction": 4.603019999999987,
+      "hv4_minus_uniform_score_penalty_interaction": 0.03200000000000003,
+      "hv4_minus_uniform_score_route_interaction": 3.047499999999985,
+      "hv4_score_composed_delta": 1.3310199999999952,
+      "hv4_score_penalty_delta": 0.03200000000000003,
+      "hv4_score_route_delta": -0.22450000000000614,
+      "seed": 1,
+      "uniform_comparison": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_uniform_policy_vs_independent_seed1.json",
+      "uniform_score_composed_delta": -3.2719999999999914,
+      "uniform_score_penalty_delta": 0.0,
+      "uniform_score_route_delta": -3.2719999999999914
+    },
+    {
+      "hv4_comparison": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_hv4_policy_vs_independent_seed2.json",
+      "hv4_minus_uniform_score_composed_interaction": 0.2705000000000126,
+      "hv4_minus_uniform_score_penalty_interaction": 0.03200000000000003,
+      "hv4_minus_uniform_score_route_interaction": -2.9294999999999902,
+      "hv4_score_composed_delta": -6.471999999999994,
+      "hv4_score_penalty_delta": 0.0,
+      "hv4_score_route_delta": -6.471999999999994,
+      "seed": 2,
+      "uniform_comparison": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_uniform_policy_vs_independent_seed2.json",
+      "uniform_score_composed_delta": -6.742500000000007,
+      "uniform_score_penalty_delta": -0.03200000000000003,
+      "uniform_score_route_delta": -3.542500000000004
+    },
+    {
+      "hv4_comparison": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_hv4_policy_vs_independent_seed3.json",
+      "hv4_minus_uniform_score_composed_interaction": -0.16450000000000387,
+      "hv4_minus_uniform_score_penalty_interaction": 0.040000000000000036,
+      "hv4_minus_uniform_score_route_interaction": -4.164500000000004,
+      "hv4_score_composed_delta": -2.6454999999999984,
+      "hv4_score_penalty_delta": -0.020000000000000018,
+      "hv4_score_route_delta": -0.6454999999999984,
+      "seed": 3,
+      "uniform_comparison": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/holdout10_uniform_policy_vs_independent_seed3.json",
+      "uniform_score_composed_delta": -2.4809999999999945,
+      "uniform_score_penalty_delta": -0.06000000000000005,
+      "uniform_score_route_delta": 3.5190000000000055
+    }
+  ],
+  "primary_difference_in_differences": {
+    "score_composed": {
+      "max": 4.603019999999987,
+      "mean": 1.1022549999999995,
+      "median": 0.05300000000000438,
+      "min": -0.29999999999999716,
+      "n": 4,
+      "std_sample": 2.3464980488875957
+    },
+    "score_penalty": {
+      "max": 0.040000000000000036,
+      "mean": 0.026000000000000023,
+      "median": 0.03200000000000003,
+      "min": 0.0,
+      "n": 4,
+      "std_sample": 0.017738846260866775
+    },
+    "score_route": {
+      "max": 3.047499999999985,
+      "mean": -1.0866250000000015,
+      "median": -1.6147499999999937,
+      "min": -4.164500000000004,
+      "n": 4,
+      "std_sample": 3.1926619607833975
+    }
+  },
+  "uniform_policy_minus_independent": {
+    "score_composed": {
+      "max": 1.554000000000002,
+      "mean": -2.7353749999999977,
+      "median": -2.876499999999993,
+      "min": -6.742500000000007,
+      "n": 4,
+      "std_sample": 3.4062913208502916
+    },
+    "score_penalty": {
+      "max": 0.020000000000000018,
+      "mean": -0.018000000000000016,
+      "median": -0.016000000000000014,
+      "min": -0.06000000000000005,
+      "n": 4,
+      "std_sample": 0.03525147751040612
+    },
+    "score_route": {
+      "max": 3.5190000000000055,
+      "mean": -0.935374999999997,
+      "median": -1.8589999999999947,
+      "min": -3.542500000000004,
+      "n": 4,
+      "std_sample": 3.2831824849019093
+    }
+  }
+}

@@ -10,13 +10,19 @@ import torch
 
 from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_diagnostics import (
     masked_additive_residual_ratio,
+    oracle_gate_decision,
+    select_oracle_pair,
 )
 from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_score_head import (
     JointResidualScorer,
 )
+from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_trainer import (
+    joint_dual_clip_loss,
+)
 from rift.cbv.planning.fine_tuner.rlft.joint_rift.temporal_interaction import (
     get_temporally_weighted_interaction_events,
 )
+from rift.cbv.planning.fine_tuner.rlft.traj_eval.track_propogate import BatchPIDTorch
 
 
 def check_temporal_weighting():
@@ -85,10 +91,68 @@ def check_nonfactorizable_diagnostic():
     assert masked_additive_residual_ratio(xor_like, mask) > 0.9
 
 
+def check_oracle_selection_and_gate():
+    q = np.array([[1.0, 3.0], [2.0, 4.0]])
+    mask = np.array([[True, True], [True, False]])
+    assert select_oracle_pair(q, mask) == (0, 1)
+    diagnostics = {
+        "oracle_joint_gain": 12.0,
+        "nonfactorizable_reward_ratio": 0.2,
+        "oracle_both_necessary": 1.0,
+        "oracle_pair_collision": 0.0,
+        "pair_collision_rate": 0.01,
+    }
+    passed, failures = oracle_gate_decision(
+        diagnostics,
+        min_joint_gain=10.0,
+        min_nonfactorizable_ratio=0.01,
+        require_both_necessary=True,
+        max_pair_collision_rate=0.05,
+    )
+    assert passed and not failures
+    diagnostics["oracle_pair_collision"] = 1.0
+    passed, failures = oracle_gate_decision(
+        diagnostics,
+        min_joint_gain=10.0,
+        min_nonfactorizable_ratio=0.01,
+        require_both_necessary=True,
+        max_pair_collision_rate=0.05,
+    )
+    assert not passed and "oracle_pair_collision" in failures
+
+
+def check_state_weighted_joint_loss():
+    logits = torch.zeros((2, 1, 1), dtype=torch.float32)
+    advantage = torch.tensor([[[1.0]], [[3.0]]])
+    valid_mask = torch.ones((2, 1, 1), dtype=torch.bool)
+    loss, metrics = joint_dual_clip_loss(
+        logits,
+        logits,
+        advantage,
+        valid_mask,
+        state_weight=torch.tensor([1.0, 3.0]),
+    )
+    assert torch.allclose(loss, torch.tensor(-2.5))
+    assert torch.allclose(metrics["state_weight_mean"], torch.tensor(2.0))
+
+
+def check_pid_reset_after_inference_allocation():
+    """A rollout controller must be reusable across two unary evaluations."""
+    controller = BatchPIDTorch(device="cpu")
+    with torch.inference_mode():
+        controller._ensure_capacity(2)
+    controller.reset()
+    assert int(controller._buf.count_nonzero()) == 0
+    assert int(controller._ptr.count_nonzero()) == 0
+
+
 def main():
     check_temporal_weighting()
     check_zero_init_factorization_and_symmetry()
     check_nonfactorizable_diagnostic()
+    check_oracle_selection_and_gate()
+    check_state_weighted_joint_loss()
+    check_pid_reset_after_inference_allocation()
     print("Joint-RIFT core validation: PASS")
 
 

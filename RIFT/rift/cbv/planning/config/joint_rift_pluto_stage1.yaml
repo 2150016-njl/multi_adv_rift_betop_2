@@ -20,6 +20,28 @@ joint_horizon: 40
 gamma: 0.98
 save_freq: 50
 eval_joint_diagnostics: true
+# Evaluation-only counterfactual modes.  ``diagnose`` records the oracle but
+# executes the learned policy; ``oracle_gated`` is an explicitly labelled
+# upper-bound experiment and executes an oracle pair only when every gate
+# passes.  Training never uses either mode.
+oracle_eval_mode: 'diagnose'
+# ``independent`` is a matched execution baseline using this exact candidate
+# batch; ``oracle_gated`` is explicitly an evaluator upper-bound experiment.
+joint_eval_action_mode: 'policy'
+oracle_min_joint_gain: 10.0
+oracle_min_nonfactorizable_ratio: 0.01
+oracle_require_both_necessary: true
+oracle_max_pair_collision_rate: 0.05
+
+# Stage-1 ablation only.  Eligible states receive a state-level PPO weight;
+# candidate pairs within a state remain uniformly normalized.  Keep disabled
+# for the uniform baseline and enable only in a separately named model path.
+high_value_reweight:
+  enabled: false
+  min_joint_gain: 10.0
+  min_nonfactorizable_ratio: 0.01
+  max_pair_collision_rate: 0.05
+  weight: 4.0
 
 rlft_config_path: 'config'
 rlft_config_name: 'joint_rift_training.yaml'
@@ -31,6 +53,9 @@ ckpt_path: 'rift/cbv/planning/model_ckpt/pluto/pluto_1M_aux_cil.ckpt'
 base_rift_model_path: 'rift/cbv/planning/model_ckpt/rift_pluto'
 # Optional explicit override; leave empty to auto-discover latest checkpoint.
 base_rift_ckpt_path:
+# Evaluation-only explicit Joint-RIFT checkpoint.  This avoids treating the
+# numerically latest CARLA episode as the automatically best checkpoint.
+joint_ckpt_path:
 # Keep audited stages separate from the previous prototype directory so an old
 # IL-Pluto-initialized Joint-RIFT checkpoint cannot be resumed accidentally.
 model_path: 'rift/cbv/planning/model_ckpt/joint_rift_pluto_stage1_audited'

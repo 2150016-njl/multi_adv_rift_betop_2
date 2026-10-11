@@ -74,7 +74,9 @@ class ScenarioDataParser(object):
             Data file should also come from args
         """
         logger.log(">> Parsing scenario route and data")
-        parsed_configs, total_routes = parse_index_config(config)
+        parsed_configs, total_routes = parse_index_config(
+            config, routes_subset=config.get('routes_subset', '')
+        )
 
         config_by_map = defaultdict(list)
         for parsed_config in parsed_configs:            
