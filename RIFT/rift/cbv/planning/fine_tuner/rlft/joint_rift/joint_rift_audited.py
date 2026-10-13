@@ -47,6 +47,45 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
         joint_config = config.get("joint", {})
         self.eval_joint_diagnostics = bool(config.get("eval_joint_diagnostics", True))
         self.eval_metrics_path = Path(logger.output_dir) / "joint_rift_eval_metrics.jsonl"
+        # Dense candidate exports are deliberately opt-in: they are valuable
+        # scientific evidence but can be much larger than the scalar JSONL
+        # diagnostics when enabled for an entire benchmark.
+        dump_config = config.get("candidate_dump", {})
+        self.candidate_dump = {
+            "enabled": bool(dump_config.get("enabled", False)),
+            "output_dir": str(dump_config.get("output_dir", "")),
+            "max_states": int(dump_config.get("max_states", 0)),
+            "max_states_per_target_route": int(
+                dump_config.get("max_states_per_target_route", 0)
+            ),
+            "target_route_ids": {str(value) for value in dump_config.get("target_route_ids", [])},
+            "non_high_value_route_ids": {
+                str(value) for value in dump_config.get("non_high_value_route_ids", [])
+            },
+            "target_time_windows": {
+                str(route_id): tuple(int(value) for value in window)
+                for route_id, window in dump_config.get("target_time_windows", {}).items()
+            },
+            "non_high_value_max_states": int(
+                dump_config.get("non_high_value_max_states", 0)
+            ),
+            "high_value_min_joint_gain": float(
+                dump_config.get("high_value_min_joint_gain", 10.0)
+            ),
+        }
+        if self.candidate_dump["enabled"]:
+            if not self.candidate_dump["output_dir"]:
+                raise ValueError("candidate_dump.output_dir is required when enabled")
+            if self.candidate_dump["max_states"] < 1:
+                raise ValueError("candidate_dump.max_states must be positive when enabled")
+            for route_id, window in self.candidate_dump["target_time_windows"].items():
+                if len(window) != 2 or window[0] > window[1]:
+                    raise ValueError(
+                        f"candidate_dump.target_time_windows[{route_id!r}] must be [start, end]"
+                    )
+        self._candidate_dump_total = 0
+        self._candidate_dump_target_counts = {}
+        self._candidate_dump_non_high_value_count = 0
         self.oracle_eval_mode = str(config.get("oracle_eval_mode", "diagnose"))
         if self.oracle_eval_mode not in {"disabled", "diagnose", "oracle_gated"}:
             raise ValueError(
@@ -376,6 +415,17 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
                     oracle_gate_pass=oracle_gate_pass,
                     oracle_gate_failures=oracle_gate_failures,
                 )
+                self._maybe_dump_candidate_state(
+                    info=info,
+                    candidate_batch=candidate_batch,
+                    score_output=score_output,
+                    joint_evaluation=joint_evaluation,
+                    diagnostics=eval_diagnostics,
+                    policy_indices=policy_indices,
+                    independent_indices=independent_indices,
+                    oracle_indices=oracle_indices,
+                    executed_indices=selected_indices,
+                )
 
         self._clean_CBVs(infos, CBVs_obs_list)
         output = {"CBVs_actions": CBVs_actions}
@@ -459,6 +509,126 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
         self.eval_metrics_path.parent.mkdir(parents=True, exist_ok=True)
         with self.eval_metrics_path.open("a", encoding="utf-8") as stream:
             stream.write(json.dumps(record, sort_keys=True) + "\n")
+
+    def _maybe_dump_candidate_state(
+        self,
+        info: Dict,
+        candidate_batch: JointCandidateBatch,
+        score_output,
+        joint_evaluation: Dict,
+        diagnostics: Dict[str, float],
+        policy_indices: Tuple[int, int],
+        independent_indices: Tuple[int, int],
+        oracle_indices: Tuple[int, int],
+        executed_indices: Tuple[int, int],
+    ) -> None:
+        """Persist a bounded, dense candidate matrix for post-hoc auditing.
+
+        The scalar ``joint_rift_eval_metrics.jsonl`` remains the benchmark-wide
+        index.  This method exports only configured exemplars and never affects
+        policy selection, CARLA controls, reward, or evaluation metrics.
+        """
+        cfg = self.candidate_dump
+        if not cfg["enabled"] or self._candidate_dump_total >= cfg["max_states"]:
+            return
+
+        route_id = str(info.get("route_id", ""))
+        time_step = int(info.get("time_step", -1))
+        is_target = route_id in cfg["target_route_ids"]
+        window = cfg["target_time_windows"].get(route_id)
+        if window is not None:
+            is_target = window[0] <= time_step <= window[1]
+
+        dump_kind = None
+        if is_target:
+            route_count = self._candidate_dump_target_counts.get(route_id, 0)
+            if route_count < cfg["max_states_per_target_route"]:
+                dump_kind = "target_route"
+        elif (
+            route_id in cfg["non_high_value_route_ids"]
+            and route_id not in cfg["target_route_ids"]
+            and diagnostics["oracle_joint_gain"] < cfg["high_value_min_joint_gain"]
+            and self._candidate_dump_non_high_value_count < cfg["non_high_value_max_states"]
+        ):
+            dump_kind = "typical_non_high_value"
+
+        if dump_kind is None:
+            return
+
+        output_dir = Path(cfg["output_dir"])
+        output_dir.mkdir(parents=True, exist_ok=True)
+        index = self._candidate_dump_total
+        safe_route = re.sub(r"[^A-Za-z0-9_.-]+", "_", route_id or "unknown")
+        stem = f"state_{index:03d}_route_{safe_route}_step_{time_step:05d}"
+        candidate_1, candidate_2 = candidate_batch.candidates
+
+        arrays = {
+            # Evaluator matrices: Q is the requested full joint objective.
+            "joint_q": np.asarray(joint_evaluation["joint_q"], dtype=np.float64),
+            "p12": np.asarray(joint_evaluation["p12"], dtype=np.float64),
+            "coalition_gain": np.asarray(joint_evaluation["coalition_gain"], dtype=np.float64),
+            "pair_collision": np.asarray(joint_evaluation["pair_collision"], dtype=np.bool_),
+            "valid_pair_mask": np.asarray(joint_evaluation["valid_mask"], dtype=np.bool_),
+            "unary_return_1": np.asarray(joint_evaluation["unary_return_1"], dtype=np.float64),
+            "unary_return_2": np.asarray(joint_evaluation["unary_return_2"], dtype=np.float64),
+            # Full score decomposition, before/after the learned residual.
+            "unary_logits_1": candidate_1.logits.detach().cpu().numpy(),
+            "unary_logits_2": candidate_2.logits.detach().cpu().numpy(),
+            "base_logits": score_output.base_logits[0].detach().cpu().numpy(),
+            "raw_residual": score_output.raw_delta[0].detach().cpu().numpy(),
+            "joint_residual": score_output.delta[0].detach().cpu().numpy(),
+            "joint_logits": score_output.joint_logits[0].detach().cpu().numpy(),
+            # Candidate and nominal trajectories use their documented frames.
+            "cbv_1_common_trajectories": candidate_1.common_trajectories.detach().cpu().numpy(),
+            "cbv_2_common_trajectories": candidate_2.common_trajectories.detach().cpu().numpy(),
+            "cbv_1_global_trajectories": candidate_1.global_trajectories.detach().cpu().numpy(),
+            "cbv_2_global_trajectories": candidate_2.global_trajectories.detach().cpu().numpy(),
+            "ego_nominal_common": self._numpy_array(candidate_batch.ego_nominal_common),
+            "ego_nominal_global": self._numpy_array(candidate_batch.ego_nominal_global),
+        }
+        np.savez_compressed(output_dir / f"{stem}.npz", **arrays)
+
+        metadata = {
+            "schema_version": 1,
+            "dump_kind": dump_kind,
+            "route_id": route_id,
+            "route_name": str(info.get("route_name", "")),
+            "town_name": str(info.get("town_name", "")),
+            "repetition_index": int(info.get("repetition_index", -1)),
+            "time_step": time_step,
+            "env_id": int(info["env_id"]),
+            "pair_ids": [int(value) for value in candidate_batch.pair_ids],
+            "policy_indices": [int(value) for value in policy_indices],
+            "independent_indices": [int(value) for value in independent_indices],
+            "oracle_indices": [int(value) for value in oracle_indices],
+            "executed_indices": [int(value) for value in executed_indices],
+            "policy_checkpoint": str(self.checkpoint or ""),
+            "diagnostics": {key: float(value) for key, value in diagnostics.items()},
+            "array_shapes": {key: list(value.shape) for key, value in arrays.items()},
+            "frames": {
+                "cbv_candidate_common": "ego-centred common frame",
+                "cbv_candidate_global": "CARLA global frame",
+                "ego_nominal_common": "ego-centred common frame",
+                "ego_nominal_global": "CARLA global frame",
+            },
+        }
+        with (output_dir / f"{stem}.json").open("w", encoding="utf-8") as stream:
+            json.dump(metadata, stream, indent=2, sort_keys=True)
+
+        self._candidate_dump_total += 1
+        if dump_kind == "target_route":
+            self._candidate_dump_target_counts[route_id] = (
+                self._candidate_dump_target_counts.get(route_id, 0) + 1
+            )
+        else:
+            self._candidate_dump_non_high_value_count += 1
+
+    @staticmethod
+    def _numpy_array(value) -> np.ndarray:
+        """Convert either a NumPy value or a CUDA/CPU tensor safely for NPZ."""
+        if torch.is_tensor(value):
+            return value.detach().cpu().numpy()
+        return np.asarray(value)
 
     def _build_joint_rollout_state(
         self,
