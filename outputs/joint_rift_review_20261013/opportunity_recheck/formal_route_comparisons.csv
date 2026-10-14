@@ -1,0 +1,161 @@
+﻿run,route_repetition,policy_status,independent_status,score_composed_delta,score_route_delta,score_penalty_delta,cbv_collision_count_delta,cbv_off_road_game_time_delta,cbv_uncomfortable_game_time_delta,cbv_total_game_time_delta,duration_game_delta
+holdout10_hv4_policy_seed0,RouteScenario_25378_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.20000000000000018,-0.09999999999999964,-0.09999999999999964
+holdout10_hv4_policy_seed0,RouteScenario_27494_rep0,Failed - Agent timed out,Failed - Agent timed out,-9.780000000000001,-9.780000000000001,0.0,-2,2.600000000000001,3.100000000000051,2.600000000000037,0.0
+holdout10_hv4_policy_seed0,RouteScenario_25381_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-0.09999999999999964,0.1999999999999993,0.09999999999999964
+holdout10_hv4_policy_seed0,RouteScenario_25424_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.5,-0.09999999999999964,0.09999999999999964
+holdout10_hv4_policy_seed0,RouteScenario_2091_rep0,Completed,Completed,40.0,0,0.4,-2,0.0,4.000000000000028,11.000000000000014,3.0
+holdout10_hv4_policy_seed0,RouteScenario_17569_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.20000000000000107,-0.3999999999999986,-0.1999999999999993
+holdout10_hv4_policy_seed0,RouteScenario_3255_rep0,Completed,Completed,0.0,0,0.0,0,0.0,1.1999999999999957,0.09999999999999964,0.0
+holdout10_hv4_policy_seed0,RouteScenario_3514_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.1999999999999993,0.4999999999999982,0.3000000000000007
+holdout10_hv4_policy_seed0,RouteScenario_26405_rep0,Completed,Completed,0.0,0,0.0,0,0.1,-0.5999999999999979,-0.29999999999999893,-0.29999999999999893
+holdout10_hv4_policy_seed0,RouteScenario_28198_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.9999999999999964,0.3999999999999986,0.0
+holdout10_hv4_policy_seed0,RouteScenario_25378_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.5999999999999996,-0.9999999999999964,-0.5
+holdout10_hv4_policy_seed0,RouteScenario_27494_rep1,Failed - Agent got blocked,Failed - Agent got blocked,-5.140000000000001,-5.140000000000001,0.0,0,0.0,-10.600000000000136,-14.400000000000205,-7.100000000000001
+holdout10_hv4_policy_seed0,RouteScenario_25381_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.20000000000000284,0.0,0.0
+holdout10_hv4_policy_seed0,RouteScenario_25424_rep1,Completed,Completed,0.0,0,0.0,0,0.0,2.6999999999999904,2.3999999999999915,2.3999999999999986
+holdout10_hv4_policy_seed0,RouteScenario_2091_rep1,Failed - Agent got blocked,Failed - Agent got blocked,0.0,0.0,0.0,0,0.0,0.49999999999999734,0.5999999999999979,0.6000000000000005
+holdout10_hv4_policy_seed0,RouteScenario_17569_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.40000000000000036,-0.3999999999999986,-0.1999999999999993
+holdout10_hv4_policy_seed0,RouteScenario_3255_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-6.699999999999999,-8.39999999999998,-4.0
+holdout10_hv4_policy_seed0,RouteScenario_3514_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-3.5999999999999908,-4.099999999999985,-1.5999999999999996
+holdout10_hv4_policy_seed0,RouteScenario_26405_rep1,Completed,Completed,0.0,0,0.0,0,0.1,-0.7000000000000011,0.0,0.0
+holdout10_hv4_policy_seed0,RouteScenario_28198_rep1,Completed,Completed,0.0,0,0.0,-3,0.0,-8.700000000000005,-0.5000000000000142,-0.6999999999999993
+holdout10_hv4_policy_seed1,RouteScenario_25378_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-1.600000000000001,-1.4999999999999947,-0.5
+holdout10_hv4_policy_seed1,RouteScenario_27494_rep0,Failed - Agent timed out,Failed - Agent timed out,-5.68,-5.68,0.0,0,0.6,-2.7000000000000526,-0.20000000000000284,0.0
+holdout10_hv4_policy_seed1,RouteScenario_25381_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.39999999999999947,0.5999999999999979,0.3000000000000007
+holdout10_hv4_policy_seed1,RouteScenario_25424_rep0,Completed,Completed,0.0,0,0.0,0,0.0,5.799999999999999,5.799999999999997,2.5
+holdout10_hv4_policy_seed1,RouteScenario_2091_rep0,Completed,Completed,0.0,0,0.0,1,0.1,3.9999999999999964,2.3999999999999915,1.200000000000001
+holdout10_hv4_policy_seed1,RouteScenario_17569_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.3999999999999986,0.5999999999999979,0.29999999999999893
+holdout10_hv4_policy_seed1,RouteScenario_3255_rep0,Completed,Completed,0.0,0,0.0,1,0.0,-7.8000000000000025,-8.000000000000025,-7.299999999999999
+holdout10_hv4_policy_seed1,RouteScenario_3514_rep0,Completed,Completed,0.0,0,0.0,0,0.0,7.5999999999999925,7.799999999999992,0.7999999999999989
+holdout10_hv4_policy_seed1,RouteScenario_26405_rep0,Completed,Completed,0.0,0,0.0,0,0.1,0.09999999999999964,-0.29999999999999893,-0.3000000000000007
+holdout10_hv4_policy_seed1,RouteScenario_28198_rep0,Completed,Completed,0.0,0,0.0,0,0.0,8.29999999999998,8.59999999999997,1.0999999999999996
+holdout10_hv4_policy_seed1,RouteScenario_25378_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.10000000000000142,0.0,0.0
+holdout10_hv4_policy_seed1,RouteScenario_27494_rep1,Failed - Agent timed out,Failed - Agent timed out,32.300399999999996,1.1899999999999977,0.64,-1,0.0,24.100000000000122,2.0000000000000284,0.0
+holdout10_hv4_policy_seed1,RouteScenario_25381_rep1,Completed,Completed,0.0,0,0.0,0,-0.1,-1.299999999999998,-0.1999999999999993,-0.09999999999999964
+holdout10_hv4_policy_seed1,RouteScenario_25424_rep1,Completed,Completed,0.0,0,0.0,0,-0.1,-2.79999999999999,-2.6999999999999904,-2.1000000000000014
+holdout10_hv4_policy_seed1,RouteScenario_2091_rep1,Completed,Completed,0.0,0,0.0,2,0.0,-3.79999999999999,-7.999999999999982,0.7000000000000011
+holdout10_hv4_policy_seed1,RouteScenario_17569_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.5999999999999979,0.7999999999999972,0.40000000000000036
+holdout10_hv4_policy_seed1,RouteScenario_3255_rep1,Completed,Completed,0.0,0,0.0,0,0.0,3.899999999999988,3.099999999999966,0.8000000000000007
+holdout10_hv4_policy_seed1,RouteScenario_3514_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-1.200000000000001,-1.6999999999999957,-0.1999999999999993
+holdout10_hv4_policy_seed1,RouteScenario_26405_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.699999999999994,-0.7999999999999972,-0.40000000000000213
+holdout10_hv4_policy_seed1,RouteScenario_28198_rep1,Completed,Completed,0.0,0,0.0,-1,0.0,-5.19999999999998,-5.799999999999983,-2.8999999999999986
+holdout10_hv4_policy_seed2,RouteScenario_25378_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-0.6000000000000002,-1.999999999999993,-2.0
+holdout10_hv4_policy_seed2,RouteScenario_27494_rep0,Failed - Agent timed out,Failed - Agent timed out,-2.009999999999998,-2.009999999999998,0.0,1,0.0,1.100000000000037,4.6000000000000725,0.0
+holdout10_hv4_policy_seed2,RouteScenario_25381_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-0.20000000000000195,0.0,0.0
+holdout10_hv4_policy_seed2,RouteScenario_25424_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-1.4999999999999964,-2.7999999999999963,-1.3000000000000007
+holdout10_hv4_policy_seed2,RouteScenario_2091_rep0,Completed,Completed,-40.0,0,-0.4,2,-0.1,4.699999999999992,4.7999999999999865,2.5999999999999996
+holdout10_hv4_policy_seed2,RouteScenario_17569_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-0.9999999999999964,0.1999999999999993,0.09999999999999964
+holdout10_hv4_policy_seed2,RouteScenario_3255_rep0,Completed,Completed,0.0,0,0.0,-1,0.0,7.999999999999991,7.600000000000019,6.9
+holdout10_hv4_policy_seed2,RouteScenario_3514_rep0,Completed,Completed,0.0,0,0.0,0,0.0,1.3999999999999968,0.5999999999999979,0.40000000000000036
+holdout10_hv4_policy_seed2,RouteScenario_26405_rep0,Completed,Completed,0.0,0,0.0,0,-0.1,1.8999999999999932,1.5999999999999943,0.5
+holdout10_hv4_policy_seed2,RouteScenario_28198_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-5.299999999999995,-6.199999999999978,-0.8999999999999986
+holdout10_hv4_policy_seed2,RouteScenario_25378_rep1,Completed,Completed,0.0,0,0.0,0,0.0,1.2999999999999954,0.5999999999999979,0.29999999999999893
+holdout10_hv4_policy_seed2,RouteScenario_27494_rep1,Failed - Agent got blocked,Failed - Agent timed out,-56.35000000000001,-56.35000000000001,0.0,-1,-0.5,-13.500000000000206,-40.600000000000406,-23.6
+holdout10_hv4_policy_seed2,RouteScenario_25381_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.3999999999999968,0.0,0.0
+holdout10_hv4_policy_seed2,RouteScenario_25424_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-1.999999999999993,-2.199999999999992,-2.1999999999999993
+holdout10_hv4_policy_seed2,RouteScenario_2091_rep1,Failed - Agent got blocked,Completed,-31.08,-71.08,0.4,-2,0.0,-1.5999999999999925,-3.4000000000000306,-4.699999999999999
+holdout10_hv4_policy_seed2,RouteScenario_17569_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.5999999999999979,-1.399999999999995,-0.6999999999999993
+holdout10_hv4_policy_seed2,RouteScenario_3255_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.9999999999999929,-0.3999999999999986,-0.1999999999999993
+holdout10_hv4_policy_seed2,RouteScenario_3514_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.3999999999999986,-0.6999999999999975,-0.6999999999999993
+holdout10_hv4_policy_seed2,RouteScenario_26405_rep1,Completed,Completed,0.0,0,0.0,0,0.0,4.440892098500626e-15,0.0,0.0
+holdout10_hv4_policy_seed2,RouteScenario_28198_rep1,Completed,Completed,0.0,0,0.0,0,0.0,1.1999999999999957,1.7999999999999936,0.8999999999999986
+holdout10_hv4_policy_seed3,RouteScenario_25378_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.10000000000000003,-0.09999999999999964,-0.09999999999999964
+holdout10_hv4_policy_seed3,RouteScenario_27494_rep0,Failed - Agent timed out,Failed - Agent timed out,0.21999999999999886,0.21999999999999886,0.0,0,0.30000000000000027,2.800000000000047,-0.20000000000000284,0.0
+holdout10_hv4_policy_seed3,RouteScenario_25381_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.4999999999999991,0.3999999999999986,0.1999999999999993
+holdout10_hv4_policy_seed3,RouteScenario_25424_rep0,Completed,Completed,0.0,0,0.0,0,0.0,4.5999999999999925,4.599999999999992,2.200000000000001
+holdout10_hv4_policy_seed3,RouteScenario_2091_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.6999999999999922,0.5999999999999979,0.29999999999999716
+holdout10_hv4_policy_seed3,RouteScenario_17569_rep0,Completed,Completed,0.0,0,0.0,0,0.0,1.0999999999999996,0.7999999999999972,0.40000000000000036
+holdout10_hv4_policy_seed3,RouteScenario_3255_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-0.9000000000000128,-0.8000000000000114,-0.8000000000000007
+holdout10_hv4_policy_seed3,RouteScenario_3514_rep0,Completed,Completed,0.0,0,0.0,0,0.0,8.39999999999999,9.399999999999986,1.1999999999999993
+holdout10_hv4_policy_seed3,RouteScenario_26405_rep0,Completed,Completed,0.0,0,0.0,0,0.1,0.8999999999999968,0.09999999999999964,0.10000000000000142
+holdout10_hv4_policy_seed3,RouteScenario_28198_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-2.199999999999992,-1.5999999999999943,-0.40000000000000036
+holdout10_hv4_policy_seed3,RouteScenario_25378_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.10000000000000142,0.0,0.0
+holdout10_hv4_policy_seed3,RouteScenario_27494_rep1,Failed - Agent got blocked,Failed - Agent got blocked,-13.129999999999999,-13.129999999999999,0.0,0,-2.500000000000001,-42.70000000000032,-37.20000000000036,-17.199999999999996
+holdout10_hv4_policy_seed3,RouteScenario_25381_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.6999999999999975,0.0,0.0
+holdout10_hv4_policy_seed3,RouteScenario_25424_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.09999999999999964,-0.09999999999999964,0.10000000000000142
+holdout10_hv4_policy_seed3,RouteScenario_2091_rep1,Completed,Completed,0.0,0,0.0,1,0.0,-2.1999999999999904,-3.499999999999936,-0.3000000000000007
+holdout10_hv4_policy_seed3,RouteScenario_17569_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.20000000000000107,-0.1999999999999993,-0.09999999999999964
+holdout10_hv4_policy_seed3,RouteScenario_3255_rep1,Completed,Completed,-40.0,0,-0.4,1,0.0,-1.59999999999998,-0.09999999999999432,0.09999999999999787
+holdout10_hv4_policy_seed3,RouteScenario_3514_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-1.4999999999999876,-0.3999999999999968,-0.20000000000000107
+holdout10_hv4_policy_seed3,RouteScenario_26405_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.1999999999999975,0.1999999999999993,0.0
+holdout10_hv4_policy_seed3,RouteScenario_28198_rep1,Completed,Completed,0.0,0,0.0,-2,0.0,-7.299999999999994,3.499999999999986,1.6999999999999993
+holdout10_uniform_policy_seed0,RouteScenario_25378_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.0,0.09999999999999964,0.09999999999999964
+holdout10_uniform_policy_seed0,RouteScenario_27494_rep0,Failed - Agent timed out,Failed - Agent timed out,-5.789999999999999,-5.789999999999999,0.0,0,0.0,-22.200000000000152,-21.40000000000017,0.0
+holdout10_uniform_policy_seed0,RouteScenario_25381_rep0,Completed,Completed,0.0,0,0.0,0,0.1,-0.10000000000000053,-0.40000000000000036,-0.10000000000000142
+holdout10_uniform_policy_seed0,RouteScenario_25424_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-0.20000000000000018,0.0,-0.1999999999999993
+holdout10_uniform_policy_seed0,RouteScenario_2091_rep0,Completed,Completed,40.0,0,0.4,-2,0.0,-3.1999999999999886,-2.29999999999999,-1.1000000000000014
+holdout10_uniform_policy_seed0,RouteScenario_17569_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.29999999999999893,0.1999999999999993,0.09999999999999964
+holdout10_uniform_policy_seed0,RouteScenario_3255_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-0.09999999999999964,-0.09999999999999964,0.0
+holdout10_uniform_policy_seed0,RouteScenario_3514_rep0,Completed,Completed,0.0,0,0.0,0,0.0,6.399999999999995,7.199999999999994,0.29999999999999893
+holdout10_uniform_policy_seed0,RouteScenario_26405_rep0,Completed,Completed,0.0,0,0.0,0,0.1,2.0999999999999925,1.4999999999999947,0.1999999999999993
+holdout10_uniform_policy_seed0,RouteScenario_28198_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-3.6999999999999904,-4.799999999999983,-0.3000000000000007
+holdout10_uniform_policy_seed0,RouteScenario_25378_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.9999999999999964,0.5999999999999979,0.3000000000000007
+holdout10_uniform_policy_seed0,RouteScenario_27494_rep1,Failed - Agent got blocked,Failed - Agent got blocked,-3.1300000000000026,-3.1300000000000026,0.0,0,0.0,7.699999999999967,-4.000000000000057,-0.19999999999999574
+holdout10_uniform_policy_seed0,RouteScenario_25381_rep1,Completed,Completed,0.0,0,0.0,0,-0.1,0.6999999999999984,0.0,0.0
+holdout10_uniform_policy_seed0,RouteScenario_25424_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-1.2999999999999958,-0.8999999999999968,-0.9000000000000004
+holdout10_uniform_policy_seed0,RouteScenario_2091_rep1,Failed - Agent got blocked,Failed - Agent got blocked,0.0,0.0,0.0,0,0.0,-2.899999999999996,-3.200000000000002,-1.2000000000000002
+holdout10_uniform_policy_seed0,RouteScenario_17569_rep1,Completed,Completed,0.0,0,0.0,0,0.0,1.3000000000000025,0.1999999999999993,0.09999999999999964
+holdout10_uniform_policy_seed0,RouteScenario_3255_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.3000000000000007,0.1999999999999993,0.09999999999999787
+holdout10_uniform_policy_seed0,RouteScenario_3514_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.1999999999999993,-0.09999999999999964,-0.09999999999999964
+holdout10_uniform_policy_seed0,RouteScenario_26405_rep1,Completed,Completed,0.0,0,0.0,0,-0.1,-0.5999999999999988,-0.3999999999999986,-0.10000000000000142
+holdout10_uniform_policy_seed0,RouteScenario_28198_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-1.5999999999999952,1.399999999999995,0.7000000000000011
+holdout10_uniform_policy_seed1,RouteScenario_25378_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.19999999999999996,0.0,0.0
+holdout10_uniform_policy_seed1,RouteScenario_27494_rep0,Failed - Agent timed out,Failed - Agent timed out,-5.730000000000004,-5.730000000000004,0.0,0,0.0,-1.400000000000027,-0.4000000000000057,0.0
+holdout10_uniform_policy_seed1,RouteScenario_25381_rep0,Completed,Completed,0.0,0,0.0,0,0.1,-0.7999999999999972,-0.8000000000000007,-0.3000000000000007
+holdout10_uniform_policy_seed1,RouteScenario_25424_rep0,Completed,Completed,0.0,0,0.0,0,-0.1,-4.600000000000001,-4.9,-2.3000000000000007
+holdout10_uniform_policy_seed1,RouteScenario_2091_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-7.105427357601002e-15,0.0,0.0
+holdout10_uniform_policy_seed1,RouteScenario_17569_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.3000000000000007,0.0,0.0
+holdout10_uniform_policy_seed1,RouteScenario_3255_rep0,Completed,Completed,0.0,0,0.0,0,0.0,1.1000000000000156,1.3000000000000185,1.3000000000000007
+holdout10_uniform_policy_seed1,RouteScenario_3514_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-6.199999999999996,-6.799999999999995,-0.3000000000000007
+holdout10_uniform_policy_seed1,RouteScenario_26405_rep0,Completed,Completed,0.0,0,0.0,0,0.1,-0.4999999999999982,-0.1999999999999993,-0.1999999999999993
+holdout10_uniform_policy_seed1,RouteScenario_28198_rep0,Failed - Agent got blocked,Completed,-59.71,-59.71,0.0,-1,0.0,-2.7999999999999936,-1.999999999999993,-3.0
+holdout10_uniform_policy_seed1,RouteScenario_25378_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.6999999999999975,0.1999999999999993,0.09999999999999964
+holdout10_uniform_policy_seed1,RouteScenario_27494_rep1,Failed - Agent timed out,Failed - Agent timed out,0.0,0.0,0.0,1,0.0,0.0,-0.4000000000000057,0.0
+holdout10_uniform_policy_seed1,RouteScenario_25381_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.1999999999999975,0.0,0.0
+holdout10_uniform_policy_seed1,RouteScenario_25424_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.6999999999999975,0.6999999999999975,0.6999999999999993
+holdout10_uniform_policy_seed1,RouteScenario_2091_rep1,Completed,Completed,0.0,0,0.0,0,0.0,3.2999999999999883,4.399999999999999,2.799999999999999
+holdout10_uniform_policy_seed1,RouteScenario_17569_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.7999999999999972,0.3999999999999986,0.1999999999999993
+holdout10_uniform_policy_seed1,RouteScenario_3255_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-8.199999999999978,-7.999999999999975,-3.8000000000000007
+holdout10_uniform_policy_seed1,RouteScenario_3514_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-1.9999999999999982,-2.499999999999993,-0.5
+holdout10_uniform_policy_seed1,RouteScenario_26405_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.7999999999999989,0.1999999999999993,0.10000000000000142
+holdout10_uniform_policy_seed1,RouteScenario_28198_rep1,Completed,Completed,0.0,0,0.0,0,0.0,1.0999999999999925,1.399999999999995,0.6999999999999993
+holdout10_uniform_policy_seed2,RouteScenario_25378_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.30000000000000027,1.699999999999994,1.700000000000001
+holdout10_uniform_policy_seed2,RouteScenario_27494_rep0,Failed - Agent timed out,Failed - Agent timed out,0.23000000000000398,0.23000000000000398,0.0,-2,0.0,-3.3999999999998636,6.394884621840902e-14,0.0
+holdout10_uniform_policy_seed2,RouteScenario_25381_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-0.29999999999999805,-0.7999999999999972,-0.40000000000000036
+holdout10_uniform_policy_seed2,RouteScenario_25424_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-3.7999999999999936,-3.999999999999992,-1.8000000000000007
+holdout10_uniform_policy_seed2,RouteScenario_2091_rep0,Completed,Completed,-64.0,0,-0.64,2,0.0,2.2000000000000135,2.000000000000014,1.5999999999999996
+holdout10_uniform_policy_seed2,RouteScenario_17569_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.10000000000000142,-0.9999999999999964,-0.5
+holdout10_uniform_policy_seed2,RouteScenario_3255_rep0,Completed,Completed,0.0,0,0.0,1,0.0,-8.399999999999991,-8.200000000000022,-7.200000000000001
+holdout10_uniform_policy_seed2,RouteScenario_3514_rep0,Completed,Completed,0.0,0,0.0,0,0.0,-6.499999999999995,-7.099999999999994,-0.7000000000000011
+holdout10_uniform_policy_seed2,RouteScenario_26405_rep0,Completed,Completed,0.0,0,0.0,0,-0.1,-0.8999999999999968,-0.29999999999999893,-0.10000000000000142
+holdout10_uniform_policy_seed2,RouteScenario_28198_rep0,Completed,Completed,0.0,0,0.0,0,0.0,3.1999999999999886,2.3999999999999915,0.40000000000000036
+holdout10_uniform_policy_seed2,RouteScenario_25378_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.09999999999999964,0.9999999999999964,0.5
+holdout10_uniform_policy_seed2,RouteScenario_27494_rep1,Failed - Agent got blocked,Failed - Agent got blocked,0.0,0.0,0.0,0,0.0,0.8999999999999773,-0.1999999999999993,-0.09999999999999787
+holdout10_uniform_policy_seed2,RouteScenario_25381_rep1,Completed,Completed,0.0,0,0.0,0,-0.1,0.4999999999999982,0.0,0.0
+holdout10_uniform_policy_seed2,RouteScenario_25424_rep1,Completed,Completed,0.0,0,0.0,0,0.0,3.1999999999999886,2.79999999999999,2.8000000000000007
+holdout10_uniform_policy_seed2,RouteScenario_2091_rep1,Failed - Agent got blocked,Completed,-71.08,-71.08,0.0,0,0.0,-3.6999999999999833,-9.599999999999966,-4.799999999999999
+holdout10_uniform_policy_seed2,RouteScenario_17569_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.49999999999999467,0.0,0.0
+holdout10_uniform_policy_seed2,RouteScenario_3255_rep1,Completed,Completed,0.0,0,0.0,0,0.0,9.599999999999977,8.999999999999996,4.199999999999999
+holdout10_uniform_policy_seed2,RouteScenario_3514_rep1,Completed,Completed,0.0,0,0.0,0,0.0,3.8999999999999932,3.699999999999992,0.6999999999999993
+holdout10_uniform_policy_seed2,RouteScenario_26405_rep1,Completed,Completed,0.0,0,0.0,0,-0.2,-0.5000000000000018,-0.1999999999999993,0.0
+holdout10_uniform_policy_seed2,RouteScenario_28198_rep1,Completed,Completed,0.0,0,0.0,-2,0.0,-1.1999999999999957,2.199999999999946,-0.1999999999999993
+holdout10_uniform_policy_seed3,RouteScenario_25378_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.20000000000000018,-0.09999999999999964,-0.09999999999999964
+holdout10_uniform_policy_seed3,RouteScenario_27494_rep0,Failed - Agent timed out,Failed - Agent timed out,1.9199999999999946,1.9199999999999946,0.0,-1,1.5000000000000002,2.0999999999999446,4.600000000000016,0.0
+holdout10_uniform_policy_seed3,RouteScenario_25381_rep0,Completed,Completed,0.0,0,0.0,0,0.1,-1.1999999999999957,-0.8000000000000007,-0.3000000000000007
+holdout10_uniform_policy_seed3,RouteScenario_25424_rep0,Completed,Completed,0.0,0,0.0,0,0.0,5.399999999999999,5.599999999999998,2.1000000000000014
+holdout10_uniform_policy_seed3,RouteScenario_2091_rep0,Completed,Completed,-40.0,0,-0.4,1,0.0,4.799999999999972,2.3999999999999773,0.7999999999999989
+holdout10_uniform_policy_seed3,RouteScenario_17569_rep0,Completed,Completed,0.0,0,0.0,-1,0.0,1.8999999999999915,1.5999999999999943,0.8000000000000007
+holdout10_uniform_policy_seed3,RouteScenario_3255_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.3999999999999986,0.4999999999999982,-0.09999999999999964
+holdout10_uniform_policy_seed3,RouteScenario_3514_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.29999999999999893,0.5999999999999996,0.3000000000000007
+holdout10_uniform_policy_seed3,RouteScenario_26405_rep0,Completed,Completed,0.0,0,0.0,0,0.0,0.3999999999999986,0.29999999999999893,0.3000000000000007
+holdout10_uniform_policy_seed3,RouteScenario_28198_rep0,Completed,Completed,0.0,0,0.0,0,0.0,2.79999999999999,3.999999999999986,0.09999999999999964
+holdout10_uniform_policy_seed3,RouteScenario_25378_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.5,-0.7999999999999972,-0.3999999999999986
+holdout10_uniform_policy_seed3,RouteScenario_27494_rep1,Failed - Agent got blocked,Failed - Agent got blocked,0.0,0.0,0.0,0,0.0,-6.199999999999987,0.1999999999999993,0.0
+holdout10_uniform_policy_seed3,RouteScenario_25381_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.3999999999999977,0.0,0.0
+holdout10_uniform_policy_seed3,RouteScenario_25424_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.4999999999999982,-0.29999999999999893,-0.29999999999999893
+holdout10_uniform_policy_seed3,RouteScenario_2091_rep1,Completed,Failed - Agent got blocked,28.46,68.46000000000001,-0.4,2,0.0,-1.299999999999999,2.2000000000000135,4.1
+holdout10_uniform_policy_seed3,RouteScenario_17569_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-0.5,-0.5999999999999979,-0.20000000000000107
+holdout10_uniform_policy_seed3,RouteScenario_3255_rep1,Completed,Completed,-40.0,0,-0.4,1,0.0,2.500000000000057,3.600000000000069,3.6999999999999993
+holdout10_uniform_policy_seed3,RouteScenario_3514_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.9999999999999964,0.4999999999999982,0.09999999999999964
+holdout10_uniform_policy_seed3,RouteScenario_26405_rep1,Completed,Completed,0.0,0,0.0,0,0.0,0.6999999999999984,0.0,0.09999999999999787
+holdout10_uniform_policy_seed3,RouteScenario_28198_rep1,Completed,Completed,0.0,0,0.0,0,0.0,-1.7999999999999954,-0.9999999999999964,-0.5

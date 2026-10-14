@@ -1,0 +1,44 @@
+{
+  "cooperation_oracle": {
+    "states": 1098,
+    "base_feasible": 355.0,
+    "policy_feasible": 211.0,
+    "policy_feasible_H_positive": 5.0,
+    "policy_H_gain_mean": -0.0009585773662925454,
+    "opportunities": 32,
+    "policy_opportunity_feasible_positive": 1.0,
+    "policy_opportunity_feasible_gain_atleast_point1": 1.0,
+    "policy_changes_H_zero": 603,
+    "policy_recovery": 61.0,
+    "policy_breaks_feasibility": 205.0,
+    "oracle_positive": 58.0
+  },
+  "independent": {
+    "states": 1481,
+    "base_feasible": 429.0,
+    "policy_feasible": 361.0,
+    "policy_feasible_H_positive": 25.0,
+    "policy_H_gain_mean": 0.0012458877047544488,
+    "opportunities": 99,
+    "policy_opportunity_feasible_positive": 13.0,
+    "policy_opportunity_feasible_gain_atleast_point1": 8.0,
+    "policy_changes_H_zero": 644,
+    "policy_recovery": 102.0,
+    "policy_breaks_feasibility": 170.0,
+    "oracle_positive": 212.0
+  },
+  "policy": {
+    "states": 1428,
+    "base_feasible": 466.0,
+    "policy_feasible": 402.0,
+    "policy_feasible_H_positive": 3.0,
+    "policy_H_gain_mean": -0.00046402805201922694,
+    "opportunities": 19,
+    "policy_opportunity_feasible_positive": 1.0,
+    "policy_opportunity_feasible_gain_atleast_point1": 1.0,
+    "policy_changes_H_zero": 527,
+    "policy_recovery": 62.0,
+    "policy_breaks_feasibility": 126.0,
+    "oracle_positive": 88.0
+  }
+}

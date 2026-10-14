@@ -12,6 +12,7 @@ audit:
 """
 
 import json
+import hashlib
 import re
 from pathlib import Path
 from typing import Dict, Optional, Tuple
@@ -34,6 +35,21 @@ from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_rift_pluto import (
 )
 from rift.cbv.planning.fine_tuner.rlft.rift_pluto.rift_pluto import RIFTPluto
 from rift.scenario.tools.carla_data_provider import CarlaDataProvider
+from rift.cbv.planning.fine_tuner.rlft.joint_rift.cooperation_objective import cooperation_objective
+from rift.cbv.planning.fine_tuner.rlft.joint_rift.decision_teacher import decision_teacher, verified_decision
+
+
+def _forensic_target_eligible(cfg, route_id, repetition_index, time_step, diagnostics):
+    if route_id not in cfg["target_route_ids"]:
+        return False
+    window = cfg["target_time_windows"].get(route_id)
+    if window is not None and not window[0] <= time_step <= window[1]:
+        return False
+    reps = cfg["target_repetitions"].get(route_id)
+    return bool((reps is None or repetition_index in reps)
+                and diagnostics.get("reward_scale_coalition_std", 0.) >= cfg["min_coalition_std"]
+                and diagnostics.get("reward_scale_p12_std", 0.) >= cfg["min_p12_std"]
+                and diagnostics.get("pair_collision_rate", 1.) <= cfg["max_pair_collision_rate"])
 
 
 class AuditedJointRIFTPluto(JointRIFTPluto):
@@ -44,7 +60,12 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
     def __init__(self, config, logger):
         super().__init__(config, logger)
         reward_config = config.get("reward", {})
-        joint_config = config.get("joint", {})
+        self.cooperation_config = dict(config.get("cooperation", {}))
+        self.decision_config = dict(config.get("decision_teacher", {}))
+        if float(self.cooperation_config.get("opportunity_weight", 1.)) < 1.:
+            raise ValueError("cooperation.opportunity_weight must be >=1")
+        self._dump_episode_counts = {}
+        self._checkpoint_hashes = {}
         self.eval_joint_diagnostics = bool(config.get("eval_joint_diagnostics", True))
         self.eval_metrics_path = Path(logger.output_dir) / "joint_rift_eval_metrics.jsonl"
         # Dense candidate exports are deliberately opt-in: they are valuable
@@ -52,6 +73,14 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
         # diagnostics when enabled for an entire benchmark.
         dump_config = config.get("candidate_dump", {})
         self.candidate_dump = {
+            "capture_all": bool(dump_config.get("capture_all", False)),
+            "include_training_inputs": bool(dump_config.get("include_training_inputs", False)),
+            "stride_steps": int(dump_config.get("stride_steps", 1)),
+            "max_states_per_episode": int(dump_config.get("max_states_per_episode", 0)),
+            "target_repetitions": {str(k): {int(v) for v in values} for k, values in dump_config.get("target_repetitions", {}).items()},
+            "min_coalition_std": float(dump_config.get("min_coalition_std", 0.)),
+            "min_p12_std": float(dump_config.get("min_p12_std", 0.)),
+            "max_pair_collision_rate": float(dump_config.get("max_pair_collision_rate", 1.)),
             "enabled": bool(dump_config.get("enabled", False)),
             "output_dir": str(dump_config.get("output_dir", "")),
             "max_states": int(dump_config.get("max_states", 0)),
@@ -74,6 +103,8 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
             ),
         }
         if self.candidate_dump["enabled"]:
+            if self.candidate_dump["stride_steps"] < 1:
+                raise ValueError("candidate_dump.stride_steps must be positive")
             if not self.candidate_dump["output_dir"]:
                 raise ValueError("candidate_dump.output_dir is required when enabled")
             if self.candidate_dump["max_states"] < 1:
@@ -98,17 +129,22 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
             "policy",
             "independent",
             "oracle_gated",
+            "cooperation_oracle",
+            "quality_oracle", "factorized_oracle", "interaction_oracle", "joint_oracle",
+            "verified_policy",
         }:
             raise ValueError(
-                "joint_eval_action_mode must be one of: policy, independent, oracle_gated"
+                "unknown joint_eval_action_mode"
             )
         if (
             self.joint_eval_action_mode != "policy"
-            and self.oracle_eval_mode == "disabled"
+            and (self.oracle_eval_mode == "disabled" or not self.eval_joint_diagnostics)
         ):
             raise ValueError(
-                "independent/oracle_gated evaluation requires oracle diagnostics"
+                "non-policy evaluation requires enabled oracle diagnostics"
             )
+        if self.joint_eval_action_mode == "cooperation_oracle":
+            self.cooperation_config["diagnose"] = True
         self.oracle_gate = {
             "min_joint_gain": float(config.get("oracle_min_joint_gain", 10.0)),
             "min_nonfactorizable_ratio": float(
@@ -146,6 +182,10 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
                 reward_config.get("pair_collision_chunk_size", 32)
             ),
             arrival_time_tau=float(reward_config.get("arrival_time_tau", 1.0)),
+            interaction_semantics=str(reward_config.get("interaction_semantics", "spatial_temporal")),
+            braid_radius=float(reward_config.get("braid_radius", 20.)),
+            braid_distance_tau=float(reward_config.get("braid_distance_tau", 5.)),
+            collision_geometry=str(reward_config.get("collision_geometry", "legacy_aabb")),
             both_necessary_epsilon=float(
                 reward_config.get("both_necessary_epsilon", 0.1)
             ),
@@ -279,6 +319,8 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
         collection_stage = None
         collection_checkpoint = None
         if self.mode == "train":
+            if self.direct_head:
+                raise ValueError("V6 direct head collects via eval and fits via joint_rift_v6.py; train_cbv is unsupported")
             collection_stage = self._training_stage()
             if not self.checkpoint:
                 raise RuntimeError(
@@ -314,6 +356,8 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
                 raise RuntimeError(
                     f"Joint-RIFT training env {env_id} is missing the PDM nominal trajectory"
                 )
+            if self.mode != "train" and self.joint_eval_action_mode != "policy" and nominal is None:
+                raise RuntimeError("matched/upper-bound evaluation requires the nominal trajectory")
 
             with torch.no_grad():
                 candidate_batch = self.forward_pair_candidates(
@@ -361,12 +405,36 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
                 )
                 if self.joint_eval_action_mode == "independent":
                     selected_indices = independent_indices
+                elif self.joint_eval_action_mode == "verified_policy":
+                    teacher = decision_teacher(joint_evaluation, independent_indices,
+                        score_output.base_logits[0].detach().cpu().numpy(), self.cooperation_config, self.decision_config)
+                    selected_indices, verification = verified_decision(teacher, policy_indices, joint_evaluation, self.decision_config)
+                    eval_diagnostics.update(verification)
+                elif self.joint_eval_action_mode in {"quality_oracle", "factorized_oracle", "interaction_oracle", "joint_oracle"}:
+                    teacher = decision_teacher(joint_evaluation, independent_indices,
+                        score_output.base_logits[0].detach().cpu().numpy(), self.cooperation_config, self.decision_config)
+                    selected_indices = teacher[self.joint_eval_action_mode[:-7]]
+                elif self.joint_eval_action_mode == "cooperation_oracle":
+                    objective = cooperation_objective(joint_evaluation, independent_indices, self.cooperation_config)
+                    selected_indices = objective["oracle"] if objective["oracle"] is not None else independent_indices
                 elif (
                     self.joint_eval_action_mode == "oracle_gated"
                     and oracle_gate_pass
                 ):
                     selected_indices = oracle_indices
                 executed_q = float(joint_evaluation["joint_q"][selected_indices])
+                if self.cooperation_config.get("enabled") or self.cooperation_config.get("diagnose"):
+                    objective = cooperation_objective(joint_evaluation, independent_indices, self.cooperation_config)
+                    eval_diagnostics["coop_executed_feasible"] = float(objective["feasible_mask"][selected_indices])
+                    eval_diagnostics["coop_executed_gain"] = float(objective["interaction"][selected_indices] - objective["interaction"][independent_indices])
+                if self.decision_config.get("enabled"):
+                    teacher = decision_teacher(joint_evaluation, independent_indices,
+                        score_output.base_logits[0].detach().cpu().numpy(), self.cooperation_config, self.decision_config)
+                    eval_diagnostics.update(teacher["metrics"])
+                    eval_diagnostics["decision_executed_changed"] = float(selected_indices != independent_indices)
+                    eval_diagnostics["decision_executed_feasible"] = float(teacher["feasible_mask"][selected_indices])
+                    eval_diagnostics["decision_executed_gain_over_quality"] = float(teacher["score"][selected_indices] - teacher["score"][teacher["quality"]])
+                    eval_diagnostics["decision_executed_gain_over_factorized"] = float(teacher["score"][selected_indices] - teacher["score"][teacher["factorized"]])
 
             for candidate_set, selected_idx in zip(
                 candidate_batch.candidates, selected_indices
@@ -402,6 +470,13 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
                     selected_indices=selected_indices,
                     independent_indices=independent_indices,
                 )
+                state = joint_rollout_states[env_id]
+                state["group_id"] = str(info.get("route_id", "unknown"))
+                diagnostics = self._compute_feasibility_diagnostics(candidate_batch, joint_evaluation,
+                                                                   selected_indices, independent_indices)
+                self._maybe_dump_candidate_state(info, candidate_batch, score_output, joint_evaluation,
+                    diagnostics, policy_indices, independent_indices,
+                    select_oracle_pair(joint_evaluation["joint_q"], joint_evaluation["valid_mask"]), selected_indices)
             elif eval_diagnostics is not None:
                 self._append_eval_diagnostics(
                     info,
@@ -441,7 +516,7 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
         independent_indices: Tuple[int, int],
     ) -> Dict[str, float]:
         candidate_1, candidate_2 = candidate_batch.candidates
-        return build_feasibility_diagnostics(
+        diagnostics = build_feasibility_diagnostics(
             joint_q=joint_evaluation["joint_q"],
             valid_pair_mask=joint_evaluation["valid_mask"],
             p1=joint_evaluation["p1"],
@@ -457,6 +532,18 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
             independent_indices=independent_indices,
             both_necessary_epsilon=self.joint_traj_evaluator.both_necessary_epsilon,
         )
+        if self.cooperation_config.get("enabled") or self.cooperation_config.get("diagnose"):
+            objective = cooperation_objective(joint_evaluation, independent_indices, self.cooperation_config)
+            diagnostics.update(objective["metrics"])
+            diagnostics["coop_oracle_index_1"] = float(objective["oracle"][0]) if objective["oracle"] is not None else -1.
+            diagnostics["coop_oracle_index_2"] = float(objective["oracle"][1]) if objective["oracle"] is not None else -1.
+            for axis in (1, 2):
+                signs = np.asarray(joint_evaluation.get("interaction_sign_" + str(axis), []))
+                diagnostics["braid_positive_events_" + str(axis)] = float((signs > 0).sum())
+                diagnostics["braid_negative_events_" + str(axis)] = float((signs < 0).sum())
+            diagnostics["coop_selected_feasible"] = float(objective["feasible_mask"][selected_indices])
+            diagnostics["coop_selected_gain"] = float(objective["interaction"][selected_indices] - objective["interaction"][independent_indices])
+        return diagnostics
 
     def _append_eval_diagnostics(
         self,
@@ -498,6 +585,7 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
             "oracle_intervention": bool(
                 self.joint_eval_action_mode == "oracle_gated" and oracle_gate_pass
             ),
+            "cooperation_oracle_intervention": bool(self.joint_eval_action_mode == "cooperation_oracle" and diagnostics.get("coop_has_feasible", 0.) > .5),
             "oracle_eval_mode": self.oracle_eval_mode,
             "joint_eval_action_mode": self.joint_eval_action_mode,
             "policy_checkpoint": str(self.checkpoint or ""),
@@ -534,13 +622,18 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
 
         route_id = str(info.get("route_id", ""))
         time_step = int(info.get("time_step", -1))
-        is_target = route_id in cfg["target_route_ids"]
-        window = cfg["target_time_windows"].get(route_id)
-        if window is not None:
-            is_target = window[0] <= time_step <= window[1]
+        episode_key = (route_id, int(info.get("repetition_index", -1)),
+                       int(info.get("scenario_index", -1)), int(info["env_id"]))
+        if time_step < 0 or time_step % cfg["stride_steps"]:
+            return
+        if cfg["max_states_per_episode"] and self._dump_episode_counts.get(episode_key, 0) >= cfg["max_states_per_episode"]:
+            return
+        is_target = _forensic_target_eligible(cfg, route_id, int(info.get("repetition_index", -1)), time_step, diagnostics)
 
         dump_kind = None
-        if is_target:
+        if cfg["capture_all"]:
+            dump_kind = "broad"
+        elif is_target:
             route_count = self._candidate_dump_target_counts.get(route_id, 0)
             if route_count < cfg["max_states_per_target_route"]:
                 dump_kind = "target_route"
@@ -560,6 +653,8 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
         index = self._candidate_dump_total
         safe_route = re.sub(r"[^A-Za-z0-9_.-]+", "_", route_id or "unknown")
         stem = f"state_{index:03d}_route_{safe_route}_step_{time_step:05d}"
+        if (output_dir / f"{stem}.npz").exists() or (output_dir / f"{stem}.json").exists():
+            raise FileExistsError("candidate cache exists; use a fresh output directory")
         candidate_1, candidate_2 = candidate_batch.candidates
 
         arrays = {
@@ -586,10 +681,28 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
             "ego_nominal_common": self._numpy_array(candidate_batch.ego_nominal_common),
             "ego_nominal_global": self._numpy_array(candidate_batch.ego_nominal_global),
         }
+        if cfg["include_training_inputs"]:
+            arrays.update({
+                "candidate_features_1": self._numpy_array(candidate_1.candidate_features),
+                "candidate_features_2": self._numpy_array(candidate_2.candidate_features),
+                "raw_trajectories_1": self._numpy_array(candidate_1.raw_trajectories),
+                "raw_trajectories_2": self._numpy_array(candidate_2.raw_trajectories),
+            })
+            for key in ("p1", "p2", "interaction_trace_1", "interaction_trace_2",
+                        "unary_collision_1", "unary_collision_2", "unary_offroad_1", "unary_offroad_2"):
+                arrays[key] = np.asarray(joint_evaluation[key])
+            for key in ("interaction_sign_1", "interaction_sign_2"):
+                arrays[key] = np.asarray(joint_evaluation.get(key, np.zeros_like(joint_evaluation["interaction_trace_" + key[-1]])))
+            for key in ("unary_uncomfortable_1", "unary_uncomfortable_2"):
+                if key in joint_evaluation:
+                    arrays[key] = np.asarray(joint_evaluation[key])
+            for key, value in joint_evaluation.items():
+                if key.startswith(("rollout_center_", "rollout_heading_", "collision_ego_trace_", "collision_background_trace_", "collision_aabb_", "unary_collision_ego_", "unary_collision_background_", "ego_nominal_aligned_global")):
+                    arrays[key] = np.asarray(value)
         np.savez_compressed(output_dir / f"{stem}.npz", **arrays)
 
         metadata = {
-            "schema_version": 1,
+            "schema_version": 2 if cfg["include_training_inputs"] else 1,
             "dump_kind": dump_kind,
             "route_id": route_id,
             "route_name": str(info.get("route_name", "")),
@@ -603,6 +716,24 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
             "oracle_indices": [int(value) for value in oracle_indices],
             "executed_indices": [int(value) for value in executed_indices],
             "policy_checkpoint": str(self.checkpoint or ""),
+            "collection_mode": self.mode,
+            "group_id": route_id,
+            "cooperation_config": self.cooperation_config,
+            "reward_config": dict(self.config.get("reward", {})),
+            "scorer_config": self.joint_scorer.config if getattr(self, "direct_head", False) else {
+                "candidate_dim": self.joint_scorer.candidate_projection.in_features,
+                "representation_dim": self.joint_scorer.candidate_projection.out_features,
+                "pair_dim": self.joint_scorer.pair_projection.out_features,
+                "geometry_hidden_dim": self.joint_scorer.pair_geometry[0].out_features,
+                "lambda_delta": self.joint_scorer.lambda_delta,
+                "trajectory_frames": self.joint_scorer.trajectory_frames,
+                "trajectory_stride": int(self.config.get("joint", {}).get("traj_sample_interval", 5)),
+                "base_temperature": self.joint_scorer.base_temperature,
+                "residual_scale_floor": self.joint_scorer.residual_scale_floor,
+                "geometry_horizon": self.joint_scorer.geometry_horizon,
+                "residual_scale_mode": self.joint_scorer.residual_scale_mode,
+                "fixed_residual_scale": self.joint_scorer.fixed_residual_scale,
+            },
             "diagnostics": {key: float(value) for key, value in diagnostics.items()},
             "array_shapes": {key: list(value.shape) for key, value in arrays.items()},
             "frames": {
@@ -612,15 +743,29 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
                 "ego_nominal_global": "CARLA global frame",
             },
         }
+        metadata["decision_teacher_config"] = getattr(self, "decision_config", {})
+        metadata["evaluation_seed"] = self.config.get("seed", 0)
+        metadata["evaluation_config"] = {"gamma": float(self.config.get("gamma", .98)),
+            "horizon": int(self.config.get("joint_horizon", 40)), "dt": float(getattr(self, "_step_interval", .1))}
+        checkpoint = str(self.checkpoint or "")
+        if cfg["include_training_inputs"]:
+            if checkpoint not in self._checkpoint_hashes:
+                self._checkpoint_hashes[checkpoint] = hashlib.sha256(Path(checkpoint).read_bytes()).hexdigest()
+            metadata["checkpoint_sha256"] = self._checkpoint_hashes[checkpoint]
+            backbone_path = str(self.config.get("base_rift_ckpt_path") or checkpoint)
+            if backbone_path not in self._checkpoint_hashes:
+                self._checkpoint_hashes[backbone_path] = hashlib.sha256(Path(backbone_path).read_bytes()).hexdigest()
+            metadata["backbone_sha256"] = self._checkpoint_hashes[backbone_path]
         with (output_dir / f"{stem}.json").open("w", encoding="utf-8") as stream:
             json.dump(metadata, stream, indent=2, sort_keys=True)
 
         self._candidate_dump_total += 1
+        self._dump_episode_counts[episode_key] = self._dump_episode_counts.get(episode_key, 0) + 1
         if dump_kind == "target_route":
             self._candidate_dump_target_counts[route_id] = (
                 self._candidate_dump_target_counts.get(route_id, 0) + 1
             )
-        else:
+        elif dump_kind == "typical_non_high_value":
             self._candidate_dump_non_high_value_count += 1
 
     @staticmethod
@@ -658,6 +803,11 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
             independent_indices,
         )
         state["diagnostics"].update(diagnostics)
+        if self.cooperation_config.get("enabled"):
+            objective = cooperation_objective(joint_evaluation, independent_indices, self.cooperation_config)
+            state["joint_advantage"] = objective["advantage"]
+            state["cooperation_score"] = objective["target_score"]
+            state["cooperation_feasible"] = objective["feasible_mask"]
         # Record eligibility independently from whether this particular run
         # applies the reweight.  This makes the uniform control auditable and
         # distinguishes a lack of eligible states from an intentionally
@@ -681,6 +831,9 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
         selection remains an explicit training ablation and is never used to
         label an oracle execution result.
         """
+        if self.cooperation_config.get("enabled"):
+            return (float(self.cooperation_config.get("opportunity_weight", 1.))
+                    if diagnostics.get("coop_opportunity", 0.) > .5 else 1.)
         cfg = self.high_value_reweight
         if not cfg["enabled"]:
             return 1.0
@@ -688,6 +841,8 @@ class AuditedJointRIFTPluto(JointRIFTPluto):
 
     def _is_high_value_state(self, diagnostics: Dict[str, float]) -> bool:
         """Return the config-defined safe relaxed-high-value eligibility."""
+        if self.cooperation_config.get("enabled"):
+            return bool(diagnostics.get("coop_opportunity", 0.) > .5)
         cfg = self.high_value_reweight
         return bool(
             diagnostics["oracle_joint_gain"] >= cfg["min_joint_gain"]

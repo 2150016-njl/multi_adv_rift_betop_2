@@ -10,81 +10,10 @@ from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_score_head import JointR
 from rift.cbv.planning.pluto.optim.warmup_cos_lr import WarmupCosLR
 
 
-def masked_joint_log_softmax(logits: Tensor, valid_mask: Tensor) -> Tensor:
-    """Categorical log-probabilities over valid flattened joint actions only."""
-    if logits.shape != valid_mask.shape or logits.ndim != 3:
-        raise ValueError("logits and valid_mask must both have shape [B, G1, G2]")
-    if not valid_mask.flatten(1).any(dim=1).all():
-        raise ValueError("every joint state requires at least one valid pair")
-    flattened_logits = logits.masked_fill(~valid_mask, -torch.inf).flatten(1)
-    return torch.log_softmax(flattened_logits, dim=-1).view_as(logits)
-
-
-def joint_dual_clip_loss(
-    new_joint_logits: Tensor,
-    old_joint_logits: Tensor,
-    joint_advantage: Tensor,
-    valid_mask: Tensor,
-    state_weight: Tensor = None,
-    clip_ratio: float = 0.2,
-    dual_clip: float = 3.0,
-) -> Tuple[Tensor, Dict[str, Tensor]]:
-    """Compute state-normalized RIFT dual-clip PPO.
-
-    ``state_weight`` is optional and applies only to complete joint states;
-    it never changes the relative weighting of candidate pairs within a state.
-    """
-    if not 0 < clip_ratio < 1:
-        raise ValueError("clip_ratio must be in (0, 1)")
-    if dual_clip < 1:
-        raise ValueError("dual_clip must be at least one")
-    if not (
-        new_joint_logits.shape == old_joint_logits.shape == joint_advantage.shape == valid_mask.shape
-    ):
-        raise ValueError("joint logits, advantages, and valid mask must share [B, G1, G2]")
-
-    new_logp = masked_joint_log_softmax(new_joint_logits, valid_mask)
-    old_logp = masked_joint_log_softmax(old_joint_logits, valid_mask)
-    # Avoid forming ``-inf - -inf`` for padding entries.  Masking only the
-    # result can leave a finite forward value while still poisoning autograd.
-    safe_new_logp = torch.where(valid_mask, new_logp, torch.zeros_like(new_logp))
-    safe_old_logp = torch.where(valid_mask, old_logp, torch.zeros_like(old_logp))
-    logp_delta = safe_new_logp - safe_old_logp
-    ratio = torch.exp(logp_delta)
-    unclipped = joint_advantage * ratio
-    clipped_ratio = ratio.clamp(1.0 - clip_ratio, 1.0 + clip_ratio)
-    clipped = joint_advantage * clipped_ratio
-    minimum = torch.minimum(unclipped, clipped)
-    dual_clipped = torch.maximum(minimum, joint_advantage * dual_clip)
-    objective = torch.where(joint_advantage < 0, dual_clipped, minimum)
-    objective = torch.where(valid_mask, objective, torch.zeros_like(objective))
-
-    valid_count = valid_mask.sum(dim=(1, 2)).clamp_min(1)
-    state_objective = objective.sum(dim=(1, 2)) / valid_count
-    if state_weight is None:
-        state_weight = torch.ones_like(state_objective)
-    else:
-        state_weight = state_weight.to(
-            device=state_objective.device, dtype=state_objective.dtype
-        ).reshape(-1)
-        if state_weight.shape != state_objective.shape:
-            raise ValueError("state_weight must have shape [B]")
-        if not torch.isfinite(state_weight).all() or (state_weight <= 0).any():
-            raise ValueError("state_weight must be finite and strictly positive")
-    loss = -(state_objective * state_weight).sum() / state_weight.sum()
-
-    probability = torch.where(valid_mask, safe_new_logp.exp(), torch.zeros_like(safe_new_logp))
-    entropy = -(probability * safe_new_logp).sum(dim=(1, 2)).mean()
-    valid_ratio = ratio[valid_mask]
-    metrics = {
-        "policy_entropy": entropy.detach(),
-        "ratio_mean": valid_ratio.mean().detach(),
-        "ratio_clip_fraction": (
-            (valid_ratio - valid_ratio.clamp(1.0 - clip_ratio, 1.0 + clip_ratio)).abs() > 0
-        ).float().mean().detach(),
-        "state_weight_mean": state_weight.mean().detach(),
-    }
-    return loss, metrics
+from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_losses import (
+    masked_joint_log_softmax as masked_joint_log_softmax, joint_dual_clip_loss, soft_target_loss,
+)
+__all__ = ["JointRIFTLightningTrainer", "masked_joint_log_softmax", "joint_dual_clip_loss"]
 
 
 class JointRIFTLightningTrainer(L.LightningModule):
@@ -106,6 +35,9 @@ class JointRIFTLightningTrainer(L.LightningModule):
         train_pi_head: bool = False,
         clip_ratio: float = 0.2,
         dual_clip: float = 3.0,
+        pair_weighting: str = "uniform",
+        auxiliary_weight: float = 0.0,
+        teacher_temperature: float = 0.25,
         **_unused,
     ) -> None:
         super().__init__()
@@ -123,6 +55,11 @@ class JointRIFTLightningTrainer(L.LightningModule):
         self.frame_rate = int(frame_rate)
         self.clip_ratio = float(clip_ratio)
         self.dual_clip = float(dual_clip)
+        self.pair_weighting = pair_weighting
+        self.auxiliary_weight = float(auxiliary_weight)
+        self.teacher_temperature = float(teacher_temperature)
+        if self.auxiliary_weight < 0 or self.teacher_temperature <= 0:
+            raise ValueError("invalid auxiliary loss settings")
         if trainable_layers:
             raise ValueError(
                 "Joint-RIFT controls trainability internally; trainable_layers must remain empty"
@@ -168,7 +105,26 @@ class JointRIFTLightningTrainer(L.LightningModule):
             state_weight=batch.get("state_weight"),
             clip_ratio=self.clip_ratio,
             dual_clip=self.dual_clip,
+            pair_weighting=self.pair_weighting,
         )
+        if self.auxiliary_weight:
+            if "cooperation_score" not in batch:
+                raise ValueError("auxiliary loss requires cooperation target cache")
+            active = batch["cooperation_feasible"].flatten(1).any(-1)
+            auxiliary = new_joint_logits[batch["joint_valid_mask"]].sum() * 0.
+            if active.any():
+                auxiliary = soft_target_loss(new_joint_logits[active], batch["cooperation_score"][active],
+                                             batch["joint_valid_mask"][active], self.teacher_temperature,
+                                             batch["state_weight"][active])
+            loss = loss + self.auxiliary_weight * auxiliary
+            self.log(f"joint/{prefix}_auxiliary_loss", auxiliary, on_step=False, on_epoch=True)
+        if "cooperation_score" in batch:
+            target = batch["cooperation_score"].masked_fill(~batch["joint_valid_mask"], -torch.inf).flatten(1)
+            chosen = new_joint_logits.flatten(1).argmax(-1)
+            regret = target.max(-1).values - target.gather(1, chosen[:, None]).squeeze(1)
+            feasible = batch["cooperation_feasible"].flatten(1).gather(1, chosen[:, None]).float().mean()
+            self.log(f"joint/{prefix}_target_regret", regret.mean(), on_step=False, on_epoch=True)
+            self.log(f"joint/{prefix}_selected_feasible", feasible, on_step=False, on_epoch=True)
         self.log(f"joint/{prefix}_loss", loss, on_step=False, on_epoch=True, prog_bar=prefix == "train")
         if prefix == "train":
             self.log("joint/loss", loss, on_step=False, on_epoch=True)
@@ -273,6 +229,18 @@ class JointRIFTLightningTrainer(L.LightningModule):
             warmup_epochs=self.warmup_epochs,
         )
         return [optimizer], [scheduler]
+
+    def on_save_checkpoint(self, checkpoint):
+        head = self.joint_head
+        checkpoint["scorer_config"] = dict(candidate_dim=head.candidate_projection.in_features,
+            representation_dim=head.candidate_projection.out_features, pair_dim=head.pair_projection.out_features,
+            geometry_hidden_dim=head.pair_geometry[0].out_features, lambda_delta=head.lambda_delta,
+            trajectory_frames=head.trajectory_frames, trajectory_stride=int(head.sample_indices[1] - head.sample_indices[0]) if len(head.sample_indices) > 1 else head.trajectory_frames,
+            base_temperature=head.base_temperature, residual_scale_floor=head.residual_scale_floor,
+            geometry_horizon=head.geometry_horizon, residual_scale_mode=head.residual_scale_mode,
+            fixed_residual_scale=head.fixed_residual_scale)
+        checkpoint["cooperation_config"] = getattr(self, "cooperation_config", {})
+        checkpoint["reward_config"] = getattr(self, "reward_config", {})
 
 
 def _flatten_valid_candidates(output: Dict, data: Dict, candidate_mask: Tensor) -> Dict[str, Tensor]:

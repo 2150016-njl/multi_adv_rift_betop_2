@@ -1,0 +1,44 @@
+{
+  "capture_independent": {
+    "cbv_seconds": 379.3000000000002,
+    "cbv_count": 39,
+    "cbv_goal_count": 0,
+    "collision_per_100_cbv_seconds": 2.37279198523596,
+    "ego_vehicle_collisions": 1
+  },
+  "factorized_oracle": {
+    "cbv_seconds": 351.7,
+    "cbv_count": 40,
+    "cbv_goal_count": 0,
+    "collision_per_100_cbv_seconds": 2.8433323855558714,
+    "ego_vehicle_collisions": 0
+  },
+  "independent": {
+    "cbv_seconds": 371.7000000000002,
+    "cbv_count": 39,
+    "cbv_goal_count": 0,
+    "collision_per_100_cbv_seconds": 2.690341673392519,
+    "ego_vehicle_collisions": 2
+  },
+  "interaction_oracle": {
+    "cbv_seconds": 365.80000000000035,
+    "cbv_count": 36,
+    "cbv_goal_count": 0,
+    "collision_per_100_cbv_seconds": 2.4603608529250933,
+    "ego_vehicle_collisions": 0
+  },
+  "joint_oracle": {
+    "cbv_seconds": 347.7999999999999,
+    "cbv_count": 37,
+    "cbv_goal_count": 0,
+    "collision_per_100_cbv_seconds": 1.1500862564692356,
+    "ego_vehicle_collisions": 0
+  },
+  "quality_oracle": {
+    "cbv_seconds": 351.4000000000001,
+    "cbv_count": 37,
+    "cbv_goal_count": 0,
+    "collision_per_100_cbv_seconds": 1.7074558907228226,
+    "ego_vehicle_collisions": 0
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "states": 1,
+  "routes": [
+    "1"
+  ],
+  "schema_version": 2,
+  "arguments": {
+    "mode": "stats",
+    "cache_dir": "outputs\\joint_rift_v5_validation\\a15f6fafa8a84235bcc85d085630b6ed\\cache",
+    "output_dir": "outputs\\joint_rift_v5_validation\\a15f6fafa8a84235bcc85d085630b6ed\\cli_stats",
+    "backbone_ckpt": null,
+    "max_states": 0,
+    "objective": "cooperation",
+    "loss": "rift",
+    "steps": 300,
+    "batch_size": 8,
+    "lr": 0.001,
+    "seed": 0,
+    "overfit": false,
+    "temperature": 0.25,
+    "auxiliary_weight": 0.2,
+    "device": "cpu",
+    "tolerance": 0.0005,
+    "base_temperature": null,
+    "lambda_delta": null,
+    "residual_scale_floor": null,
+    "geometry_horizon": null
+  },
+  "input_sha256": {
+    "outputs\\joint_rift_v5_validation\\a15f6fafa8a84235bcc85d085630b6ed\\cache\\state_000_route_1_step_00010.npz": "47f161c3d044538b0d976bf06f54abde06b911e6f8fb16b25aa461532cafe111"
+  },
+  "opportunity_states": 1.0,
+  "no_feasible_states": 0,
+  "by_route": {
+    "1": {
+      "states": 1,
+      "opportunity_rate": 1.0
+    }
+  }
+}

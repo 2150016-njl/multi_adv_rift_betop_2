@@ -1,0 +1,29 @@
+type: rule
+train:
+  spawn_radius: 50
+  traffic_intensity: 0.6
+  activate_radius: 150
+  coord_interval: 60
+  search_radius: 60
+  max_interaction_fov: 150
+  max_interaction_dis: 90
+  min_interaction_dis_diff: 60
+  max_route_len: 400
+  max_ego_route_len: 80
+  max_agent_num: 2
+  down_sample_step: 4
+  pair_selection: shared_conflict
+eval:
+  spawn_radius: 50
+  traffic_intensity: 0.6
+  activate_radius: 150
+  coord_interval: 60
+  search_radius: 60
+  max_interaction_fov: 150
+  max_interaction_dis: 90
+  min_interaction_dis_diff: 20
+  max_route_len: 400
+  max_ego_route_len: 50
+  max_agent_num: 2
+  down_sample_step: 4
+  pair_selection: shared_conflict

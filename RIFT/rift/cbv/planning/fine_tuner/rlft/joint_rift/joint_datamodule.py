@@ -7,7 +7,7 @@ import torch
 from lightning import LightningDataModule
 from lightning.pytorch.utilities.types import EVAL_DATALOADERS, TRAIN_DATALOADERS
 from omegaconf import DictConfig
-from torch.utils.data import DataLoader, Dataset, random_split
+from torch.utils.data import DataLoader, Dataset, random_split, Subset
 
 from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_buffer import JointRolloutBuffer
 from rift.cbv.planning.pluto.feature_builder.pluto_feature import PlutoFeature
@@ -37,6 +37,11 @@ class JointRIFTCollate:
         valid_mask_2 = torch.zeros((batch_size, max_group_2), dtype=torch.bool)
         state_weight = torch.ones(batch_size, dtype=torch.float32)
         pair_ids = []
+        has_cooperation = ["cooperation_score" in sample for sample in batch]
+        if any(has_cooperation) and not all(has_cooperation):
+            raise ValueError("cannot mix legacy and cooperation targets")
+        cooperation_score = torch.zeros_like(joint_advantage)
+        cooperation_feasible = torch.zeros_like(old_joint_logits, dtype=torch.bool)
 
         for batch_index, sample in enumerate(batch):
             logits = torch.as_tensor(sample["old_joint_logits"], dtype=torch.float32)
@@ -57,11 +62,18 @@ class JointRIFTCollate:
                 raise ValueError("state_weight must be finite and strictly positive")
             state_weight[batch_index] = weight
             pair_ids.append(tuple(sample["pair_ids"]))
+            if all(has_cooperation):
+                score = torch.as_tensor(sample["cooperation_score"], dtype=torch.float32)
+                feasible = torch.as_tensor(sample["cooperation_feasible"], dtype=torch.bool)
+                if score.shape != logits.shape or feasible.shape != logits.shape:
+                    raise ValueError("cooperation targets must match candidate matrix")
+                cooperation_score[batch_index, :group_1, :group_2] = score
+                cooperation_feasible[batch_index, :group_1, :group_2] = feasible
 
         joint_valid_mask = valid_mask_1[:, :, None] & valid_mask_2[:, None, :]
         old_joint_logits = old_joint_logits.masked_fill(~joint_valid_mask, -torch.inf)
         joint_advantage = joint_advantage.masked_fill(~joint_valid_mask, 0.0)
-        return {
+        result = {
             "feature_1": self.feature_collate([sample["feature_1"] for sample in batch]),
             "feature_2": self.feature_collate([sample["feature_2"] for sample in batch]),
             "old_joint_logits": old_joint_logits,
@@ -76,6 +88,9 @@ class JointRIFTCollate:
             "frame_2": _collate_frame_context(batch, "frame_2"),
             "diagnostics": [sample.get("diagnostics", {}) for sample in batch],
         }
+        if all(has_cooperation):
+            result.update(cooperation_score=cooperation_score, cooperation_feasible=cooperation_feasible)
+        return result
 
 
 class JointRIFTDataset(Dataset):
@@ -116,7 +131,19 @@ class JointRIFTDataModule(LightningDataModule):
             raise RuntimeError("Joint-RIFT needs at least two states for a train/validation split")
         train_size = int(len(dataset) * self.train_ratio)
         train_size = min(max(train_size, 1), len(dataset) - 1)
-        self.train_dataset, self.val_dataset = random_split(dataset, [train_size, len(dataset) - train_size])
+        if self.cfg.get("split_by", "state") == "route":
+            labels = [str(self.buffer.sample(i)["group_id"]) for i in range(len(dataset))]
+            groups = sorted(set(labels))
+            if len(groups) < 2:
+                raise ValueError("route validation needs >=2 routes in this buffer; collect more routes or explicitly choose state split for debugging")
+            rng = np.random.RandomState(int(self.cfg.get("split_seed", 0)))
+            rng.shuffle(groups)
+            cut = min(max(int(len(groups) * self.train_ratio), 1), len(groups) - 1)
+            train_groups = set(groups[:cut])
+            self.train_dataset = Subset(dataset, [i for i, g in enumerate(labels) if g in train_groups])
+            self.val_dataset = Subset(dataset, [i for i, g in enumerate(labels) if g not in train_groups])
+        else:
+            self.train_dataset, self.val_dataset = random_split(dataset, [train_size, len(dataset) - train_size])
 
     def preprocess_buffer(self):
         """Joint advantages are computed at collection time; no GAE phase exists."""

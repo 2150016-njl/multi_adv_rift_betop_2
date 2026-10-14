@@ -1,0 +1,404 @@
+{
+  "shapes": {
+    "(12, 12)": 80,
+    "(36, 36)": 27,
+    "(24, 24)": 29,
+    "(12, 24)": 8
+  },
+  "cg": {
+    "valid_cg>1e-08": 11,
+    "valid_cg>0.01": 11,
+    "valid_cg>0.05": 8,
+    "valid_cg>0.1": 5,
+    "pair_safe_cg>1e-08": 9,
+    "pair_safe_cg>0.01": 9,
+    "pair_safe_cg>0.05": 6,
+    "pair_safe_cg>0.1": 3,
+    "unary_collision_free_cg>1e-08": 1,
+    "unary_collision_free_cg>0.01": 1,
+    "unary_collision_free_cg>0.05": 1,
+    "unary_collision_free_cg>0.1": 0,
+    "hard_cg>1e-08": 1,
+    "hard_cg>0.01": 1,
+    "hard_cg>0.05": 0,
+    "hard_cg>0.1": 0,
+    "F_cg>1e-08": 1,
+    "F_cg>0.01": 1,
+    "F_cg>0.05": 0,
+    "F_cg>0.1": 0
+  },
+  "stages": {
+    "all": {
+      "states": 144,
+      "F": 93,
+      "F_h_flat": 73,
+      "base_F": 53
+    },
+    "train": {
+      "states": 112,
+      "F": 75,
+      "F_h_flat": 58,
+      "base_F": 43
+    },
+    "val": {
+      "states": 32,
+      "F": 18,
+      "F_h_flat": 15,
+      "base_F": 10
+    },
+    "first32": {
+      "states": 32,
+      "F": 25,
+      "F_h_flat": 15,
+      "base_F": 13
+    }
+  },
+  "tie_oracle": {
+    "cooperation_oracle": {
+      "has_feasible": 692.0,
+      "executed_changed_H_zero": 529,
+      "oracle_gain_zero_F": 619.0,
+      "oracle_F_same_H_and_baseF": 350.0,
+      "conditional_policy_feasible_when_F": 1.0,
+      "changed_quality_recovery_H_nonpositive": 284.0
+    },
+    "independent": {
+      "has_feasible": 956.0,
+      "executed_changed_H_zero": 0,
+      "oracle_gain_zero_F": 712.0,
+      "oracle_F_same_H_and_baseF": 358.0,
+      "conditional_policy_feasible_when_F": 0.448744769874477,
+      "changed_quality_recovery_H_nonpositive": 0
+    },
+    "policy": {
+      "has_feasible": 814.0,
+      "executed_changed_H_zero": 527,
+      "oracle_gain_zero_F": 696.0,
+      "oracle_F_same_H_and_baseF": 438.0,
+      "conditional_policy_feasible_when_F": 0.49385749385749383,
+      "changed_quality_recovery_H_nonpositive": 60.0
+    }
+  },
+  "capture_vs_independent_AA": {
+    "matched_records": 20,
+    "metrics": {
+      "score_composed": {
+        "routes": 10,
+        "missing_pairs": 0,
+        "route_equal_mean_delta": -1.5835,
+        "route_cluster_bootstrap_95_percent": [
+          -5.8035,
+          1.053
+        ]
+      },
+      "score_route": {
+        "routes": 10,
+        "missing_pairs": 0,
+        "route_equal_mean_delta": 0.4164999999999999,
+        "route_cluster_bootstrap_95_percent": [
+          0.0,
+          1.1839999999999997
+        ]
+      },
+      "score_penalty": {
+        "routes": 10,
+        "missing_pairs": 0,
+        "route_equal_mean_delta": -0.02,
+        "route_cluster_bootstrap_95_percent": [
+          -0.06000000000000001,
+          0.0
+        ]
+      },
+      "cbv_collision_count": {
+        "routes": 10,
+        "missing_pairs": 0,
+        "route_equal_mean_delta": 0.0,
+        "route_cluster_bootstrap_95_percent": [
+          -0.3,
+          0.3
+        ]
+      },
+      "cbv_offroad_fraction": {
+        "routes": 10,
+        "missing_pairs": 0,
+        "route_equal_mean_delta": -0.00038308661682906096,
+        "route_cluster_bootstrap_95_percent": [
+          -0.0011904761904761919,
+          2.7477559992672602e-05
+        ]
+      },
+      "cbv_uncomfortable_fraction": {
+        "routes": 10,
+        "missing_pairs": 0,
+        "route_equal_mean_delta": 0.016351598391754422,
+        "route_cluster_bootstrap_95_percent": [
+          -0.019164167821942996,
+          0.060825155778801904
+        ]
+      }
+    },
+    "per_record": [
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_17569_rep0",
+        "route": "RouteScenario_17569",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": -0.021798780487805036
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_17569_rep1",
+        "route": "RouteScenario_17569",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": -0.025990233315246913
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_2091_rep0",
+        "route": "RouteScenario_2091",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": -40.0,
+        "score_route": 0.0,
+        "score_penalty": -0.4,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": 0.012385665017245029
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_2091_rep1",
+        "route": "RouteScenario_2091",
+        "policy_status": "Failed - Agent got blocked",
+        "independent_status": "Failed - Agent got blocked",
+        "score_composed": 1.3099999999999987,
+        "score_route": 1.3099999999999987,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": 0.016233766233766267
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_25378_rep0",
+        "route": "RouteScenario_25378",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": 0.06410256410256424
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_25378_rep1",
+        "route": "RouteScenario_25378",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": -0.02496580027359785
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_25381_rep0",
+        "route": "RouteScenario_25381",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": 0.00649350649350644
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_25381_rep1",
+        "route": "RouteScenario_25381",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": -0.007936507936507945,
+        "cbv_uncomfortable_fraction": 0.07142857142857151
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_25424_rep0",
+        "route": "RouteScenario_25424",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": -0.06606765327695563
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_25424_rep1",
+        "route": "RouteScenario_25424",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": -0.027382645803698424
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_26405_rep0",
+        "route": "RouteScenario_26405",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.000274775599926726,
+        "cbv_uncomfortable_fraction": -0.031049642791720067
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_26405_rep1",
+        "route": "RouteScenario_26405",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": 0.05357142857142849
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_27494_rep0",
+        "route": "RouteScenario_27494",
+        "policy_status": "Failed - Agent timed out",
+        "independent_status": "Failed - Agent timed out",
+        "score_composed": 8.36,
+        "score_route": 8.36,
+        "score_penalty": 0.0,
+        "cbv_collision_count": -2.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": -0.016331803585269977
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_27494_rep1",
+        "route": "RouteScenario_27494",
+        "policy_status": "Failed - Agent got blocked",
+        "independent_status": "Failed - Agent got blocked",
+        "score_composed": -1.3399999999999999,
+        "score_route": -1.3399999999999999,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": -0.09321162444113018
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_28198_rep0",
+        "route": "RouteScenario_28198",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": 0.0039792196308168215
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_28198_rep1",
+        "route": "RouteScenario_28198",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 2.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": 0.3874670956420006
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_3255_rep0",
+        "route": "RouteScenario_3255",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": -0.045454545454545414
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_3255_rep1",
+        "route": "RouteScenario_3255",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": 0.036120129870131135
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_3514_rep0",
+        "route": "RouteScenario_3514",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": 0.0
+      },
+      {
+        "seed": 0,
+        "route_repetition": "RouteScenario_3514_rep1",
+        "route": "RouteScenario_3514",
+        "policy_status": "Completed",
+        "independent_status": "Completed",
+        "score_composed": 0.0,
+        "score_route": 0.0,
+        "score_penalty": 0.0,
+        "cbv_collision_count": 0.0,
+        "cbv_offroad_fraction": 0.0,
+        "cbv_uncomfortable_fraction": 0.027502750275027465
+      }
+    ],
+    "interpretation": "All deltas are policy minus independent. Higher Ego driving score means better Ego outcome, not automatically better CBV cooperation. Bootstrap resamples route clusters retaining their evaluation seeds/repetitions; conditional on these fixed trained models, not training-seed generalization. Descriptive interval for the sampled route population; simulator A/A variation still needs measurement."
+  }
+}

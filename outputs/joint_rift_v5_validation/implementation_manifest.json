@@ -1,0 +1,42 @@
+{
+  "base_head": "6f7a92191858d8b1f3aab9b227779046e0c2009d",
+  "files_sha256": {
+    "JOINT_RIFT_V5_IMPLEMENTATION_AND_RUNBOOK.md": "0252e0a7a7ffa8df3a913498728ba71a7d19105ea6daa4e501b59062650421fa",
+    "RIFT/rift/cbv/planning/fine_tuner/rlft/config/datamodule/joint_rift_datamodule.yaml": "e646fe76784636138a9f918b19318a66e834ab002b178089b2b76bd38ca1a979",
+    "RIFT/rift/cbv/planning/fine_tuner/rlft/config/joint_rift_training.yaml": "29ace0e57e484754ecec879c458af3b4ba7045bc663596a7e9309747ca9a3412",
+    "RIFT/rift/cbv/planning/fine_tuner/rlft/joint_rift/audited_joint_traj_evaluator.py": "657dfa29aaf4d1bcaacb7e2e9bec0ec3fa71226f27d8e3ebfd250941daffdc3c",
+    "RIFT/rift/cbv/planning/fine_tuner/rlft/joint_rift/cooperation_objective.py": "be6f72126e1a4dd52325580615c2c0f6d2d954e1d3f244b054cd54d022f8d8cf",
+    "RIFT/rift/cbv/planning/fine_tuner/rlft/joint_rift/joint_datamodule.py": "03e5d948512827b604a950328022b9174cf7529601c94b26329b135452a1b4e1",
+    "RIFT/rift/cbv/planning/fine_tuner/rlft/joint_rift/joint_losses.py": "a1ce6aec9e816a06391948b71b4162c88b23590851a1cbf2078689f2022ed004",
+    "RIFT/rift/cbv/planning/fine_tuner/rlft/joint_rift/joint_rift_audited.py": "729c5ab09f3fe1b229da531dd10a7cc4cd603552b94bc24c04ee7b2b3c2c5f25",
+    "RIFT/rift/cbv/planning/fine_tuner/rlft/joint_rift/joint_rift_pluto.py": "4e72670a3729efa8464fca4a07156af2b1f1c06b97147dbc7f7db5b8e09498c7",
+    "RIFT/rift/cbv/planning/fine_tuner/rlft/joint_rift/joint_score_head.py": "46db6493a2ec44d50b563b73700a2cbee8ead9c5bdd2ac04e8f0f3da31ba1e2d",
+    "RIFT/rift/cbv/planning/fine_tuner/rlft/joint_rift/joint_trainer.py": "18e2cdbb14b13d9123a10a1495723a54339b8045b37577a380ea8f9b25dee6c8",
+    "RIFT/rift/cbv/planning/fine_tuner/rlft/joint_rift/joint_traj_evaluator.py": "270b93d1ef9c31fd0f55a5fc0f1a83e612728fb9dc4dcfa88a99a3f1f55c1f55",
+    "RIFT/rift/cbv/planning/fine_tuner/rlft/joint_rift/nominal_braid.py": "4631aff5529109849a1585df82e7e5d6185ba0388f084bc2d553765df8366727",
+    "RIFT/rift/cbv/planning/fine_tuner/training_builder.py": "ba23de1d969a1cc362e886d5166e4ec414d21685f803a210107297e05793fd52",
+    "RIFT/scripts/audit_joint_rift_evidence.py": "f147ca3b5f9ee8116dead56bbc5123ab5f2540972b92927b61db03632c5844ab",
+    "RIFT/scripts/compare_joint_v5_outcomes.py": "bd50b915f77ac3b1d7642bbb9512d7eed65abb68abc0f1aa23a923db5e1e8905",
+    "RIFT/scripts/joint_rift_offline.py": "99cea402a8b68438ff536d2460ff0697120f9f5ca95312e795fb1e78b930c365",
+    "RIFT/scripts/prepare_joint_rift_v5.py": "e29d3f3a5b652300e8fcd1e80ff336938a443ea1c976dcb170a644cd45f16e63",
+    "RIFT/scripts/probe_joint_rift_math.py": "360ee22299621c4f68b35aab400de60e7e4fb63270f234dc0e471c1f02a9d39d",
+    "RIFT/scripts/run.py": "e9e42b1440bb7c1b79750064e85e3c7878964eaf9fde9f7678aaefccd198eaa1",
+    "RIFT/scripts/summarize_joint_cooperation.py": "8a354ff638eb802a262049052dbfb154d6f7b323348b137dd9821a39c003c08a",
+    "RIFT/tools/test/test_evidence_audit.py": "b2830412d2523fa4f970d36734ead2c95136a802c5ff659eb3eb4c11c2e6eccc",
+    "RIFT/tools/test/test_joint_v5_pipeline.py": "0f6a004d598a91f6c78d3f80f89474345158242e999a1420c93dbe420bf65075"
+  },
+  "verification": {
+    "v5_method_and_numeric_tests": 14,
+    "original_isolated_source_tests": 14,
+    "evidence_audit_tests": 8,
+    "legacy_loss_value_and_gradient": "matches HEAD baseline",
+    "py_compile": "PASS",
+    "pyflakes": "PASS",
+    "synthetic_cache_score_error": 0.0,
+    "synthetic_head_regret_before": 1.0,
+    "synthetic_head_regret_after": 0.0,
+    "carla": "NOT RUN",
+    "lightning_full_training": "NOT RUN"
+  },
+  "scope": "Fixed nominal cooperation. Offline stage-1 cached-head fitting. Forward braid is an optional local projected-label implementation; no causal-response requirement."
+}

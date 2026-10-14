@@ -15,6 +15,8 @@ from rift.cbv.planning.fine_tuner.rlft.joint_rift.temporal_interaction import (
 from rift.cbv.planning.fine_tuner.rlft.joint_rift.interaction_topology import (
     discounted_interaction_return,
 )
+from rift.cbv.planning.fine_tuner.rlft.joint_rift.nominal_braid import nominal_braid_events
+from rift.cbv.planning.fine_tuner.rlft.joint_rift.box_collision import box_collision_trace, aabb_collision_trace
 
 
 class AuditedJointTrajEvaluator(JointTrajEvaluator):
@@ -25,6 +27,10 @@ class AuditedJointTrajEvaluator(JointTrajEvaluator):
         *args,
         arrival_time_tau: float = 1.0,
         both_necessary_epsilon: float = 0.1,
+        interaction_semantics: str = "spatial_temporal",
+        braid_radius: float = 20.,
+        braid_distance_tau: float = 5.,
+        collision_geometry: str = "legacy_aabb",
         **kwargs,
     ) -> None:
         interaction_dt = float(kwargs.get("dt", 0.1))
@@ -36,6 +42,14 @@ class AuditedJointTrajEvaluator(JointTrajEvaluator):
         self.arrival_time_tau = float(arrival_time_tau)
         self.both_necessary_epsilon = float(both_necessary_epsilon)
         self.interaction_dt = interaction_dt
+        if interaction_semantics not in {"spatial_temporal", "forward_braid"}:
+            raise ValueError("unknown interaction_semantics")
+        self.interaction_semantics = interaction_semantics
+        self.braid_radius = float(braid_radius)
+        self.braid_distance_tau = float(braid_distance_tau)
+        if collision_geometry not in {"legacy_aabb", "exact_sat"}:
+            raise ValueError("unknown unary collision geometry")
+        self.collision_geometry = collision_geometry
 
     def evaluate_unary(
         self,
@@ -108,8 +122,11 @@ class AuditedJointTrajEvaluator(JointTrajEvaluator):
         ego_vertices = self._nominal_ego_vertices(
             aligned_ego_nominal, ego_history_states[-1]
         )
-        collision_obstacles = np.concatenate((background_vertices, ego_vertices), axis=0)
-        collision_matrix = self.get_collision_matrix(rollout_vertices, collision_obstacles)
+        collision_function = box_collision_trace if self.collision_geometry == "exact_sat" else self.get_collision_matrix
+        collision_ego = collision_function(rollout_vertices, ego_vertices)
+        collision_background = (collision_function(rollout_vertices, background_vertices)
+                                if len(background_vertices) else np.zeros_like(collision_ego))
+        collision_matrix = collision_ego | collision_background
         off_road_matrix = self.get_off_road_matrix(
             rollout_center, center_history_states[-1]
         )
@@ -135,12 +152,15 @@ class AuditedJointTrajEvaluator(JointTrajEvaluator):
             dtype=trajectories.dtype,
             device=trajectories.device,
         )
-        events = get_temporally_weighted_interaction_events(
-            rollout_center_tensor,
-            ego_nominal_tensor,
-            dt=self.interaction_dt,
-            arrival_time_tau=self.arrival_time_tau,
-        )
+        interaction_sign = torch.zeros_like(rollout_center_tensor[..., 0])
+        if self.interaction_semantics == "forward_braid":
+            events = nominal_braid_events(rollout_center_tensor, ego_nominal_tensor,
+                ego_history_states[-1].rear_axle.heading, self.braid_radius, self.braid_distance_tau)
+            interaction_sign = torch.nn.functional.pad(events.signed_onset, (0, 1))
+        else:
+            events = get_temporally_weighted_interaction_events(
+                rollout_center_tensor, ego_nominal_tensor,
+                dt=self.interaction_dt, arrival_time_tau=self.arrival_time_tau)
         interaction_trace = torch.nn.functional.pad(events.weighted_onset, (0, 1))
         interaction_pressure = discounted_interaction_return(
             interaction_trace, self.gamma
@@ -152,6 +172,15 @@ class AuditedJointTrajEvaluator(JointTrajEvaluator):
             rollout_vertices=rollout_vertices,
             collision_matrix=collision_matrix,
             off_road_matrix=off_road_matrix,
+            interaction_sign=interaction_sign.detach().cpu().numpy(),
+            uncomfortable_matrix=(np.abs(rollout_acc) > 4) | (np.abs(rollout_angular_acc) > 4),
+            collision_ego_matrix=collision_ego,
+            collision_background_matrix=collision_background,
+            rollout_center=rollout_center,
+            rollout_heading=rollout_angle,
+            aligned_ego_nominal=aligned_ego_nominal,
+            collision_ego_aabb_matrix=aabb_collision_trace(rollout_vertices, ego_vertices),
+            collision_background_aabb_matrix=aabb_collision_trace(rollout_vertices, background_vertices),
         )
 
     def combine_unary_evaluations(

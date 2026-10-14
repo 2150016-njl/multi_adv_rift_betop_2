@@ -1,0 +1,84 @@
+policy_name: joint_rift_audited
+policy_type: il
+obs_type: cbv_rift_pluto_obs
+reward_model: dense
+data_keys:
+- CBVs_actions
+- joint_rollout_states
+- CBVs_obs
+- CBVs_next_obs
+- CBVs_reward
+- CBVs_terminated
+- CBVs_done
+buffer_capacity: 4096
+num_joint_cbv: 2
+num_modes: 12
+joint_horizon: 40
+gamma: 0.98
+save_freq: 50
+eval_joint_diagnostics: true
+oracle_eval_mode: diagnose
+joint_eval_action_mode: policy
+oracle_min_joint_gain: 10.0
+oracle_min_nonfactorizable_ratio: 0.01
+oracle_require_both_necessary: true
+oracle_max_pair_collision_rate: 0.05
+high_value_reweight:
+  enabled: false
+  min_joint_gain: 10.0
+  min_nonfactorizable_ratio: 0.01
+  max_pair_collision_rate: 0.05
+  weight: 4.0
+rlft_config_path: config
+rlft_config_name: joint_rift_training.yaml
+ckpt_path: rift/cbv/planning/model_ckpt/pluto/pluto_1M_aux_cil.ckpt
+base_rift_model_path: rift/cbv/planning/model_ckpt/rift_pluto
+base_rift_ckpt_path: C:\Users\Lenovo\Desktop\pycharm_project\multi_adv_rift_scenario_dreamer_betop_2\outputs\joint_rift_v5_validation\a15f6fafa8a84235bcc85d085630b6ed\base.ckpt
+joint_ckpt_path: C:\Users\Lenovo\Desktop\pycharm_project\multi_adv_rift_scenario_dreamer_betop_2\outputs\joint_rift_v5_validation\a15f6fafa8a84235bcc85d085630b6ed\cli_fit\joint_head.ckpt
+model_path: C:\Users\Lenovo\Desktop\pycharm_project\multi_adv_rift_scenario_dreamer_betop_2\outputs\joint_rift_v5_validation\a15f6fafa8a84235bcc85d085630b6ed\prepared\models
+model_type: cbv
+use_prediction: false
+topk: 10
+obs:
+  max_agent: 48
+  radius: 120
+  history_horizon: 2.0
+  sample_interval: 0.1
+CBV_action_dim: 3
+joint:
+  lambda_delta: 4.0
+  representation_dim: 8
+  latent_dim: 4
+  traj_sample_interval: 5
+  stage: 1
+  base_temperature: 2.0
+  residual_scale_floor: 1.0
+  geometry_horizon: 40
+reward:
+  lambda_pressure: 1.0
+  lambda_coalition: 1.0
+  lambda_pair_collision: 20.0
+  pair_collision_chunk_size: 32
+  arrival_time_tau: 1.0
+  both_necessary_epsilon: 0.1
+training:
+  lr_joint: 0.0001
+  lr_pi: 1.0e-05
+  train_pi_head: false
+  pair_weighting: uniform
+  auxiliary_weight: 0.2
+  teacher_temperature: 0.25
+  split_by: route
+cooperation:
+  enabled: true
+  diagnose: true
+  unary_budget: 0.0
+  coalition_weight: 1.0
+  require_unary_collision_free: true
+  require_offroad_free: true
+  min_gain: 0.1
+  both_epsilon: 0.1
+  interaction_scale_floor: 0.1
+  opportunity_weight: 1.0
+candidate_dump:
+  enabled: false

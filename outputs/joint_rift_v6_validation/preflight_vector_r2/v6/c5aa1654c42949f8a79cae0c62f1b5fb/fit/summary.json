@@ -1,0 +1,478 @@
+{
+  "arguments": {
+    "mode": "fit",
+    "cache": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\cache",
+    "additional_cache": [],
+    "config": null,
+    "semantics_override": null,
+    "verify_semantics": false,
+    "output_dir": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\fit",
+    "backbone_ckpt": null,
+    "resume_head": null,
+    "head_only": true,
+    "teacher": "joint",
+    "head_kind": "joint",
+    "steps": 100,
+    "batch_size": 3,
+    "lr": 0.001,
+    "seed": 0,
+    "device": "cpu",
+    "overfit_opportunities": true,
+    "validation_routes": "",
+    "unary_budget": null,
+    "min_gain": 0.05,
+    "min_joint_gain": 0.01,
+    "min_member_pressure": 0.01,
+    "min_coalition": 0.01,
+    "quality_threshold": 0.8,
+    "nominal_conflict_policy": null
+  },
+  "decision_teacher_config": {
+    "min_gain": 0.05,
+    "min_joint_gain": 0.01,
+    "min_member_pressure": 0.01,
+    "min_coalition": 0.01,
+    "nominal_conflict_policy": "reject",
+    "enabled": true,
+    "pressure_weight": 1.0,
+    "coalition_weight": 1.0
+  },
+  "states": 3,
+  "routes": [
+    "0",
+    "1",
+    "2"
+  ],
+  "strata": {
+    "joint": {
+      "states": 3,
+      "segments": 3
+    }
+  },
+  "by_route": {
+    "0": {
+      "states": 1,
+      "interaction_support": 1.0,
+      "joint_support": 1.0
+    },
+    "1": {
+      "states": 1,
+      "interaction_support": 1.0,
+      "joint_support": 1.0
+    },
+    "2": {
+      "states": 1,
+      "interaction_support": 1.0,
+      "joint_support": 1.0
+    }
+  },
+  "scope": "Frozen-generator teacher distillation; no on-policy PPO or closed-loop guarantee.",
+  "same_semantics_replay_max_error": null,
+  "collision_audit": {
+    "comparable_exact_sat_states": 0,
+    "states_with_aabb_false_positive": null,
+    "candidate_snapshot_false_positives": null
+  },
+  "split": {
+    "mode": "explicit_overfit_no_generalization"
+  },
+  "scorer_config": {
+    "head_type": "nominal_direct",
+    "candidate_dim": 4,
+    "hidden_dim": 64,
+    "trajectory_frames": 40,
+    "trajectory_stride": 5,
+    "prior_weight": 0.05,
+    "quality_threshold": 0.8,
+    "min_gain": 0.05,
+    "head_kind": "joint"
+  },
+  "initial_train": {
+    "states": 3,
+    "counts": {
+      "feasible": 3,
+      "quality_recovery": 0,
+      "quality_regression": 0,
+      "teacher_agreement": 0,
+      "interaction_captured": 0,
+      "joint_captured": 0,
+      "interaction_support": 3,
+      "joint_support": 3,
+      "changed": 0
+    },
+    "development_selection_utility": 0,
+    "interaction_capture_rate": 0.0,
+    "joint_capture_rate": 0.0,
+    "per_state": [
+      {
+        "path": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\cache\\state_0.npz",
+        "selected": [
+          0,
+          0
+        ],
+        "teacher": [
+          1,
+          1
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": true,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\cache\\state_1.npz",
+        "selected": [
+          0,
+          0
+        ],
+        "teacher": [
+          1,
+          1
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": true,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\cache\\state_2.npz",
+        "selected": [
+          0,
+          0
+        ],
+        "teacher": [
+          1,
+          1
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": true,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      }
+    ]
+  },
+  "initial_validation": {
+    "states": 3,
+    "counts": {
+      "feasible": 3,
+      "quality_recovery": 0,
+      "quality_regression": 0,
+      "teacher_agreement": 0,
+      "interaction_captured": 0,
+      "joint_captured": 0,
+      "interaction_support": 3,
+      "joint_support": 3,
+      "changed": 0
+    },
+    "development_selection_utility": 0,
+    "interaction_capture_rate": 0.0,
+    "joint_capture_rate": 0.0,
+    "per_state": [
+      {
+        "path": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\cache\\state_0.npz",
+        "selected": [
+          0,
+          0
+        ],
+        "teacher": [
+          1,
+          1
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": true,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\cache\\state_1.npz",
+        "selected": [
+          0,
+          0
+        ],
+        "teacher": [
+          1,
+          1
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": true,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\cache\\state_2.npz",
+        "selected": [
+          0,
+          0
+        ],
+        "teacher": [
+          1,
+          1
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": true,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      }
+    ]
+  },
+  "history": [
+    {
+      "step": 1,
+      "loss": 10.295876026153564,
+      "states": 3,
+      "counts": {
+        "feasible": 3,
+        "quality_recovery": 0,
+        "quality_regression": 0,
+        "teacher_agreement": 0,
+        "interaction_captured": 0,
+        "joint_captured": 0,
+        "interaction_support": 3,
+        "joint_support": 3,
+        "changed": 0
+      },
+      "development_selection_utility": 0,
+      "interaction_capture_rate": 0.0,
+      "joint_capture_rate": 0.0
+    },
+    {
+      "step": 50,
+      "loss": 0.2312244400382042,
+      "states": 3,
+      "counts": {
+        "feasible": 3,
+        "quality_recovery": 0,
+        "quality_regression": 0,
+        "teacher_agreement": 3,
+        "interaction_captured": 3,
+        "joint_captured": 3,
+        "interaction_support": 3,
+        "joint_support": 3,
+        "changed": 3
+      },
+      "development_selection_utility": 24,
+      "interaction_capture_rate": 1.0,
+      "joint_capture_rate": 1.0
+    },
+    {
+      "step": 100,
+      "loss": 0.001795489530195482,
+      "states": 3,
+      "counts": {
+        "feasible": 3,
+        "quality_recovery": 0,
+        "quality_regression": 0,
+        "teacher_agreement": 3,
+        "interaction_captured": 3,
+        "joint_captured": 3,
+        "interaction_support": 3,
+        "joint_support": 3,
+        "changed": 3
+      },
+      "development_selection_utility": 24,
+      "interaction_capture_rate": 1.0,
+      "joint_capture_rate": 1.0
+    }
+  ],
+  "best_step": 50,
+  "final_train": {
+    "states": 3,
+    "counts": {
+      "feasible": 3,
+      "quality_recovery": 0,
+      "quality_regression": 0,
+      "teacher_agreement": 3,
+      "interaction_captured": 3,
+      "joint_captured": 3,
+      "interaction_support": 3,
+      "joint_support": 3,
+      "changed": 3
+    },
+    "development_selection_utility": 24,
+    "interaction_capture_rate": 1.0,
+    "joint_capture_rate": 1.0,
+    "per_state": [
+      {
+        "path": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\cache\\state_0.npz",
+        "selected": [
+          1,
+          1
+        ],
+        "teacher": [
+          1,
+          1
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": true,
+        "interaction_support": true,
+        "joint_support": true,
+        "changed": true,
+        "score_gain_over_quality": 0.43000000000000005
+      },
+      {
+        "path": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\cache\\state_1.npz",
+        "selected": [
+          1,
+          1
+        ],
+        "teacher": [
+          1,
+          1
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": true,
+        "interaction_support": true,
+        "joint_support": true,
+        "changed": true,
+        "score_gain_over_quality": 0.43000000000000005
+      },
+      {
+        "path": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\cache\\state_2.npz",
+        "selected": [
+          1,
+          1
+        ],
+        "teacher": [
+          1,
+          1
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": true,
+        "interaction_support": true,
+        "joint_support": true,
+        "changed": true,
+        "score_gain_over_quality": 0.43000000000000005
+      }
+    ]
+  },
+  "final_validation": {
+    "states": 3,
+    "counts": {
+      "feasible": 3,
+      "quality_recovery": 0,
+      "quality_regression": 0,
+      "teacher_agreement": 3,
+      "interaction_captured": 3,
+      "joint_captured": 3,
+      "interaction_support": 3,
+      "joint_support": 3,
+      "changed": 3
+    },
+    "development_selection_utility": 24,
+    "interaction_capture_rate": 1.0,
+    "joint_capture_rate": 1.0,
+    "per_state": [
+      {
+        "path": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\cache\\state_0.npz",
+        "selected": [
+          1,
+          1
+        ],
+        "teacher": [
+          1,
+          1
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": true,
+        "interaction_support": true,
+        "joint_support": true,
+        "changed": true,
+        "score_gain_over_quality": 0.43000000000000005
+      },
+      {
+        "path": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\cache\\state_1.npz",
+        "selected": [
+          1,
+          1
+        ],
+        "teacher": [
+          1,
+          1
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": true,
+        "interaction_support": true,
+        "joint_support": true,
+        "changed": true,
+        "score_gain_over_quality": 0.43000000000000005
+      },
+      {
+        "path": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\preflight_vector_r2\\v6\\c5aa1654c42949f8a79cae0c62f1b5fb\\cache\\state_2.npz",
+        "selected": [
+          1,
+          1
+        ],
+        "teacher": [
+          1,
+          1
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": true,
+        "interaction_support": true,
+        "joint_support": true,
+        "changed": true,
+        "score_gain_over_quality": 0.43000000000000005
+      }
+    ]
+  }
+}

@@ -28,6 +28,7 @@ from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_score_head import (
     JointScoreOutput,
 )
 from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_action import select_joint_pair
+from rift.cbv.planning.fine_tuner.rlft.joint_rift.nominal_direct_head import NominalDirectScorer, select_direct
 from rift.cbv.planning.fine_tuner.rlft.joint_rift.joint_traj_evaluator import (
     JointTrajEvaluator,
 )
@@ -83,14 +84,32 @@ class JointRIFTPluto(RIFTPluto):
         self.initial_joint_lr = float(self.cfg.joint_training.lr)
         self.initial_pi_lr = float(self.cfg.joint_training.pi_lr)
         joint_config = config.get('joint', {})
+        self.direct_head = joint_config.get('head_type', 'residual') == 'nominal_direct'
+        if joint_config.get('head_type', 'residual') not in {'residual', 'nominal_direct'}:
+            raise ValueError('unknown joint.head_type')
         self.joint_scorer = JointResidualScorer(
             candidate_dim=self.pluto_model.dim,
             representation_dim=int(joint_config.get('representation_dim', 128)),
             pair_dim=int(joint_config.get('latent_dim', 64)),
+            geometry_hidden_dim=int(joint_config.get('geometry_hidden_dim', 32)),
             lambda_delta=float(joint_config.get('lambda_delta', 1.0)),
             trajectory_frames=int(config.get('joint_horizon', 40)),
             trajectory_stride=int(joint_config.get('traj_sample_interval', 5)),
+            base_temperature=float(joint_config.get('base_temperature', 1.0)),
+            residual_scale_floor=float(joint_config.get('residual_scale_floor', 0.0)),
+            geometry_horizon=int(joint_config.get('geometry_horizon', 0)),
+            residual_scale_mode=str(joint_config.get('residual_scale_mode', 'base_std')),
+            fixed_residual_scale=float(joint_config.get('fixed_residual_scale', 1.)),
         ).to(self.device)
+        if self.direct_head:
+            self.joint_scorer = NominalDirectScorer(candidate_dim=self.pluto_model.dim,
+                hidden_dim=int(joint_config.get('hidden_dim', 64)),
+                trajectory_frames=int(config.get('joint_horizon', 40)),
+                trajectory_stride=int(joint_config.get('traj_sample_interval', 5)),
+                prior_weight=float(joint_config.get('prior_weight', .05)),
+                quality_threshold=float(joint_config.get('quality_threshold', .8)),
+                min_gain=float(joint_config.get('min_gain', .05)),
+                head_kind=str(joint_config.get('head_kind', 'joint'))).to(self.device)
         reward_config = config.get('reward', {})
         self.joint_traj_evaluator = JointTrajEvaluator(
             dt=self._step_interval,
@@ -102,9 +121,16 @@ class JointRIFTPluto(RIFTPluto):
         )
         self.last_joint_candidate_batches: Dict[int, JointCandidateBatch] = {}
         self.last_joint_score_outputs: Dict[int, JointScoreOutput] = {}
+        for key in ('pair_weighting', 'auxiliary_weight', 'teacher_temperature'):
+            if key in policy_training:
+                self.cfg.joint_training[key] = policy_training[key]
+        if 'split_by' in policy_training:
+            self.cfg.datamodule.split_by = policy_training['split_by']
 
     def train(self, e_i):
         """Run validated Stage 1 or Stage 2 Joint-RIFT PPO training."""
+        if self.direct_head:
+            raise ValueError('V6 direct head uses joint_rift_v6.py fit and eval recollection, not the V5 PPO trainer')
         stage = self._training_stage()
         self.buffer.assert_on_policy_collection(stage, self.checkpoint)
         self._write_joint_rollout_audit(e_i)
@@ -130,6 +156,8 @@ class JointRIFTPluto(RIFTPluto):
         training_engine.model.load_state_dict(
             self.load_train_checkpoint(self.checkpoint, device_name=self.device), strict=False
         )
+        training_engine.model.cooperation_config = dict(self.config.get('cooperation', {}))
+        training_engine.model.reward_config = dict(self.config.get('reward', {}))
         training_engine.datamodule.preprocess_buffer()
         training_engine.trainer.fit(
             model=training_engine.model, datamodule=training_engine.datamodule
@@ -179,6 +207,8 @@ class JointRIFTPluto(RIFTPluto):
             "pair_collision_rate",
             "oracle_pair_collision",
             "high_value_eligible",
+            "coop_opportunity", "coop_has_feasible", "coop_feasible_rate", "coop_gain",
+            "coop_selected_feasible", "coop_selected_gain", "coop_nominal_both_rate",
         )
         report = {
             "schema_version": 1,
@@ -240,12 +270,24 @@ class JointRIFTPluto(RIFTPluto):
         self.joint_scorer.to(self.device)
         if not checkpoint:
             return
+        metadata = torch.load(checkpoint, map_location='cpu')
+        saved_config = metadata.get('scorer_config', {})
+        if self.direct_head:
+            if saved_config and saved_config.get('head_type') != 'nominal_direct':
+                raise ValueError('direct-head checkpoint/config type mismatch')
+            if saved_config and saved_config != self.joint_scorer.config:
+                raise ValueError('direct-head checkpoint settings differ from eval config')
+        for key in ('lambda_delta', 'base_temperature', 'residual_scale_floor', 'geometry_horizon', 'residual_scale_mode', 'fixed_residual_scale'):
+            if not self.direct_head and key in saved_config and saved_config[key] != getattr(self.joint_scorer, key):
+                raise ValueError(f'Checkpoint scorer setting {key} differs; prepare matching eval config')
         state_dict = self.load_train_checkpoint(checkpoint, device_name=self.device)
         joint_state = {
             key[len('joint_head.'):]: value
             for key, value in state_dict.items()
             if key.startswith('joint_head.')
         }
+        if self.direct_head and not joint_state:
+            raise ValueError('V6 direct execution requires an exported trained head')
         if joint_state:
             self.joint_scorer.load_state_dict(joint_state, strict=True)
 
@@ -458,6 +500,11 @@ class JointRIFTPluto(RIFTPluto):
         # sides at the inference boundary before every CARLA action step.
         device = torch.device(self.device)
         self.joint_scorer.to(device)
+        extra = {}
+        if self.direct_head:
+            if candidate_batch.ego_nominal_common is None:
+                raise ValueError('V6 direct head requires Ego nominal')
+            extra['ego_nominal'] = torch.as_tensor(candidate_batch.ego_nominal_common, dtype=torch.float32, device=device).unsqueeze(0)
         return self.joint_scorer(
             candidates_1.candidate_features.unsqueeze(0).to(device),
             candidates_1.common_trajectories.unsqueeze(0).to(device),
@@ -467,6 +514,7 @@ class JointRIFTPluto(RIFTPluto):
             candidates_2.common_trajectories.unsqueeze(0).to(device),
             candidates_2.raw_trajectories.unsqueeze(0).to(device),
             candidates_2.logits.unsqueeze(0).to(device),
+            **extra,
         )
 
     @staticmethod
@@ -474,6 +522,8 @@ class JointRIFTPluto(RIFTPluto):
         """Select one valid ``(i, j)`` from a single state's joint logit matrix."""
         if score_output.joint_logits.shape[0] != 1:
             raise ValueError("action selection expects a single joint state")
+        if hasattr(score_output, 'quality_logits'):
+            return select_direct(score_output)
         joint_logits = score_output.joint_logits[0]
         valid_mask = score_output.valid_pair_mask[0]
         return select_joint_pair(joint_logits, valid_mask)

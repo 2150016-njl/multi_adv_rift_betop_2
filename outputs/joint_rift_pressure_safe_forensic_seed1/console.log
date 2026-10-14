@@ -1,0 +1,107 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/zeron-vepfs/tjqc/njl/envs/rift/lib/python3.8/site-packages/skimage/util/dtype.py:27: DeprecationWarning: `np.bool8` is a deprecated alias for `np.bool_`.  (Deprecated NumPy 1.24)
+  np.bool8: (False, True),
+/zeron-vepfs/tjqc/njl/envs/rift/lib/python3.8/site-packages/lightning/fabric/__init__.py:41: Deprecated call to `pkg_resources.declare_namespace('lightning.fabric')`.
+Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+/zeron-vepfs/tjqc/njl/envs/rift/lib/python3.8/site-packages/pkg_resources/__init__.py:2563: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('lightning')`.
+Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+  declare_namespace(parent)
+/zeron-vepfs/tjqc/njl/envs/rift/lib/python3.8/site-packages/lightning/pytorch/__init__.py:37: Deprecated call to `pkg_resources.declare_namespace('lightning.pytorch')`.
+Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+/zeron-vepfs/tjqc/njl/envs/rift/lib/python3.8/site-packages/pkg_resources/__init__.py:2563: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('lightning')`.
+Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+  declare_namespace(parent)
+>> Using GPU device 0
+>> Running Carla without GPU!
+>> Starting Carla: /zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop/carla/CarlaUE4.sh -nosound -carla-rpc-port=34121 -nullrhi
+4.26.2-0+++UE4+Release-4.26 522 0
+Disabling core dumps.
+>> load world failed , attempts=0
+time-out of 300000ms while waiting for the simulator, make sure the simulator is ready and connected to localhost:34121
+>> load world success, attempts=1
+>> traffic_manager port:54121 init success, try_time=0
+>> ----------------------------------------
+[32;1m>> ----------------------------------------[0m
+[32;1m>> Logging to /zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/joint_rift_pressure_safe_forensic_seed1/eval/pdm_lite-joint_rift_audited-rule-seed1[0m
+[32;1m>> ----------------------------------------[0m
+[33;1m>> Evaluation Mode, analyzing result[0m
+[33;1m>> Mode: eval[0m
+[33;1m>> Ego planning method: pdm_lite[0m
+[33;1m>> CBV planning method: joint_rift_audited[0m
+[33;1m>> CBV recognition method: rule[0m
+[32;1m>> ----------------------------------------[0m
+[32;1m>> Parsing scenario route and data[0m
+[32;1m>> Finish Eval data loader preparation[0m
+[33;1m>> No endpoint file found. Starting from scratch[0m
+[33;1m>> Evaluating from scratch[0m
+[32;1m>> Joint-RIFT explicit evaluation checkpoint: carla_episode=31-epoch=14-joint_val_loss=-0.034.ckpt[0m
+[32;1m>> Initializing carla world: Town13[0m
+WARNING: Traffic sign 22181 overlaps a driving lane. Disabling collision... 
+[32;1m>> Finish scenario initialization[0m
+[32;1m>> Loading scenario: RouteScenario_3255[0m
+>> WARNING: Not all actors were spawned
+[32;1m>> Successfully spawning 9 Autopilot vehicles[0m
+[32;1m>> CBV:4709 collide[0m
+[33;1m[1m>> Registering the route statistics[0m[0m
+[32;1m>> All scenarios are completed. Cleaning up all actors[0m
+[33;1m>> Scenario Evaluation Progress: [1/6] Time: 52.99s[0m
+[33;1m>> Finish Cleaning[0m
+[32;1m>> ----------------------------------------[0m
+[32;1m>> Initializing carla world: Town15[0m
+[32;1m>> Finish scenario initialization[0m
+[32;1m>> Loading scenario: RouteScenario_26405[0m
+>> WARNING: Not all actors were spawned
+[32;1m>> Successfully spawning 15 Autopilot vehicles[0m
+[33;1m[1m>> Registering the route statistics[0m[0m
+[32;1m>> All scenarios are completed. Cleaning up all actors[0m
+[33;1m>> Scenario Evaluation Progress: [2/6] Time: 21.58s[0m
+[33;1m>> Finish Cleaning[0m
+[32;1m>> ----------------------------------------[0m
+[32;1m>> Loading scenario: RouteScenario_28198[0m
+>> WARNING: Not all actors were spawned
+[32;1m>> Successfully spawning 21 Autopilot vehicles[0m
+[32;1m>> CBV:4949 collide[0m
+[32;1m>> CBV:4956 collide[0m
+[33;1m[1m>> Registering the route statistics[0m[0m
+[32;1m>> All scenarios are completed. Cleaning up all actors[0m
+[33;1m>> Scenario Evaluation Progress: [3/6] Time: 68.27s[0m
+[33;1m>> Finish Cleaning[0m
+[32;1m>> ----------------------------------------[0m
+[32;1m>> Initializing carla world: Town13[0m
+WARNING: Traffic sign 22181 overlaps a driving lane. Disabling collision... 
+[32;1m>> Finish scenario initialization[0m
+[32;1m>> Loading scenario: RouteScenario_3255[0m
+>> WARNING: Not all actors were spawned
+[32;1m>> Successfully spawning 8 Autopilot vehicles[0m
+[32;1m>> CBV:9649 collide[0m
+[33;1m[1m>> Registering the route statistics[0m[0m
+[32;1m>> All scenarios are completed. Cleaning up all actors[0m
+[33;1m>> Scenario Evaluation Progress: [4/6] Time: 58.68s[0m
+[33;1m>> Finish Cleaning[0m
+[32;1m>> ----------------------------------------[0m
+[32;1m>> Initializing carla world: Town15[0m
+[32;1m>> Finish scenario initialization[0m
+[32;1m>> Loading scenario: RouteScenario_26405[0m
+>> WARNING: Not all actors were spawned
+[32;1m>> Successfully spawning 15 Autopilot vehicles[0m
+[33;1m[1m>> Registering the route statistics[0m[0m
+[32;1m>> All scenarios are completed. Cleaning up all actors[0m
+[33;1m>> Scenario Evaluation Progress: [5/6] Time: 5.92s[0m
+[33;1m>> Finish Cleaning[0m
+[32;1m>> ----------------------------------------[0m
+[32;1m>> Loading scenario: RouteScenario_28198[0m
+>> WARNING: Not all actors were spawned
+[32;1m>> Successfully spawning 17 Autopilot vehicles[0m
+[32;1m>> CBV:9876 collide[0m
+[32;1m>> CBV:9891 collide[0m
+[32;1m>> CBV:9878 collide[0m
+[32;1m>> CBV:9879 collide[0m
+[33;1m[1m>> Registering the route statistics[0m[0m
+[32;1m>> All scenarios are completed. Cleaning up all actors[0m
+[33;1m>> Scenario Evaluation Progress: [6/6] Time: 34.06s[0m
+[33;1m>> Finish Cleaning[0m
+[32;1m>> ----------------------------------------[0m
+[33;1m>> Finishing all the evaluation, saving the statistics[0m
+>> Successfully sent SIGKILL to process group 3892

@@ -1,0 +1,6 @@
+{
+  "initial_regret": 1.0,
+  "final_regret": 0.0,
+  "checkpoint": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v5_validation\\a15f6fafa8a84235bcc85d085630b6ed\\base.ckpt",
+  "scope": "synthetic inputs, actual scorer/exporter; no simulator"
+}

@@ -111,6 +111,9 @@ def build_lightning_module(
             train_pi_head=cfg.joint_training.train_pi_head,
             clip_ratio=cfg.joint_training.clip_ratio,
             dual_clip=cfg.joint_training.dual_clip,
+            pair_weighting=cfg.joint_training.get('pair_weighting', 'uniform'),
+            auxiliary_weight=cfg.joint_training.get('auxiliary_weight', 0.0),
+            teacher_temperature=cfg.joint_training.get('teacher_temperature', 0.25),
         )
     model = instantiate(cfg.custom_trainer, **trainer_kwargs)
 

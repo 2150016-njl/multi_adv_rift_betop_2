@@ -1,0 +1,35 @@
+{
+  "review_date": "2026-10-13",
+  "git_head": "6f7a92191858d8b1f3aab9b227779046e0c2009d",
+  "python": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 13:17:27) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "file_sha256": {
+    "JOINT_RIFT_CODE_REVIEW_AND_PLAN_2026-10-13.md": "66e88ce8dbca3f06efcca5b38226f00bafbb57ec72efcf309d007c2e492dcb47",
+    "RIFT/scripts/audit_joint_rift_evidence.py": "4495a39f69cd3f665d0ae2402a64ab94d589719eef26b8493e8cbbbc376046a3",
+    "RIFT/scripts/probe_joint_rift_math.py": "13ae406eaadc08d55222bc5981aa6401424d6f7cc60fdce38787b234c06a1fd3",
+    "RIFT/tools/test/test_evidence_audit.py": "eee005e506b3f45078625310c84331d00d6536f344cbea7b7caa985ee9a647ec",
+    "outputs/joint_rift_pressure_rep0_capture_seed1.zip": "66a931f9c3fabb8d667961699162a8de050c26d00f8904a3c6704879ae7be24c",
+    "outputs/joint_rift_forensic_evidence_final_20261011_134325.zip": "c6f5df71175f403ddcee27e3940664e5654f68488c6fc8c98d4952d1548e1bd1",
+    "RIFT/joint_rift_source_current.tar.gz": "725b80a96758815aae5d9e280516e545f94334aaaf77692d15f51d180cb3ca0c"
+  },
+  "document_sha256": {
+    "C:\\Users\\Lenovo\\Downloads\\Joint_RIFT_Project_Handoff.md": "b2fe39309b275c6544eddb7baddfdeef912e2c2ca2e053d50dd88c62810e6308",
+    "C:\\Users\\Lenovo\\Downloads\\粘贴的 Markdown (1)(1).md": "473bf9933286c5573e07149aa3eb71d50eb4b3a28f22311c0600f6bc81d9a287"
+  },
+  "verification": {
+    "offline_numeric_tests": {
+      "passed": 7,
+      "failed": 0
+    },
+    "original_isolated_source_tests": {
+      "passed": 14,
+      "failed": 0
+    },
+    "py_compile": "PASS",
+    "dense_states": 36,
+    "formal_runs": 16,
+    "carla_integration": "NOT_RUN",
+    "lightning_training": "NOT_RUN"
+  },
+  "note": "Historical archives and production policy/trainer unchanged. Full candidate fitting requires additional cached features and formal checkpoints."
+}

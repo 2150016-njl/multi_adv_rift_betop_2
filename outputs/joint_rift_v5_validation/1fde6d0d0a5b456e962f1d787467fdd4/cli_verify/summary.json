@@ -1,0 +1,47 @@
+{
+  "states": 1,
+  "routes": [
+    "1"
+  ],
+  "schema_version": 2,
+  "arguments": {
+    "mode": "verify",
+    "cache_dir": "outputs\\joint_rift_v5_validation\\1fde6d0d0a5b456e962f1d787467fdd4\\cache",
+    "output_dir": "outputs\\joint_rift_v5_validation\\1fde6d0d0a5b456e962f1d787467fdd4\\cli_verify",
+    "backbone_ckpt": "outputs\\joint_rift_v5_validation\\1fde6d0d0a5b456e962f1d787467fdd4\\base.ckpt",
+    "max_states": 0,
+    "objective": "cooperation",
+    "loss": "rift",
+    "steps": 300,
+    "batch_size": 8,
+    "lr": 0.001,
+    "seed": 0,
+    "overfit": false,
+    "require_both": false,
+    "unary_budget": null,
+    "temperature": 0.25,
+    "auxiliary_weight": 0.2,
+    "device": "cpu",
+    "tolerance": 0.0005,
+    "base_temperature": null,
+    "lambda_delta": null,
+    "residual_scale_floor": null,
+    "geometry_horizon": null
+  },
+  "cooperation_config": {},
+  "input_sha256": {
+    "outputs\\joint_rift_v5_validation\\1fde6d0d0a5b456e962f1d787467fdd4\\cache\\state_000_route_1_step_00010.npz": "7119e0aac1a7ed6d1f17532d63e34f6555d1a895faa315b8984f4242ad785f57"
+  },
+  "metadata_sha256": {
+    "outputs\\joint_rift_v5_validation\\1fde6d0d0a5b456e962f1d787467fdd4\\cache\\state_000_route_1_step_00010.json": "1d9c7e2114311c6fe9f8267b04430ae64e51fd21ad8d4d8bf0503863f4736503"
+  },
+  "opportunity_states": 1.0,
+  "no_feasible_states": 0,
+  "by_route": {
+    "1": {
+      "states": 1,
+      "opportunity_rate": 1.0
+    }
+  },
+  "verification_max_error": 0.0
+}

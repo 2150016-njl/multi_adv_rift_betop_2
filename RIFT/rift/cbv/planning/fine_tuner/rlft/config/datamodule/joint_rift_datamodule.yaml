@@ -6,6 +6,8 @@ num_workers: 0
 pin_memory: true
 persistent_workers: false
 train_ratio: 0.9
+split_by: state
+split_seed: 0
 
 # Joint advantages are state-local and are already finalized at collection.
 gamma: 0.98

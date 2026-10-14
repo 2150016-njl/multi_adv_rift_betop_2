@@ -1,0 +1,143 @@
+{
+  "states": 1,
+  "routes": [
+    "1"
+  ],
+  "schema_version": 2,
+  "arguments": {
+    "mode": "fit",
+    "cache_dir": "outputs\\joint_rift_v5_validation\\a15f6fafa8a84235bcc85d085630b6ed\\cache",
+    "output_dir": "outputs\\joint_rift_v5_validation\\a15f6fafa8a84235bcc85d085630b6ed\\cli_fit",
+    "backbone_ckpt": "outputs\\joint_rift_v5_validation\\a15f6fafa8a84235bcc85d085630b6ed\\base.ckpt",
+    "max_states": 0,
+    "objective": "cooperation",
+    "loss": "distill",
+    "steps": 150,
+    "batch_size": 8,
+    "lr": 0.01,
+    "seed": 0,
+    "overfit": true,
+    "temperature": 0.25,
+    "auxiliary_weight": 0.2,
+    "device": "cpu",
+    "tolerance": 0.0005,
+    "base_temperature": null,
+    "lambda_delta": null,
+    "residual_scale_floor": null,
+    "geometry_horizon": null
+  },
+  "input_sha256": {
+    "outputs\\joint_rift_v5_validation\\a15f6fafa8a84235bcc85d085630b6ed\\cache\\state_000_route_1_step_00010.npz": "47f161c3d044538b0d976bf06f54abde06b911e6f8fb16b25aa461532cafe111"
+  },
+  "opportunity_states": 1.0,
+  "no_feasible_states": 0,
+  "by_route": {
+    "1": {
+      "states": 1,
+      "opportunity_rate": 1.0
+    }
+  },
+  "verification_max_error": 0.0,
+  "split": {
+    "mode": "overfit_train_equals_validation",
+    "routes": [
+      "1"
+    ]
+  },
+  "initial_train": {
+    "regret": 1.0,
+    "feasible": 1.0,
+    "h_gain": 0.0,
+    "opportunity": 1.0
+  },
+  "initial_validation": {
+    "regret": 1.0,
+    "feasible": 1.0,
+    "h_gain": 0.0,
+    "opportunity": 1.0
+  },
+  "final_train": {
+    "regret": 0.0,
+    "feasible": 1.0,
+    "h_gain": 1.0,
+    "opportunity": 1.0
+  },
+  "final_validation": {
+    "regret": 0.0,
+    "feasible": 1.0,
+    "h_gain": 1.0,
+    "opportunity": 1.0
+  },
+  "history": [
+    {
+      "step": 1,
+      "loss": 3.2604291439056396,
+      "regret": 1.0,
+      "feasible": 1.0,
+      "h_gain": 0.0,
+      "opportunity": 1.0
+    },
+    {
+      "step": 25,
+      "loss": 1.100041151046753,
+      "regret": 0.0,
+      "feasible": 1.0,
+      "h_gain": 1.0,
+      "opportunity": 1.0
+    },
+    {
+      "step": 50,
+      "loss": 0.9790783524513245,
+      "regret": 0.0,
+      "feasible": 1.0,
+      "h_gain": 1.0,
+      "opportunity": 1.0
+    },
+    {
+      "step": 75,
+      "loss": 0.9745025634765625,
+      "regret": 0.0,
+      "feasible": 1.0,
+      "h_gain": 1.0,
+      "opportunity": 1.0
+    },
+    {
+      "step": 100,
+      "loss": 0.9741114974021912,
+      "regret": 0.0,
+      "feasible": 1.0,
+      "h_gain": 1.0,
+      "opportunity": 1.0
+    },
+    {
+      "step": 125,
+      "loss": 0.9741051197052002,
+      "regret": 0.0,
+      "feasible": 1.0,
+      "h_gain": 1.0,
+      "opportunity": 1.0
+    },
+    {
+      "step": 150,
+      "loss": 0.9741036295890808,
+      "regret": 0.0,
+      "feasible": 1.0,
+      "h_gain": 1.0,
+      "opportunity": 1.0
+    }
+  ],
+  "scorer_config": {
+    "base_temperature": 2.0,
+    "candidate_dim": 4,
+    "geometry_hidden_dim": 4,
+    "geometry_horizon": 40,
+    "lambda_delta": 4.0,
+    "pair_dim": 4,
+    "representation_dim": 8,
+    "residual_scale_floor": 1.0,
+    "trajectory_frames": 40,
+    "trajectory_stride": 5
+  },
+  "selection_metric": "cooperation target regret on development routes",
+  "note": "Frozen cached-feature diagnostic. Does not test Pluto re-forward, CARLA, on-policy RL or BeTop semantic validity."
+}

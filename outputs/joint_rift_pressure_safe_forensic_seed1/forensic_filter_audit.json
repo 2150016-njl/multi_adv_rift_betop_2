@@ -1,0 +1,70 @@
+{
+  "run_dir": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/joint_rift_pressure_safe_forensic_seed1",
+  "config": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/RIFT/rift/cbv/planning/config/joint_rift_pluto_eval_hv4_pressure_safe_seed1.yaml",
+  "candidate_dump_enabled": true,
+  "candidate_dump_output_dir": "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/joint_rift_pressure_safe_forensic_seed1/candidate_dumps",
+  "jsonl_files": [
+    "/zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/joint_rift_pressure_safe_forensic_seed1/eval/pdm_lite-joint_rift_audited-rule-seed1/joint_rift_eval_metrics.jsonl"
+  ],
+  "npz_count_in_run_dir": 0,
+  "filters": {
+    "target_routes": [
+      "26405",
+      "28198",
+      "3255"
+    ],
+    "target_repetitions": {
+      "3255": [
+        1
+      ],
+      "28198": [
+        1
+      ],
+      "26405": [
+        1
+      ]
+    },
+    "target_time_windows": {
+      "3255": [
+        132,
+        165
+      ],
+      "28198": [
+        67,
+        82
+      ],
+      "26405": [
+        95,
+        120
+      ]
+    },
+    "min_coalition_std": 0.005,
+    "min_p12_std": 0.02,
+    "max_pair_collision_rate": 0.05
+  },
+  "route_counts": {
+    "26405": 25,
+    "28198": 163,
+    "3255": 65
+  },
+  "route_rep_counts": {
+    "('26405', 0)": 25,
+    "('28198', 0)": 114,
+    "('28198', 1)": 49,
+    "('3255', 0)": 23,
+    "('3255', 1)": 42
+  },
+  "cumulative_stage_counts": {
+    "all_joint_states": 253,
+    "through_target_route": 253,
+    "through_target_repetition": 91,
+    "through_target_time_window": 32
+  },
+  "first_failed_checks": {
+    "target_repetition": 162,
+    "target_time_window": 59,
+    "coalition_std": 32
+  },
+  "missing_diagnostic_keys": {},
+  "eligible_states": []
+}

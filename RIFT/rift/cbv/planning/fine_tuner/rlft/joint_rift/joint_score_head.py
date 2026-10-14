@@ -46,6 +46,11 @@ class JointResidualScorer(nn.Module):
         lambda_delta: float = 1.0,
         trajectory_frames: int = 40,
         trajectory_stride: int = 5,
+        base_temperature: float = 1.0,
+        residual_scale_floor: float = 0.0,
+        geometry_horizon: int = 0,
+        residual_scale_mode: str = "base_std",
+        fixed_residual_scale: float = 1.,
     ) -> None:
         super().__init__()
         if trajectory_frames < trajectory_stride:
@@ -54,6 +59,15 @@ class JointResidualScorer(nn.Module):
             raise ValueError("trajectory_frames must be divisible by trajectory_stride")
         if lambda_delta < 0:
             raise ValueError("lambda_delta must be non-negative")
+        if base_temperature <= 0 or residual_scale_floor < 0 or geometry_horizon < 0:
+            raise ValueError("invalid prior/residual calibration")
+        self.base_temperature = float(base_temperature)
+        self.residual_scale_floor = float(residual_scale_floor)
+        self.geometry_horizon = int(geometry_horizon)
+        if residual_scale_mode not in {"base_std", "fixed"} or fixed_residual_scale <= 0:
+            raise ValueError("invalid residual scale mode")
+        self.residual_scale_mode = residual_scale_mode
+        self.fixed_residual_scale = float(fixed_residual_scale)
 
         sample_indices = torch.arange(0, trajectory_frames, trajectory_stride)
         self.register_buffer("sample_indices", sample_indices, persistent=False)
@@ -111,8 +125,8 @@ class JointResidualScorer(nn.Module):
 
         valid_mask_1 = self._normalise_valid_mask(valid_mask_1, logits_1)
         valid_mask_2 = self._normalise_valid_mask(valid_mask_2, logits_2)
-        logp_1 = self._masked_log_softmax(logits_1, valid_mask_1)
-        logp_2 = self._masked_log_softmax(logits_2, valid_mask_2)
+        logp_1 = self._masked_log_softmax(logits_1 / self.base_temperature, valid_mask_1)
+        logp_2 = self._masked_log_softmax(logits_2 / self.base_temperature, valid_mask_2)
         valid_pair_mask = valid_mask_1.unsqueeze(-1) & valid_mask_2.unsqueeze(-2)
         base_logits = logp_1.unsqueeze(-1) + logp_2.unsqueeze(-2)
 
@@ -130,9 +144,10 @@ class JointResidualScorer(nn.Module):
         # This temporary pairwise tensor contains only two coordinates and is
         # immediately reduced across time; no high-dimensional pair MLP is
         # applied to [B, G1, G2, T, D].
+        horizon = self.geometry_horizon or common_trajectories_1.shape[-2]
         minimum_distance = torch.linalg.vector_norm(
-            common_trajectories_1[:, :, None, :, :2]
-            - common_trajectories_2[:, None, :, :, :2],
+            common_trajectories_1[:, :, None, :horizon, :2]
+            - common_trajectories_2[:, None, :, :horizon, :2],
             dim=-1,
         ).amin(dim=-1, keepdim=True)
         geometry_score = self.pair_geometry(minimum_distance).squeeze(-1)
@@ -141,7 +156,9 @@ class JointResidualScorer(nn.Module):
         ).squeeze(-1)
 
         base_std = self._masked_std(base_logits, valid_pair_mask).detach()
-        delta = self.lambda_delta * base_std[:, None, None] * torch.tanh(raw_delta)
+        effective_scale = (torch.full_like(base_std, self.fixed_residual_scale)
+                           if self.residual_scale_mode == "fixed" else base_std.clamp_min(self.residual_scale_floor))
+        delta = self.lambda_delta * effective_scale[:, None, None] * torch.tanh(raw_delta)
         joint_logits = torch.where(
             valid_pair_mask,
             base_logits + delta,

@@ -1,0 +1,1167 @@
+{
+  "arguments": {
+    "mode": "fit",
+    "cache": "outputs\\v5_capture_spatial_seed0_20261013_151751\\v5_cache_20261014_040945.zip",
+    "config": null,
+    "output_dir": "outputs\\joint_rift_v6_validation\\real_cache_interaction_overfit_final",
+    "backbone_ckpt": null,
+    "resume_head": null,
+    "head_only": true,
+    "teacher": "interaction",
+    "head_kind": "joint",
+    "steps": 500,
+    "batch_size": 8,
+    "lr": 0.001,
+    "seed": 0,
+    "device": "cpu",
+    "overfit_opportunities": true,
+    "validation_routes": "",
+    "unary_budget": null,
+    "min_gain": 0.05,
+    "min_joint_gain": 0.01,
+    "min_member_pressure": 0.01,
+    "min_coalition": 0.01,
+    "quality_threshold": 0.8,
+    "nominal_conflict_policy": "reject"
+  },
+  "decision_teacher_config": {
+    "min_gain": 0.05,
+    "min_joint_gain": 0.01,
+    "min_member_pressure": 0.01,
+    "min_coalition": 0.01,
+    "nominal_conflict_policy": "reject",
+    "enabled": true,
+    "pressure_weight": 1.0,
+    "coalition_weight": 1.0
+  },
+  "states": 144,
+  "routes": [
+    "17569",
+    "2091",
+    "25378",
+    "25381",
+    "26405",
+    "27494",
+    "28198",
+    "3255"
+  ],
+  "strata": {
+    "no_feasible": {
+      "states": 51,
+      "segments": 17
+    },
+    "quality": {
+      "states": 37,
+      "segments": 12
+    },
+    "preserve": {
+      "states": 47,
+      "segments": 11
+    },
+    "interaction": {
+      "states": 9,
+      "segments": 3
+    }
+  },
+  "by_route": {
+    "17569": {
+      "states": 17,
+      "interaction_support": 0.0,
+      "joint_support": 0.0
+    },
+    "2091": {
+      "states": 17,
+      "interaction_support": 2.0,
+      "joint_support": 0.0
+    },
+    "25378": {
+      "states": 9,
+      "interaction_support": 0.0,
+      "joint_support": 0.0
+    },
+    "25381": {
+      "states": 10,
+      "interaction_support": 0.0,
+      "joint_support": 0.0
+    },
+    "26405": {
+      "states": 7,
+      "interaction_support": 3.0,
+      "joint_support": 0.0
+    },
+    "27494": {
+      "states": 52,
+      "interaction_support": 4.0,
+      "joint_support": 0.0
+    },
+    "28198": {
+      "states": 21,
+      "interaction_support": 0.0,
+      "joint_support": 0.0
+    },
+    "3255": {
+      "states": 11,
+      "interaction_support": 0.0,
+      "joint_support": 0.0
+    }
+  },
+  "scope": "Frozen-generator teacher distillation; no on-policy PPO or closed-loop guarantee.",
+  "split": {
+    "mode": "explicit_overfit_no_generalization"
+  },
+  "scorer_config": {
+    "head_type": "nominal_direct",
+    "candidate_dim": 128,
+    "hidden_dim": 64,
+    "trajectory_frames": 40,
+    "trajectory_stride": 5,
+    "prior_weight": 0.05,
+    "quality_threshold": 0.8,
+    "min_gain": 0.05,
+    "head_kind": "joint"
+  },
+  "initial_train": {
+    "states": 9,
+    "counts": {
+      "feasible": 6,
+      "quality_recovery": 0,
+      "quality_regression": 0,
+      "teacher_agreement": 0,
+      "interaction_captured": 0,
+      "joint_captured": 0,
+      "interaction_support": 9,
+      "joint_support": 0,
+      "changed": 0
+    },
+    "development_selection_utility": 0,
+    "interaction_capture_rate": 0.0,
+    "joint_capture_rate": null,
+    "per_state": [
+      {
+        "path": "cache/state_010_route_27494_step_00190.npz",
+        "selected": [
+          6,
+          3
+        ],
+        "teacher": [
+          11,
+          6
+        ],
+        "feasible": false,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.2623647309759043
+      },
+      {
+        "path": "cache/state_011_route_27494_step_00200.npz",
+        "selected": [
+          6,
+          5
+        ],
+        "teacher": [
+          6,
+          9
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_023_route_27494_step_00320.npz",
+        "selected": [
+          1,
+          4
+        ],
+        "teacher": [
+          7,
+          7
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_024_route_27494_step_00330.npz",
+        "selected": [
+          4,
+          4
+        ],
+        "teacher": [
+          7,
+          4
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_044_route_2091_step_00110.npz",
+        "selected": [
+          2,
+          5
+        ],
+        "teacher": [
+          2,
+          11
+        ],
+        "feasible": false,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_045_route_2091_step_00120.npz",
+        "selected": [
+          1,
+          5
+        ],
+        "teacher": [
+          1,
+          11
+        ],
+        "feasible": false,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_125_route_26405_step_00110.npz",
+        "selected": [
+          8,
+          7
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_126_route_26405_step_00120.npz",
+        "selected": [
+          8,
+          10
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_127_route_26405_step_00130.npz",
+        "selected": [
+          8,
+          6
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      }
+    ]
+  },
+  "initial_validation": {
+    "states": 9,
+    "counts": {
+      "feasible": 6,
+      "quality_recovery": 0,
+      "quality_regression": 0,
+      "teacher_agreement": 0,
+      "interaction_captured": 0,
+      "joint_captured": 0,
+      "interaction_support": 9,
+      "joint_support": 0,
+      "changed": 0
+    },
+    "development_selection_utility": 0,
+    "interaction_capture_rate": 0.0,
+    "joint_capture_rate": null,
+    "per_state": [
+      {
+        "path": "cache/state_010_route_27494_step_00190.npz",
+        "selected": [
+          6,
+          3
+        ],
+        "teacher": [
+          11,
+          6
+        ],
+        "feasible": false,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.2623647309759043
+      },
+      {
+        "path": "cache/state_011_route_27494_step_00200.npz",
+        "selected": [
+          6,
+          5
+        ],
+        "teacher": [
+          6,
+          9
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_023_route_27494_step_00320.npz",
+        "selected": [
+          1,
+          4
+        ],
+        "teacher": [
+          7,
+          7
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_024_route_27494_step_00330.npz",
+        "selected": [
+          4,
+          4
+        ],
+        "teacher": [
+          7,
+          4
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_044_route_2091_step_00110.npz",
+        "selected": [
+          2,
+          5
+        ],
+        "teacher": [
+          2,
+          11
+        ],
+        "feasible": false,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_045_route_2091_step_00120.npz",
+        "selected": [
+          1,
+          5
+        ],
+        "teacher": [
+          1,
+          11
+        ],
+        "feasible": false,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_125_route_26405_step_00110.npz",
+        "selected": [
+          8,
+          7
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_126_route_26405_step_00120.npz",
+        "selected": [
+          8,
+          10
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      },
+      {
+        "path": "cache/state_127_route_26405_step_00130.npz",
+        "selected": [
+          8,
+          6
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": false,
+        "interaction_captured": false,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": false,
+        "score_gain_over_quality": 0.0
+      }
+    ]
+  },
+  "history": [
+    {
+      "step": 1,
+      "loss": 7.278083026409149,
+      "states": 9,
+      "counts": {
+        "feasible": 6,
+        "quality_recovery": 0,
+        "quality_regression": 0,
+        "teacher_agreement": 0,
+        "interaction_captured": 0,
+        "joint_captured": 0,
+        "interaction_support": 9,
+        "joint_support": 0,
+        "changed": 0
+      },
+      "development_selection_utility": 0,
+      "interaction_capture_rate": 0.0,
+      "joint_capture_rate": null
+    },
+    {
+      "step": 50,
+      "loss": 1.9215530455112457,
+      "states": 9,
+      "counts": {
+        "feasible": 9,
+        "quality_recovery": 3,
+        "quality_regression": 0,
+        "teacher_agreement": 6,
+        "interaction_captured": 8,
+        "joint_captured": 0,
+        "interaction_support": 9,
+        "joint_support": 0,
+        "changed": 9
+      },
+      "development_selection_utility": 27,
+      "interaction_capture_rate": 0.8888888888888888,
+      "joint_capture_rate": null
+    },
+    {
+      "step": 100,
+      "loss": 0.4456445872783661,
+      "states": 9,
+      "counts": {
+        "feasible": 9,
+        "quality_recovery": 3,
+        "quality_regression": 0,
+        "teacher_agreement": 9,
+        "interaction_captured": 9,
+        "joint_captured": 0,
+        "interaction_support": 9,
+        "joint_support": 0,
+        "changed": 9
+      },
+      "development_selection_utility": 30,
+      "interaction_capture_rate": 1.0,
+      "joint_capture_rate": null
+    },
+    {
+      "step": 150,
+      "loss": 0.21177510172128677,
+      "states": 9,
+      "counts": {
+        "feasible": 9,
+        "quality_recovery": 3,
+        "quality_regression": 0,
+        "teacher_agreement": 9,
+        "interaction_captured": 9,
+        "joint_captured": 0,
+        "interaction_support": 9,
+        "joint_support": 0,
+        "changed": 9
+      },
+      "development_selection_utility": 30,
+      "interaction_capture_rate": 1.0,
+      "joint_capture_rate": null
+    },
+    {
+      "step": 200,
+      "loss": 0.12828930281102657,
+      "states": 9,
+      "counts": {
+        "feasible": 9,
+        "quality_recovery": 3,
+        "quality_regression": 0,
+        "teacher_agreement": 9,
+        "interaction_captured": 9,
+        "joint_captured": 0,
+        "interaction_support": 9,
+        "joint_support": 0,
+        "changed": 9
+      },
+      "development_selection_utility": 30,
+      "interaction_capture_rate": 1.0,
+      "joint_capture_rate": null
+    },
+    {
+      "step": 250,
+      "loss": 0.12814742513000965,
+      "states": 9,
+      "counts": {
+        "feasible": 9,
+        "quality_recovery": 3,
+        "quality_regression": 0,
+        "teacher_agreement": 9,
+        "interaction_captured": 9,
+        "joint_captured": 0,
+        "interaction_support": 9,
+        "joint_support": 0,
+        "changed": 9
+      },
+      "development_selection_utility": 30,
+      "interaction_capture_rate": 1.0,
+      "joint_capture_rate": null
+    },
+    {
+      "step": 300,
+      "loss": 0.10196657199412584,
+      "states": 9,
+      "counts": {
+        "feasible": 9,
+        "quality_recovery": 3,
+        "quality_regression": 0,
+        "teacher_agreement": 9,
+        "interaction_captured": 9,
+        "joint_captured": 0,
+        "interaction_support": 9,
+        "joint_support": 0,
+        "changed": 9
+      },
+      "development_selection_utility": 30,
+      "interaction_capture_rate": 1.0,
+      "joint_capture_rate": null
+    },
+    {
+      "step": 350,
+      "loss": 0.13702004216611385,
+      "states": 9,
+      "counts": {
+        "feasible": 9,
+        "quality_recovery": 3,
+        "quality_regression": 0,
+        "teacher_agreement": 5,
+        "interaction_captured": 5,
+        "joint_captured": 0,
+        "interaction_support": 9,
+        "joint_support": 0,
+        "changed": 5
+      },
+      "development_selection_utility": 18,
+      "interaction_capture_rate": 0.5555555555555556,
+      "joint_capture_rate": null
+    },
+    {
+      "step": 400,
+      "loss": 0.3581347409635782,
+      "states": 9,
+      "counts": {
+        "feasible": 9,
+        "quality_recovery": 3,
+        "quality_regression": 0,
+        "teacher_agreement": 8,
+        "interaction_captured": 8,
+        "joint_captured": 0,
+        "interaction_support": 9,
+        "joint_support": 0,
+        "changed": 8
+      },
+      "development_selection_utility": 27,
+      "interaction_capture_rate": 0.8888888888888888,
+      "joint_capture_rate": null
+    },
+    {
+      "step": 450,
+      "loss": 0.1422305153682828,
+      "states": 9,
+      "counts": {
+        "feasible": 9,
+        "quality_recovery": 3,
+        "quality_regression": 0,
+        "teacher_agreement": 6,
+        "interaction_captured": 6,
+        "joint_captured": 0,
+        "interaction_support": 9,
+        "joint_support": 0,
+        "changed": 6
+      },
+      "development_selection_utility": 21,
+      "interaction_capture_rate": 0.6666666666666666,
+      "joint_capture_rate": null
+    },
+    {
+      "step": 500,
+      "loss": 0.04634933639317751,
+      "states": 9,
+      "counts": {
+        "feasible": 9,
+        "quality_recovery": 3,
+        "quality_regression": 0,
+        "teacher_agreement": 9,
+        "interaction_captured": 9,
+        "joint_captured": 0,
+        "interaction_support": 9,
+        "joint_support": 0,
+        "changed": 9
+      },
+      "development_selection_utility": 30,
+      "interaction_capture_rate": 1.0,
+      "joint_capture_rate": null
+    }
+  ],
+  "best_step": 100,
+  "final_train": {
+    "states": 9,
+    "counts": {
+      "feasible": 9,
+      "quality_recovery": 3,
+      "quality_regression": 0,
+      "teacher_agreement": 9,
+      "interaction_captured": 9,
+      "joint_captured": 0,
+      "interaction_support": 9,
+      "joint_support": 0,
+      "changed": 9
+    },
+    "development_selection_utility": 30,
+    "interaction_capture_rate": 1.0,
+    "joint_capture_rate": null,
+    "per_state": [
+      {
+        "path": "cache/state_010_route_27494_step_00190.npz",
+        "selected": [
+          11,
+          6
+        ],
+        "teacher": [
+          11,
+          6
+        ],
+        "feasible": true,
+        "quality_recovery": true,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.07463663723261973
+      },
+      {
+        "path": "cache/state_011_route_27494_step_00200.npz",
+        "selected": [
+          6,
+          9
+        ],
+        "teacher": [
+          6,
+          9
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.06285409265474916
+      },
+      {
+        "path": "cache/state_023_route_27494_step_00320.npz",
+        "selected": [
+          7,
+          7
+        ],
+        "teacher": [
+          7,
+          7
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.17528155387137115
+      },
+      {
+        "path": "cache/state_024_route_27494_step_00330.npz",
+        "selected": [
+          7,
+          4
+        ],
+        "teacher": [
+          7,
+          4
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.08488186642721307
+      },
+      {
+        "path": "cache/state_044_route_2091_step_00110.npz",
+        "selected": [
+          2,
+          11
+        ],
+        "teacher": [
+          2,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": true,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.13244280577843232
+      },
+      {
+        "path": "cache/state_045_route_2091_step_00120.npz",
+        "selected": [
+          1,
+          11
+        ],
+        "teacher": [
+          1,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": true,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.18966313054235542
+      },
+      {
+        "path": "cache/state_125_route_26405_step_00110.npz",
+        "selected": [
+          8,
+          11
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.08640903074084487
+      },
+      {
+        "path": "cache/state_126_route_26405_step_00120.npz",
+        "selected": [
+          8,
+          11
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.1195910184511825
+      },
+      {
+        "path": "cache/state_127_route_26405_step_00130.npz",
+        "selected": [
+          8,
+          11
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.21229608965143978
+      }
+    ]
+  },
+  "final_validation": {
+    "states": 9,
+    "counts": {
+      "feasible": 9,
+      "quality_recovery": 3,
+      "quality_regression": 0,
+      "teacher_agreement": 9,
+      "interaction_captured": 9,
+      "joint_captured": 0,
+      "interaction_support": 9,
+      "joint_support": 0,
+      "changed": 9
+    },
+    "development_selection_utility": 30,
+    "interaction_capture_rate": 1.0,
+    "joint_capture_rate": null,
+    "per_state": [
+      {
+        "path": "cache/state_010_route_27494_step_00190.npz",
+        "selected": [
+          11,
+          6
+        ],
+        "teacher": [
+          11,
+          6
+        ],
+        "feasible": true,
+        "quality_recovery": true,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.07463663723261973
+      },
+      {
+        "path": "cache/state_011_route_27494_step_00200.npz",
+        "selected": [
+          6,
+          9
+        ],
+        "teacher": [
+          6,
+          9
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.06285409265474916
+      },
+      {
+        "path": "cache/state_023_route_27494_step_00320.npz",
+        "selected": [
+          7,
+          7
+        ],
+        "teacher": [
+          7,
+          7
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.17528155387137115
+      },
+      {
+        "path": "cache/state_024_route_27494_step_00330.npz",
+        "selected": [
+          7,
+          4
+        ],
+        "teacher": [
+          7,
+          4
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.08488186642721307
+      },
+      {
+        "path": "cache/state_044_route_2091_step_00110.npz",
+        "selected": [
+          2,
+          11
+        ],
+        "teacher": [
+          2,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": true,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.13244280577843232
+      },
+      {
+        "path": "cache/state_045_route_2091_step_00120.npz",
+        "selected": [
+          1,
+          11
+        ],
+        "teacher": [
+          1,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": true,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.18966313054235542
+      },
+      {
+        "path": "cache/state_125_route_26405_step_00110.npz",
+        "selected": [
+          8,
+          11
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.08640903074084487
+      },
+      {
+        "path": "cache/state_126_route_26405_step_00120.npz",
+        "selected": [
+          8,
+          11
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.1195910184511825
+      },
+      {
+        "path": "cache/state_127_route_26405_step_00130.npz",
+        "selected": [
+          8,
+          11
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "feasible": true,
+        "quality_recovery": false,
+        "quality_regression": false,
+        "teacher_agreement": true,
+        "interaction_captured": true,
+        "joint_captured": false,
+        "interaction_support": true,
+        "joint_support": false,
+        "changed": true,
+        "score_gain_over_quality": 0.21229608965143978
+      }
+    ]
+  }
+}

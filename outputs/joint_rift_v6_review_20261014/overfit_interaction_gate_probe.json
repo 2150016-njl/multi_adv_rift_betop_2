@@ -1,0 +1,156 @@
+{
+  "train": {
+    "selections": {
+      "deployed": {
+        "states": 32,
+        "feasible": 32,
+        "changed": 31,
+        "quality_recovery": 18,
+        "quality_regression": 0,
+        "interaction_support": 32,
+        "interaction_capture": 31
+      },
+      "raw_top1": {
+        "states": 32,
+        "feasible": 32,
+        "changed": 32,
+        "quality_recovery": 18,
+        "quality_regression": 0,
+        "interaction_support": 32,
+        "interaction_capture": 32
+      },
+      "pred_quality_without_pressure_guard": {
+        "states": 32,
+        "feasible": 32,
+        "changed": 32,
+        "quality_recovery": 18,
+        "quality_regression": 0,
+        "interaction_support": 32,
+        "interaction_capture": 32
+      },
+      "oracle_quality_without_pressure_guard": {
+        "states": 32,
+        "feasible": 32,
+        "changed": 32,
+        "quality_recovery": 18,
+        "quality_regression": 0,
+        "interaction_support": 32,
+        "interaction_capture": 32
+      },
+      "oracle_quality_and_true_pressure_guard": {
+        "states": 32,
+        "feasible": 32,
+        "changed": 32,
+        "quality_recovery": 18,
+        "quality_regression": 0,
+        "interaction_support": 32,
+        "interaction_capture": 32
+      }
+    },
+    "candidate_quality_confusion": {
+      "tp": 1005,
+      "fp": 1286,
+      "fn": 313,
+      "tn": 15108,
+      "F_nonempty_no_predicted_eligible": 0,
+      "opportunity_teacher_rejected_by_quality_prediction": 0
+    },
+    "missed_teacher": [
+      {
+        "path": "cache/state_229_route_3255_step_00150.npz",
+        "baseline": [
+          4,
+          4
+        ],
+        "teacher": [
+          4,
+          5
+        ],
+        "deployed": [
+          4,
+          4
+        ],
+        "teacher_quality_probability": 0.9844281077384949,
+        "predicted_pressure_gain": 0.03135887533426285,
+        "true_pressure_gain": 0.09949847239059864
+      }
+    ]
+  },
+  "validation": {
+    "selections": {
+      "deployed": {
+        "states": 32,
+        "feasible": 32,
+        "changed": 31,
+        "quality_recovery": 18,
+        "quality_regression": 0,
+        "interaction_support": 32,
+        "interaction_capture": 31
+      },
+      "raw_top1": {
+        "states": 32,
+        "feasible": 32,
+        "changed": 32,
+        "quality_recovery": 18,
+        "quality_regression": 0,
+        "interaction_support": 32,
+        "interaction_capture": 32
+      },
+      "pred_quality_without_pressure_guard": {
+        "states": 32,
+        "feasible": 32,
+        "changed": 32,
+        "quality_recovery": 18,
+        "quality_regression": 0,
+        "interaction_support": 32,
+        "interaction_capture": 32
+      },
+      "oracle_quality_without_pressure_guard": {
+        "states": 32,
+        "feasible": 32,
+        "changed": 32,
+        "quality_recovery": 18,
+        "quality_regression": 0,
+        "interaction_support": 32,
+        "interaction_capture": 32
+      },
+      "oracle_quality_and_true_pressure_guard": {
+        "states": 32,
+        "feasible": 32,
+        "changed": 32,
+        "quality_recovery": 18,
+        "quality_regression": 0,
+        "interaction_support": 32,
+        "interaction_capture": 32
+      }
+    },
+    "candidate_quality_confusion": {
+      "tp": 1005,
+      "fp": 1286,
+      "fn": 313,
+      "tn": 15108,
+      "F_nonempty_no_predicted_eligible": 0,
+      "opportunity_teacher_rejected_by_quality_prediction": 0
+    },
+    "missed_teacher": [
+      {
+        "path": "cache/state_229_route_3255_step_00150.npz",
+        "baseline": [
+          4,
+          4
+        ],
+        "teacher": [
+          4,
+          5
+        ],
+        "deployed": [
+          4,
+          4
+        ],
+        "teacher_quality_probability": 0.9844281077384949,
+        "predicted_pressure_gain": 0.03135887533426285,
+        "true_pressure_gain": 0.09949847239059864
+      }
+    ]
+  }
+}

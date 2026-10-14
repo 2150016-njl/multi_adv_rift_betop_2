@@ -133,6 +133,7 @@ if __name__ == '__main__':
     parser.add_argument('--threads', type=int, default=4)
     # agent-related
     parser.add_argument('--cbv_recog', '-recog', type=str, default='rule', choices=['rule', 'attention'])
+    parser.add_argument('--cbv_recog_cfg', type=str, default=None, help='Optional recognition YAML override, e.g. V6 shared-conflict pair proposal')
     parser.add_argument('--ego_cfg', type=str, default='expert.yaml')
     parser.add_argument('--pretrain_ego', '-pre_ego', type=str, default='pdm_lite', choices=['pdm_lite', 'plant', 'expert'])
     parser.add_argument('--pretrain_cbv', '-pre_cbv', type=str, default='standard', choices=['ppo', 'standard', 'frea', 'fppo_rs'])
@@ -158,7 +159,7 @@ if __name__ == '__main__':
     )
     parser.add_argument(
         '--joint_eval_action_mode',
-        choices=('policy', 'independent', 'oracle_gated'),
+        choices=('policy', 'verified_policy', 'independent', 'oracle_gated', 'cooperation_oracle', 'quality_oracle', 'factorized_oracle', 'interaction_oracle', 'joint_oracle'),
         default=None,
         help='Joint-RIFT eval only: execute learned, matched independent, or gated oracle pairs.',
     )
@@ -211,7 +212,7 @@ if __name__ == '__main__':
     configs.append(cbv_config)
 
     # load CBV config
-    cbv_recog_config_path = osp.join(args.ROOT_DIR, 'rift/cbv/recognition/config', f'{args.cbv_recog}.yaml')
+    cbv_recog_config_path = (args.cbv_recog_cfg or osp.join(args.ROOT_DIR, 'rift/cbv/recognition/config', f'{args.cbv_recog}.yaml'))
     cbv_recog_config = load_config(cbv_recog_config_path)
     cbv_recog_config.update(args_dict)
     configs.append(cbv_recog_config)

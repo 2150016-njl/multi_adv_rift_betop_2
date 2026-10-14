@@ -1,0 +1,49 @@
+{
+  "base_checkpoint": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\2b0da9e389ea4a27a405330d08785fde\\base.ckpt",
+  "base_checkpoint_sha256": "954fc74aa9ffc2400608601d48ab31ed9ca8859d9d64844dd21e3aff0becc61f",
+  "student_checkpoint": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v6_validation\\2b0da9e389ea4a27a405330d08785fde\\fit\\joint_head.ckpt",
+  "config_sha256": {
+    "eval": "81bd9dcfaf48063827f0256a1ba754e7e297cf2bb753bf82972c743e519b57aa",
+    "capture": "72f5a62ca8368baab69d231c49959ca8379c04cfbeea938dd67b38be9c0a50de",
+    "recollect": "4312e0a12e5aa872c65d5ab1ecb337a80a3b63d5937fcf0460d2f462434d7120",
+    "recognition": "8d580bfd32dc312ad08b6131a0d8b4eb8c1c94cfdf9b392ad777f455d37c984b"
+  },
+  "actual_reward_config": {
+    "interaction_semantics": "spatial_temporal"
+  },
+  "decision_teacher_config": {
+    "min_gain": 0.05,
+    "min_joint_gain": 0.01,
+    "min_member_pressure": 0.01,
+    "min_coalition": 0.01,
+    "nominal_conflict_policy": "reject",
+    "enabled": true,
+    "pressure_weight": 1.0,
+    "coalition_weight": 1.0
+  },
+  "source_sha256": {
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\audited_joint_trainer.py": "49a0da6499189ce1aea0b298974004a9cb0c927d6cbed3db04c53ae99e82119f",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\audited_joint_traj_evaluator.py": "090311748adaa1e9158357afa27216d6d9a657d054728454ed2635676a2a41fb",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\box_collision.py": "78c4b56d5cb9cc29b2024eb704bc18f1f28f71b6902fda2b9657b999587dba1e",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\cooperation_objective.py": "be6f72126e1a4dd52325580615c2c0f6d2d954e1d3f244b054cd54d022f8d8cf",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\decision_teacher.py": "7d0ea32352008f7257522e7d981c83cf21c97136c120cb53da372259fb9110b2",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\geometry.py": "f2a75cb24465b176fd06e87cf7039b306a41cf9a572b3ab72bb694b1150ce8c1",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\interaction_topology.py": "0babb0ceb304120cdd8523a77336cba1f09579a86450e4215f3c4eaeffc6baa2",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\joint_action.py": "a38be3fc22f7e2fdc699064b025e4700e2063bfa22109c1ac1d45f4f7d9f5f29",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\joint_buffer.py": "db8261a0650cb0ac3fe95dc65177b019d4f191cee41c1ae201077e2dd13fb63b",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\joint_datamodule.py": "03e5d948512827b604a950328022b9174cf7529601c94b26329b135452a1b4e1",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\joint_diagnostics.py": "2ef442f0a1fb09678a1d927b3d548f0d7d1975e5cb23c92a509d8c9d65f24740",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\joint_losses.py": "a1ce6aec9e816a06391948b71b4162c88b23590851a1cbf2078689f2022ed004",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\joint_rift_audited.py": "2e12b2b6a97af408dbad2ebe4af453232f26773db3651e432da3129cc2b2c5a3",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\joint_rift_pluto.py": "3c5069ce0c7beff214dfa4010d75043cf2ebaf7e88cfe002db3e9bb83c33cb68",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\joint_score_head.py": "46db6493a2ec44d50b563b73700a2cbee8ead9c5bdd2ac04e8f0f3da31ba1e2d",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\joint_trainer.py": "18e2cdbb14b13d9123a10a1495723a54339b8045b37577a380ea8f9b25dee6c8",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\joint_traj_evaluator.py": "8ccfdc4bc73c05f11ff5cbfd4dbdb4c61be2a75629cab9208002f45803e5602e",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\nominal_braid.py": "4631aff5529109849a1585df82e7e5d6185ba0388f084bc2d553765df8366727",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\nominal_direct_head.py": "c7008d41a6d72b0d7de83ef898ad201806166e1e64b34bb9a06fbdba78eee2a5",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\pair_manager.py": "bbcbc82b23beceae0f60b3d2f8a486f4fa90784c612553b15d961d73c8de74a2",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\temporal_interaction.py": "48f45d51bc7935b1288b16a26e9ce55b2453511366a99cf0bdb7ceedfc709e73",
+    "rift\\cbv\\planning\\fine_tuner\\rlft\\joint_rift\\__init__.py": "20306e586af114484df53e075c78a39b1035a892faf76a52f98891b89c347807"
+  },
+  "scope": "Teacher experiments and frozen-generator distillation. Oracle modes are evaluator-assisted. No performance guarantee."
+}

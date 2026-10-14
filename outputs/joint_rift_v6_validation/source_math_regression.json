@@ -1,0 +1,32 @@
+{
+  "torch_version": "2.5.1",
+  "source_sha256": {
+    "joint_losses.py": "a1ce6aec9e816a06391948b71b4162c88b23590851a1cbf2078689f2022ed004",
+    "joint_trainer.py": "18e2cdbb14b13d9123a10a1495723a54339b8045b37577a380ea8f9b25dee6c8",
+    "joint_score_head.py": "46db6493a2ec44d50b563b73700a2cbee8ead9c5bdd2ac04e8f0f3da31ba1e2d"
+  },
+  "uniform_ratio_gradient": [
+    -0.0,
+    -0.1336306209562122,
+    -0.2672612419124244,
+    0.4008918628686366
+  ],
+  "exact_expectation_gradient": [
+    0.010516261538322701,
+    -0.009389516445534174,
+    -0.0025675329414009108,
+    0.0014407878486123824
+  ],
+  "gradient_cosine": 0.3497426892122517,
+  "old_probability_weighted_ratio_matches_exact_gradient": true,
+  "swap_symmetry_max_error": 0.0,
+  "delta_change_from_frames_after_40": 1.7966153621673584,
+  "uniform_prior_base_std": 0.0,
+  "uniform_prior_delta_max": 0.0,
+  "limitations": "Synthetic diagnostic of actual source math; no Lightning, simulator, checkpoint or generalization validation. Probability-weighted ratio equality is checked before clipping at new=old only.",
+  "source_tests": {
+    "run": 14,
+    "failures": 0,
+    "errors": 0
+  }
+}

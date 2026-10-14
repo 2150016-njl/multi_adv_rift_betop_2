@@ -1,0 +1,606 @@
+{
+  "train": {
+    "selections": {
+      "deployed": {
+        "states": 225,
+        "feasible": 84,
+        "changed": 35,
+        "quality_recovery": 12,
+        "quality_regression": 3,
+        "interaction_support": 20,
+        "interaction_capture": 6
+      },
+      "raw_top1": {
+        "states": 225,
+        "feasible": 85,
+        "changed": 22,
+        "quality_recovery": 10,
+        "quality_regression": 0,
+        "interaction_support": 20,
+        "interaction_capture": 7
+      },
+      "pred_quality_without_pressure_guard": {
+        "states": 225,
+        "feasible": 86,
+        "changed": 38,
+        "quality_recovery": 14,
+        "quality_regression": 3,
+        "interaction_support": 20,
+        "interaction_capture": 8
+      },
+      "oracle_quality_without_pressure_guard": {
+        "states": 225,
+        "feasible": 149,
+        "changed": 78,
+        "quality_recovery": 74,
+        "quality_regression": 0,
+        "interaction_support": 20,
+        "interaction_capture": 9
+      },
+      "oracle_quality_and_true_pressure_guard": {
+        "states": 225,
+        "feasible": 149,
+        "changed": 76,
+        "quality_recovery": 74,
+        "quality_regression": 0,
+        "interaction_support": 20,
+        "interaction_capture": 9
+      }
+    },
+    "candidate_quality_confusion": {
+      "tp": 623,
+      "fp": 1090,
+      "fn": 3306,
+      "tn": 70725,
+      "F_nonempty_no_predicted_eligible": 30,
+      "opportunity_teacher_rejected_by_quality_prediction": 4
+    },
+    "missed_teacher": [
+      {
+        "path": "cache/state_071_route_25381_step_00115.npz",
+        "baseline": [
+          30,
+          18
+        ],
+        "teacher": [
+          30,
+          22
+        ],
+        "deployed": [
+          30,
+          18
+        ],
+        "teacher_quality_probability": 0.9760416150093079,
+        "predicted_pressure_gain": 0.021522291004657745,
+        "true_pressure_gain": 0.08579086998024038
+      },
+      {
+        "path": "cache/state_094_route_2091_step_00140.npz",
+        "baseline": [
+          5,
+          7
+        ],
+        "teacher": [
+          11,
+          7
+        ],
+        "deployed": [
+          5,
+          7
+        ],
+        "teacher_quality_probability": 0.9495419859886169,
+        "predicted_pressure_gain": 0.0070863887667655945,
+        "true_pressure_gain": 0.0911497318255144
+      },
+      {
+        "path": "cache/state_124_route_28198_step_00045.npz",
+        "baseline": [
+          5,
+          8
+        ],
+        "teacher": [
+          7,
+          8
+        ],
+        "deployed": [
+          5,
+          8
+        ],
+        "teacher_quality_probability": 0.8765510320663452,
+        "predicted_pressure_gain": 0.0018835365772247314,
+        "true_pressure_gain": 0.12102211694037278
+      },
+      {
+        "path": "cache/state_160_route_27494_step_00140.npz",
+        "baseline": [
+          3,
+          2
+        ],
+        "teacher": [
+          3,
+          10
+        ],
+        "deployed": [
+          3,
+          2
+        ],
+        "teacher_quality_probability": 0.8557916283607483,
+        "predicted_pressure_gain": -0.0007061883807182312,
+        "true_pressure_gain": 0.141691971944553
+      },
+      {
+        "path": "cache/state_170_route_27494_step_00190.npz",
+        "baseline": [
+          4,
+          2
+        ],
+        "teacher": [
+          4,
+          11
+        ],
+        "deployed": [
+          5,
+          11
+        ],
+        "teacher_quality_probability": 0.8324885964393616,
+        "predicted_pressure_gain": -0.006417443975806236,
+        "true_pressure_gain": 0.08382624594752294
+      },
+      {
+        "path": "cache/state_173_route_27494_step_00205.npz",
+        "baseline": [
+          3,
+          2
+        ],
+        "teacher": [
+          3,
+          11
+        ],
+        "deployed": [
+          4,
+          10
+        ],
+        "teacher_quality_probability": 0.85773104429245,
+        "predicted_pressure_gain": 0.010211009532213211,
+        "true_pressure_gain": 0.06582116143932033
+      },
+      {
+        "path": "cache/state_246_route_26405_step_00125.npz",
+        "baseline": [
+          8,
+          7
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "deployed": [
+          8,
+          7
+        ],
+        "teacher_quality_probability": 0.8287619948387146,
+        "predicted_pressure_gain": 0.018802015110850334,
+        "true_pressure_gain": 0.10304925011981139
+      },
+      {
+        "path": "cache/state_249_route_26405_step_00140.npz",
+        "baseline": [
+          8,
+          9
+        ],
+        "teacher": [
+          8,
+          11
+        ],
+        "deployed": [
+          8,
+          9
+        ],
+        "teacher_quality_probability": 0.8094294667243958,
+        "predicted_pressure_gain": 0.024701768532395363,
+        "true_pressure_gain": 0.0664815312291783
+      },
+      {
+        "path": "cache/state_251_route_26405_step_00150.npz",
+        "baseline": [
+          7,
+          9
+        ],
+        "teacher": [
+          7,
+          5
+        ],
+        "deployed": [
+          7,
+          9
+        ],
+        "teacher_quality_probability": 0.5771903991699219,
+        "predicted_pressure_gain": -0.005511119961738586,
+        "true_pressure_gain": 0.13420356983445256
+      },
+      {
+        "path": "cache/state_262_route_28198_step_00065.npz",
+        "baseline": [
+          6,
+          1
+        ],
+        "teacher": [
+          4,
+          11
+        ],
+        "deployed": [
+          6,
+          1
+        ],
+        "teacher_quality_probability": 0.04401464760303497,
+        "predicted_pressure_gain": 0.0011302605271339417,
+        "true_pressure_gain": 0.1305652742484783
+      },
+      {
+        "path": "cache/state_266_route_28198_step_00085.npz",
+        "baseline": [
+          18,
+          5
+        ],
+        "teacher": [
+          18,
+          11
+        ],
+        "deployed": [
+          18,
+          5
+        ],
+        "teacher_quality_probability": 0.6563428640365601,
+        "predicted_pressure_gain": -0.012649305164813995,
+        "true_pressure_gain": 0.2127365535881424
+      },
+      {
+        "path": "cache/state_269_route_28198_step_00100.npz",
+        "baseline": [
+          17,
+          19
+        ],
+        "teacher": [
+          17,
+          0
+        ],
+        "deployed": [
+          17,
+          19
+        ],
+        "teacher_quality_probability": 0.13198897242546082,
+        "predicted_pressure_gain": 0.046014249324798584,
+        "true_pressure_gain": 0.3169786273240438
+      },
+      {
+        "path": "cache/state_270_route_28198_step_00105.npz",
+        "baseline": [
+          4,
+          20
+        ],
+        "teacher": [
+          10,
+          23
+        ],
+        "deployed": [
+          4,
+          20
+        ],
+        "teacher_quality_probability": 0.8934522271156311,
+        "predicted_pressure_gain": -0.039229780435562134,
+        "true_pressure_gain": 0.20010640465800109
+      },
+      {
+        "path": "cache/state_271_route_28198_step_00110.npz",
+        "baseline": [
+          16,
+          17
+        ],
+        "teacher": [
+          20,
+          17
+        ],
+        "deployed": [
+          9,
+          17
+        ],
+        "teacher_quality_probability": 0.8174050450325012,
+        "predicted_pressure_gain": 0.0025680437684059143,
+        "true_pressure_gain": 0.06595365209726978
+      },
+      {
+        "path": "cache/state_278_route_28198_step_00145.npz",
+        "baseline": [
+          5,
+          17
+        ],
+        "teacher": [
+          9,
+          17
+        ],
+        "deployed": [
+          10,
+          16
+        ],
+        "teacher_quality_probability": 0.860727071762085,
+        "predicted_pressure_gain": 0.008088216185569763,
+        "true_pressure_gain": 0.11988472285133635
+      }
+    ]
+  },
+  "validation": {
+    "selections": {
+      "deployed": {
+        "states": 54,
+        "feasible": 25,
+        "changed": 20,
+        "quality_recovery": 3,
+        "quality_regression": 2,
+        "interaction_support": 12,
+        "interaction_capture": 2
+      },
+      "raw_top1": {
+        "states": 54,
+        "feasible": 22,
+        "changed": 11,
+        "quality_recovery": 0,
+        "quality_regression": 2,
+        "interaction_support": 12,
+        "interaction_capture": 0
+      },
+      "pred_quality_without_pressure_guard": {
+        "states": 54,
+        "feasible": 24,
+        "changed": 22,
+        "quality_recovery": 3,
+        "quality_regression": 3,
+        "interaction_support": 12,
+        "interaction_capture": 2
+      },
+      "oracle_quality_without_pressure_guard": {
+        "states": 54,
+        "feasible": 43,
+        "changed": 22,
+        "quality_recovery": 19,
+        "quality_regression": 0,
+        "interaction_support": 12,
+        "interaction_capture": 0
+      },
+      "oracle_quality_and_true_pressure_guard": {
+        "states": 54,
+        "feasible": 43,
+        "changed": 19,
+        "quality_recovery": 19,
+        "quality_regression": 0,
+        "interaction_support": 12,
+        "interaction_capture": 0
+      }
+    },
+    "candidate_quality_confusion": {
+      "tp": 217,
+      "fp": 540,
+      "fn": 1267,
+      "tn": 43768,
+      "F_nonempty_no_predicted_eligible": 4,
+      "opportunity_teacher_rejected_by_quality_prediction": 12
+    },
+    "missed_teacher": [
+      {
+        "path": "cache/state_107_route_17569_step_00045.npz",
+        "baseline": [
+          32,
+          17
+        ],
+        "teacher": [
+          5,
+          14
+        ],
+        "deployed": [
+          32,
+          17
+        ],
+        "teacher_quality_probability": 0.060202840715646744,
+        "predicted_pressure_gain": 0.025134921073913574,
+        "true_pressure_gain": 0.10021533697745189
+      },
+      {
+        "path": "cache/state_109_route_17569_step_00055.npz",
+        "baseline": [
+          30,
+          20
+        ],
+        "teacher": [
+          30,
+          13
+        ],
+        "deployed": [
+          30,
+          20
+        ],
+        "teacher_quality_probability": 0.06464459002017975,
+        "predicted_pressure_gain": 0.017490461468696594,
+        "true_pressure_gain": 0.12359442914826058
+      },
+      {
+        "path": "cache/state_119_route_17569_step_00105.npz",
+        "baseline": [
+          31,
+          18
+        ],
+        "teacher": [
+          31,
+          11
+        ],
+        "deployed": [
+          31,
+          20
+        ],
+        "teacher_quality_probability": 0.5870030522346497,
+        "predicted_pressure_gain": -0.0007723122835159302,
+        "true_pressure_gain": 0.1556732812182665
+      },
+      {
+        "path": "cache/state_203_route_17569_step_00045.npz",
+        "baseline": [
+          7,
+          17
+        ],
+        "teacher": [
+          7,
+          23
+        ],
+        "deployed": [
+          11,
+          23
+        ],
+        "teacher_quality_probability": 0.5620072484016418,
+        "predicted_pressure_gain": 0.012643078342080116,
+        "true_pressure_gain": 0.12249778947522363
+      },
+      {
+        "path": "cache/state_204_route_17569_step_00050.npz",
+        "baseline": [
+          8,
+          17
+        ],
+        "teacher": [
+          15,
+          17
+        ],
+        "deployed": [
+          8,
+          17
+        ],
+        "teacher_quality_probability": 0.11311644315719604,
+        "predicted_pressure_gain": 0.014657482504844666,
+        "true_pressure_gain": -0.04744754561640113
+      },
+      {
+        "path": "cache/state_209_route_17569_step_00075.npz",
+        "baseline": [
+          8,
+          29
+        ],
+        "teacher": [
+          3,
+          29
+        ],
+        "deployed": [
+          8,
+          29
+        ],
+        "teacher_quality_probability": 0.18301568925380707,
+        "predicted_pressure_gain": 0.015430845320224762,
+        "true_pressure_gain": 0.13113076856486988
+      },
+      {
+        "path": "cache/state_211_route_17569_step_00085.npz",
+        "baseline": [
+          6,
+          30
+        ],
+        "teacher": [
+          3,
+          30
+        ],
+        "deployed": [
+          6,
+          30
+        ],
+        "teacher_quality_probability": 0.0693625882267952,
+        "predicted_pressure_gain": 0.03521953523159027,
+        "true_pressure_gain": 0.0660657818647721
+      },
+      {
+        "path": "cache/state_229_route_3255_step_00150.npz",
+        "baseline": [
+          4,
+          4
+        ],
+        "teacher": [
+          4,
+          5
+        ],
+        "deployed": [
+          6,
+          5
+        ],
+        "teacher_quality_probability": 0.6659461259841919,
+        "predicted_pressure_gain": 0.008697375655174255,
+        "true_pressure_gain": 0.09949847239059864
+      },
+      {
+        "path": "cache/state_230_route_3255_step_00155.npz",
+        "baseline": [
+          4,
+          3
+        ],
+        "teacher": [
+          4,
+          5
+        ],
+        "deployed": [
+          11,
+          11
+        ],
+        "teacher_quality_probability": 0.5189310908317566,
+        "predicted_pressure_gain": 0.014063388109207153,
+        "true_pressure_gain": 0.09377286224381015
+      },
+      {
+        "path": "cache/state_231_route_3255_step_00160.npz",
+        "baseline": [
+          5,
+          4
+        ],
+        "teacher": [
+          1,
+          11
+        ],
+        "deployed": [
+          6,
+          5
+        ],
+        "teacher_quality_probability": 0.28103479743003845,
+        "predicted_pressure_gain": 0.03922737017273903,
+        "true_pressure_gain": 0.10154586993720427
+      },
+      {
+        "path": "cache/state_236_route_3255_step_00185.npz",
+        "baseline": [
+          3,
+          3
+        ],
+        "teacher": [
+          3,
+          10
+        ],
+        "deployed": [
+          11,
+          11
+        ],
+        "teacher_quality_probability": 0.25614795088768005,
+        "predicted_pressure_gain": 0.03669613599777222,
+        "true_pressure_gain": 0.05193444589070835
+      },
+      {
+        "path": "cache/state_237_route_3255_step_00190.npz",
+        "baseline": [
+          5,
+          4
+        ],
+        "teacher": [
+          5,
+          11
+        ],
+        "deployed": [
+          5,
+          4
+        ],
+        "teacher_quality_probability": 0.597442626953125,
+        "predicted_pressure_gain": -0.006886154413223267,
+        "true_pressure_gain": 0.10106359072712943
+      }
+    ]
+  }
+}

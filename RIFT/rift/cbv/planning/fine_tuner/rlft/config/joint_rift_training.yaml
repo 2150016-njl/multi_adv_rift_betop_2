@@ -29,6 +29,9 @@ joint_training:
   train_pi_head: false
   clip_ratio: 0.2
   dual_clip: 3.0
+  pair_weighting: uniform
+  auxiliary_weight: 0.0
+  teacher_temperature: 0.25
 
 wandb:
   dir: ${output_dir}

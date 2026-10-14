@@ -1,0 +1,13 @@
+{
+  "git_head": "6f7a92191858d8b1f3aab9b227779046e0c2009d",
+  "variant": "coop_aux",
+  "base_checkpoint": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v5_validation\\a15f6fafa8a84235bcc85d085630b6ed\\base.ckpt",
+  "base_checkpoint_sha256": "d44f96657e077d87d93af46ab42501374f70245ad6f212017feb3766b4d45e6a",
+  "config_sha256": {
+    "train": "1d8dde2cc8f40b8a53ceb13f7ca55cf73e4b222be4eaec8850ab6e7a5b305db4",
+    "eval": "1d8dde2cc8f40b8a53ceb13f7ca55cf73e4b222be4eaec8850ab6e7a5b305db4",
+    "capture": "ccfa9bc8d2fc94e011f6a43c2a6f7f70cfa123996723816f7dd5e07d8444150d"
+  },
+  "semantics": "fixed nominal time-aware coverage; not a causal response model or a faithful signed BeTop implementation",
+  "note": "Generated configs share geometry_horizon=40 and residual_scale_floor=1. legacy refers to the legacy Q target, not byte-identical historical model settings."
+}

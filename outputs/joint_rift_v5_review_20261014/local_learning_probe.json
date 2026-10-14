@@ -1,0 +1,1153 @@
+{
+  "scope": "Exploratory local overfit probes on uploaded cached inputs (not CARLA RL).\n\nStarts a fresh real scorer with zero residual; no trained checkpoint required.\nChecks the initial scores against the cache before any optimization. Results\ndescribe this local Torch runtime, not a reproduction of server checkpoint weights.\n",
+  "torch": "2.5.1",
+  "steps": 500,
+  "cases": {
+    "single_opportunity_lambda1": {
+      "initial_verification_error": 0.0,
+      "overrides": {},
+      "history": [
+        {
+          "step": 0,
+          "regret": 0.9934566668636216,
+          "feasible": 1.0,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.9934566668636216,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 50,
+          "regret": 0.9934566668636216,
+          "feasible": 1.0,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.9934566668636216,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 100,
+          "regret": 0.9934566668636216,
+          "feasible": 1.0,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.9934566668636216,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 150,
+          "regret": 0.9934566668636216,
+          "feasible": 1.0,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.9934566668636216,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 200,
+          "regret": 0.9934566668636216,
+          "feasible": 1.0,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.9934566668636216,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 250,
+          "regret": 0.9934566668636216,
+          "feasible": 1.0,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.9934566668636216,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 300,
+          "regret": 0.9934566668636216,
+          "feasible": 1.0,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.9934566668636216,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 350,
+          "regret": 0.9934566668636216,
+          "feasible": 1.0,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.9934566668636216,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 400,
+          "regret": 0.9934566668636216,
+          "feasible": 1.0,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.9934566668636216,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 450,
+          "regret": 0.9934566668636216,
+          "feasible": 1.0,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.9934566668636216,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 500,
+          "regret": 0.9934566668636216,
+          "feasible": 1.0,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.9934566668636216,
+          "opportunity_improvement_rate": 0.0
+        }
+      ],
+      "per_state": [
+        {
+          "file": "cache/state_023_route_27494_step_00320.npz",
+          "selected": [
+            1,
+            4
+          ],
+          "feasible": true,
+          "h_gain": 0.0,
+          "saturation_fraction": 0.5555555820465088,
+          "raw_delta_min": -9.859670639038086,
+          "raw_delta_max": 7.130524635314941
+        }
+      ]
+    },
+    "single_opportunity_lambda2": {
+      "initial_verification_error": 0.0,
+      "overrides": {
+        "lambda_delta": 2.0
+      },
+      "history": [
+        {
+          "step": 0,
+          "regret": 0.9934566668636216,
+          "feasible": 1.0,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.9934566668636216,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 50,
+          "regret": 3.0,
+          "feasible": 0.0,
+          "h_gain": 0.16700078236082969,
+          "opportunity": 1.0,
+          "opportunity_regret": 3.0,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 100,
+          "regret": 0.0,
+          "feasible": 1.0,
+          "h_gain": 0.17528155387137115,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.0,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 150,
+          "regret": 0.03654385600655208,
+          "feasible": 1.0,
+          "h_gain": 0.16883390086451946,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.03654385600655208,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 200,
+          "regret": 0.0,
+          "feasible": 1.0,
+          "h_gain": 0.17528155387137115,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.0,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 250,
+          "regret": 0.026076011672119703,
+          "feasible": 1.0,
+          "h_gain": 0.17068080579940256,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.026076011672119703,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 300,
+          "regret": 0.06394566982881456,
+          "feasible": 1.0,
+          "h_gain": 0.16399923351981935,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.06394566982881456,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 350,
+          "regret": 0.0,
+          "feasible": 1.0,
+          "h_gain": 0.17528155387137115,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.0,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 400,
+          "regret": 0.026076011672119703,
+          "feasible": 1.0,
+          "h_gain": 0.17068080579940256,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.026076011672119703,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 450,
+          "regret": 0.050859003556057436,
+          "feasible": 1.0,
+          "h_gain": 0.16630819301024855,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.050859003556057436,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 500,
+          "regret": 0.0,
+          "feasible": 1.0,
+          "h_gain": 0.17528155387137115,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.0,
+          "opportunity_improvement_rate": 1.0
+        }
+      ],
+      "per_state": [
+        {
+          "file": "cache/state_023_route_27494_step_00320.npz",
+          "selected": [
+            7,
+            7
+          ],
+          "feasible": true,
+          "h_gain": 0.17528155387137115,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -1.6882859468460083,
+          "raw_delta_max": 1.2341129779815674
+        }
+      ]
+    },
+    "six_opportunities_lambda1": {
+      "initial_verification_error": 3.814697265625e-06,
+      "overrides": {},
+      "history": [
+        {
+          "step": 0,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 50,
+          "regret": 0.8322427778106035,
+          "feasible": 0.8333333333333334,
+          "h_gain": 0.08275332449255805,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.8322427778106035,
+          "opportunity_improvement_rate": 0.5
+        },
+        {
+          "step": 100,
+          "regret": 1.181784702384881,
+          "feasible": 0.6666666666666666,
+          "h_gain": 0.08008485810275799,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.181784702384881,
+          "opportunity_improvement_rate": 0.5
+        },
+        {
+          "step": 150,
+          "regret": 1.8322427778106036,
+          "feasible": 0.5,
+          "h_gain": 0.019931836408530416,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.8322427778106036,
+          "opportunity_improvement_rate": 0.16666666666666666
+        },
+        {
+          "step": 200,
+          "regret": 1.665576111143937,
+          "feasible": 0.5,
+          "h_gain": 0.055314518017103714,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.665576111143937,
+          "opportunity_improvement_rate": 0.3333333333333333
+        },
+        {
+          "step": 250,
+          "regret": 1.665576111143937,
+          "feasible": 0.5,
+          "h_gain": 0.055314518017103714,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.665576111143937,
+          "opportunity_improvement_rate": 0.3333333333333333
+        },
+        {
+          "step": 300,
+          "regret": 1.8322427778106036,
+          "feasible": 0.5,
+          "h_gain": 0.019931836408530416,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.8322427778106036,
+          "opportunity_improvement_rate": 0.16666666666666666
+        },
+        {
+          "step": 350,
+          "regret": 1.665576111143937,
+          "feasible": 0.5,
+          "h_gain": 0.055314518017103714,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.665576111143937,
+          "opportunity_improvement_rate": 0.3333333333333333
+        },
+        {
+          "step": 400,
+          "regret": 1.665576111143937,
+          "feasible": 0.5,
+          "h_gain": 0.055314518017103714,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.665576111143937,
+          "opportunity_improvement_rate": 0.3333333333333333
+        },
+        {
+          "step": 450,
+          "regret": 1.8322427778106036,
+          "feasible": 0.5,
+          "h_gain": 0.019931836408530416,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.8322427778106036,
+          "opportunity_improvement_rate": 0.16666666666666666
+        },
+        {
+          "step": 500,
+          "regret": 1.8322427778106036,
+          "feasible": 0.5,
+          "h_gain": 0.019931836408530416,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.8322427778106036,
+          "opportunity_improvement_rate": 0.16666666666666666
+        }
+      ],
+      "per_state": [
+        {
+          "file": "cache/state_023_route_27494_step_00320.npz",
+          "selected": [
+            1,
+            4
+          ],
+          "feasible": true,
+          "h_gain": 0.0,
+          "saturation_fraction": 0.5625,
+          "raw_delta_min": -12.224102020263672,
+          "raw_delta_max": 9.279783248901367
+        },
+        {
+          "file": "cache/state_044_route_2091_step_00110.npz",
+          "selected": [
+            2,
+            5
+          ],
+          "feasible": false,
+          "h_gain": 0.0,
+          "saturation_fraction": 0.5347222089767456,
+          "raw_delta_min": -13.605350494384766,
+          "raw_delta_max": 12.35009765625
+        },
+        {
+          "file": "cache/state_045_route_2091_step_00120.npz",
+          "selected": [
+            1,
+            5
+          ],
+          "feasible": false,
+          "h_gain": 0.0,
+          "saturation_fraction": 0.5555555820465088,
+          "raw_delta_min": -12.994996070861816,
+          "raw_delta_max": 14.952404975891113
+        },
+        {
+          "file": "cache/state_119_route_3255_step_00170.npz",
+          "selected": [
+            4,
+            4
+          ],
+          "feasible": false,
+          "h_gain": 0.0,
+          "saturation_fraction": 0.7152777910232544,
+          "raw_delta_min": -13.77415657043457,
+          "raw_delta_max": 9.392144203186035
+        },
+        {
+          "file": "cache/state_126_route_26405_step_00120.npz",
+          "selected": [
+            8,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.1195910184511825,
+          "saturation_fraction": 0.7829861044883728,
+          "raw_delta_min": -12.84105396270752,
+          "raw_delta_max": 3.6479549407958984
+        },
+        {
+          "file": "cache/state_127_route_26405_step_00130.npz",
+          "selected": [
+            8,
+            6
+          ],
+          "feasible": true,
+          "h_gain": 0.0,
+          "saturation_fraction": 0.5520833134651184,
+          "raw_delta_min": -12.854443550109863,
+          "raw_delta_max": 11.917835235595703
+        }
+      ]
+    },
+    "six_opportunities_lambda2": {
+      "initial_verification_error": 3.814697265625e-06,
+      "overrides": {
+        "lambda_delta": 2.0
+      },
+      "history": [
+        {
+          "step": 0,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 50,
+          "regret": 0.8171145717009077,
+          "feasible": 0.8333333333333334,
+          "h_gain": 0.08906700432870458,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.8171145717009077,
+          "opportunity_improvement_rate": 0.5
+        },
+        {
+          "step": 100,
+          "regret": 0.5084765005926762,
+          "feasible": 0.8333333333333334,
+          "h_gain": 0.13671687290560974,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.5084765005926762,
+          "opportunity_improvement_rate": 0.8333333333333334
+        },
+        {
+          "step": 150,
+          "regret": 0.004346001945353284,
+          "feasible": 1.0,
+          "h_gain": 0.16488444817925643,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.004346001945353284,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 200,
+          "regret": 0.00847650059267624,
+          "feasible": 1.0,
+          "h_gain": 0.1641556793810641,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.00847650059267624,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 250,
+          "regret": 0.004346001945353284,
+          "feasible": 1.0,
+          "h_gain": 0.16488444817925643,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.004346001945353284,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 300,
+          "regret": 0.024685091833620405,
+          "feasible": 1.0,
+          "h_gain": 0.161487212991264,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.024685091833620405,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 350,
+          "regret": 0.006090642667758679,
+          "feasible": 1.0,
+          "h_gain": 0.16457663069010925,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.006090642667758679,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 400,
+          "regret": 0.00847650059267624,
+          "feasible": 1.0,
+          "h_gain": 0.1641556793810641,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.00847650059267624,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 450,
+          "regret": 0.0,
+          "feasible": 1.0,
+          "h_gain": 0.16565123952458452,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.0,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 500,
+          "regret": 0.006090642667758679,
+          "feasible": 1.0,
+          "h_gain": 0.16457663069010925,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.006090642667758679,
+          "opportunity_improvement_rate": 1.0
+        }
+      ],
+      "per_state": [
+        {
+          "file": "cache/state_023_route_27494_step_00320.npz",
+          "selected": [
+            7,
+            6
+          ],
+          "feasible": true,
+          "h_gain": 0.16883390086451946,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -1.9554842710494995,
+          "raw_delta_max": 1.0723024606704712
+        },
+        {
+          "file": "cache/state_044_route_2091_step_00110.npz",
+          "selected": [
+            7,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.13244280577843232,
+          "saturation_fraction": 0.013888888992369175,
+          "raw_delta_min": -3.1245453357696533,
+          "raw_delta_max": 2.2112388610839844
+        },
+        {
+          "file": "cache/state_045_route_2091_step_00120.npz",
+          "selected": [
+            1,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.18966313054235542,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -2.7745649814605713,
+          "raw_delta_max": 2.3264987468719482
+        },
+        {
+          "file": "cache/state_119_route_3255_step_00170.npz",
+          "selected": [
+            8,
+            9
+          ],
+          "feasible": true,
+          "h_gain": 0.16463283885272603,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -2.9590036869049072,
+          "raw_delta_max": 2.205960988998413
+        },
+        {
+          "file": "cache/state_126_route_26405_step_00120.npz",
+          "selected": [
+            9,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.1195910184511825,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -1.7982146739959717,
+          "raw_delta_max": 0.539151132106781
+        },
+        {
+          "file": "cache/state_127_route_26405_step_00130.npz",
+          "selected": [
+            8,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.21229608965143978,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -1.5855499505996704,
+          "raw_delta_max": 1.266248345375061
+        }
+      ]
+    },
+    "six_opportunities_fixed": {
+      "initial_verification_error": 3.814697265625e-06,
+      "overrides": {
+        "base_temperature": 3.0,
+        "lambda_delta": 2.0,
+        "residual_scale_mode": "fixed",
+        "fixed_residual_scale": 10.0
+      },
+      "history": [
+        {
+          "step": 0,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 50,
+          "regret": 0.5,
+          "feasible": 0.8333333333333334,
+          "h_gain": 0.16427111093949429,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.5,
+          "opportunity_improvement_rate": 0.8333333333333334
+        },
+        {
+          "step": 100,
+          "regret": 0.010657611638135759,
+          "feasible": 1.0,
+          "h_gain": 0.16377085279932588,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.010657611638135759,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 150,
+          "regret": 0.016208591240944165,
+          "feasible": 1.0,
+          "h_gain": 0.16298277313478446,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.016208591240944165,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 200,
+          "regret": 0.0,
+          "feasible": 1.0,
+          "h_gain": 0.16565123952458452,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.0,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 250,
+          "regret": 0.0,
+          "feasible": 1.0,
+          "h_gain": 0.16565123952458452,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.0,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 300,
+          "regret": 0.0,
+          "feasible": 1.0,
+          "h_gain": 0.16565123952458452,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.0,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 350,
+          "regret": 0.00847650059267624,
+          "feasible": 1.0,
+          "h_gain": 0.1641556793810641,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.00847650059267624,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 400,
+          "regret": 0.004346001945353284,
+          "feasible": 1.0,
+          "h_gain": 0.16488444817925643,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.004346001945353284,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 450,
+          "regret": 0.004346001945353284,
+          "feasible": 1.0,
+          "h_gain": 0.16488444817925643,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.004346001945353284,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 500,
+          "regret": 0.0,
+          "feasible": 1.0,
+          "h_gain": 0.16565123952458452,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.0,
+          "opportunity_improvement_rate": 1.0
+        }
+      ],
+      "per_state": [
+        {
+          "file": "cache/state_023_route_27494_step_00320.npz",
+          "selected": [
+            7,
+            7
+          ],
+          "feasible": true,
+          "h_gain": 0.17528155387137115,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -2.185972213745117,
+          "raw_delta_max": 0.5134391784667969
+        },
+        {
+          "file": "cache/state_044_route_2091_step_00110.npz",
+          "selected": [
+            2,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.13244280577843232,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -2.219313383102417,
+          "raw_delta_max": 0.6042324900627136
+        },
+        {
+          "file": "cache/state_045_route_2091_step_00120.npz",
+          "selected": [
+            1,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.18966313054235542,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -2.1272099018096924,
+          "raw_delta_max": 0.42186564207077026
+        },
+        {
+          "file": "cache/state_119_route_3255_step_00170.npz",
+          "selected": [
+            5,
+            9
+          ],
+          "feasible": true,
+          "h_gain": 0.16463283885272603,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -2.836686611175537,
+          "raw_delta_max": 0.86893630027771
+        },
+        {
+          "file": "cache/state_126_route_26405_step_00120.npz",
+          "selected": [
+            8,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.1195910184511825,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -1.4122484922409058,
+          "raw_delta_max": 0.14741910994052887
+        },
+        {
+          "file": "cache/state_127_route_26405_step_00130.npz",
+          "selected": [
+            8,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.21229608965143978,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -1.2997074127197266,
+          "raw_delta_max": 0.2535322904586792
+        }
+      ]
+    },
+    "six_opportunities_rift_lambda2": {
+      "initial_verification_error": 3.814697265625e-06,
+      "overrides": {
+        "lambda_delta": 2.0
+      },
+      "history": [
+        {
+          "step": 0,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 50,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 100,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 150,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 200,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 250,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 300,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 350,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 400,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 450,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 500,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        }
+      ],
+      "per_state": [
+        {
+          "file": "cache/state_023_route_27494_step_00320.npz",
+          "selected": [
+            1,
+            4
+          ],
+          "feasible": true,
+          "h_gain": 0.0,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -0.20472052693367004,
+          "raw_delta_max": -0.014027617871761322
+        },
+        {
+          "file": "cache/state_044_route_2091_step_00110.npz",
+          "selected": [
+            2,
+            5
+          ],
+          "feasible": false,
+          "h_gain": 0.0,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -0.21669897437095642,
+          "raw_delta_max": -0.029269307851791382
+        },
+        {
+          "file": "cache/state_045_route_2091_step_00120.npz",
+          "selected": [
+            1,
+            5
+          ],
+          "feasible": false,
+          "h_gain": 0.0,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -0.17448928952217102,
+          "raw_delta_max": -0.026791200041770935
+        },
+        {
+          "file": "cache/state_119_route_3255_step_00170.npz",
+          "selected": [
+            4,
+            4
+          ],
+          "feasible": false,
+          "h_gain": 0.0,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -0.24652010202407837,
+          "raw_delta_max": -0.06052590161561966
+        },
+        {
+          "file": "cache/state_126_route_26405_step_00120.npz",
+          "selected": [
+            8,
+            10
+          ],
+          "feasible": true,
+          "h_gain": 0.0,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -0.2876424193382263,
+          "raw_delta_max": -0.06809917837381363
+        },
+        {
+          "file": "cache/state_127_route_26405_step_00130.npz",
+          "selected": [
+            8,
+            6
+          ],
+          "feasible": true,
+          "h_gain": 0.0,
+          "saturation_fraction": 0.0,
+          "raw_delta_min": -0.2735254764556885,
+          "raw_delta_max": -0.06292899698019028
+        }
+      ]
+    },
+    "six_opportunities_rift_aux_lambda2": {
+      "initial_verification_error": 3.814697265625e-06,
+      "overrides": {
+        "lambda_delta": 2.0
+      },
+      "history": [
+        {
+          "step": 0,
+          "regret": 1.9837812383675748,
+          "feasible": 0.5,
+          "h_gain": 0.0,
+          "opportunity": 1.0,
+          "opportunity_regret": 1.9837812383675748,
+          "opportunity_improvement_rate": 0.0
+        },
+        {
+          "step": 50,
+          "regret": 0.024685091833620405,
+          "feasible": 1.0,
+          "h_gain": 0.161487212991264,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.024685091833620405,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 100,
+          "regret": 0.024685091833620405,
+          "feasible": 1.0,
+          "h_gain": 0.161487212991264,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.024685091833620405,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 150,
+          "regret": 0.0,
+          "feasible": 1.0,
+          "h_gain": 0.16565123952458452,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.0,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 200,
+          "regret": 0.006090642667758679,
+          "feasible": 1.0,
+          "h_gain": 0.16457663069010925,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.006090642667758679,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 250,
+          "regret": 0.00847650059267624,
+          "feasible": 1.0,
+          "h_gain": 0.1641556793810641,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.00847650059267624,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 300,
+          "regret": 0.006090642667758679,
+          "feasible": 1.0,
+          "h_gain": 0.16457663069010925,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.006090642667758679,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 350,
+          "regret": 0.004346001945353284,
+          "feasible": 1.0,
+          "h_gain": 0.16488444817925643,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.004346001945353284,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 400,
+          "regret": 0.010657611638135759,
+          "feasible": 1.0,
+          "h_gain": 0.16377085279932588,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.010657611638135759,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 450,
+          "regret": 0.006090642667758679,
+          "feasible": 1.0,
+          "h_gain": 0.16457663069010925,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.006090642667758679,
+          "opportunity_improvement_rate": 1.0
+        },
+        {
+          "step": 500,
+          "regret": 0.02055459318629745,
+          "feasible": 1.0,
+          "h_gain": 0.16221598178945637,
+          "opportunity": 1.0,
+          "opportunity_regret": 0.02055459318629745,
+          "opportunity_improvement_rate": 1.0
+        }
+      ],
+      "per_state": [
+        {
+          "file": "cache/state_023_route_27494_step_00320.npz",
+          "selected": [
+            7,
+            2
+          ],
+          "feasible": true,
+          "h_gain": 0.17068080579940256,
+          "saturation_fraction": 0.0625,
+          "raw_delta_min": -3.543133497238159,
+          "raw_delta_max": 1.467010259628296
+        },
+        {
+          "file": "cache/state_044_route_2091_step_00110.npz",
+          "selected": [
+            1,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.13244280577843232,
+          "saturation_fraction": 0.5069444179534912,
+          "raw_delta_min": -5.397424221038818,
+          "raw_delta_max": 2.2312254905700684
+        },
+        {
+          "file": "cache/state_045_route_2091_step_00120.npz",
+          "selected": [
+            1,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.18966313054235542,
+          "saturation_fraction": 0.4513888955116272,
+          "raw_delta_min": -4.80079460144043,
+          "raw_delta_max": 2.160715103149414
+        },
+        {
+          "file": "cache/state_119_route_3255_step_00170.npz",
+          "selected": [
+            6,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.14862204051392564,
+          "saturation_fraction": 0.5833333134651184,
+          "raw_delta_min": -5.01181697845459,
+          "raw_delta_max": 2.0638504028320312
+        },
+        {
+          "file": "cache/state_126_route_26405_step_00120.npz",
+          "selected": [
+            9,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.1195910184511825,
+          "saturation_fraction": 0.6041666865348816,
+          "raw_delta_min": -5.377167701721191,
+          "raw_delta_max": 0.6051031947135925
+        },
+        {
+          "file": "cache/state_127_route_26405_step_00130.npz",
+          "selected": [
+            8,
+            11
+          ],
+          "feasible": true,
+          "h_gain": 0.21229608965143978,
+          "saturation_fraction": 0.453125,
+          "raw_delta_min": -5.385866641998291,
+          "raw_delta_max": 1.0511785745620728
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "source_results_sha256": "fb0d6e5009a8bc28bec23d146d2c8b00c394515bde7e5e2b55b4567835880a51",
+  "source_cache_sha256": "57a497b4f8c1f0c7a0f945991f6ecca9cdd351bd46036a8cff414a6385f6ec5c",
+  "checks": {
+    "full_audit_reproduction": "identical JSON",
+    "full_Q_decomposition": "PASS all 279",
+    "union_identity": "PASS all 279",
+    "analysis_python_3_8_syntax": "PASS"
+  },
+  "local_training": {
+    "seed": 0,
+    "steps": 500,
+    "scope": "exploratory CPU diagnostic; no new CARLA; validation routes 17569,3255"
+  },
+  "files": {
+    "JOINT_RIFT_V6_RESULTS_ANALYSIS_2026-10-14.md": "6b49affe4adffc0778c8cc36a27a0ff74307b9c088ce7b6d1a6b70ce0debe5fe",
+    "RIFT/scripts/audit_joint_rift_v6_results.py": "8e53dffa178d4d69f5b8e1071fbf7016e0c5b9ce6c908f8dff17a77b6ff98b0a",
+    "RIFT/scripts/probe_joint_v6_cached_learning.py": "b1abb8dac65fe8f8408d5d67ec3cdfb970579df11237003c371904c5b81db729",
+    "outputs/joint_rift_v6_review_20261014/audit.json": "a2b5ca8054cb8643569c57bd664503b2cc1b31c1e6dda3d664b366559f7bb2fb",
+    "outputs/joint_rift_v6_review_20261014/eval.yaml": "66708b133b8499fa2a6be15cbb536825148fb5b0d8477f5f5159b73eebb73c11",
+    "outputs/joint_rift_v6_review_20261014/evidence_overview.pdf": "1d6a22253cc887c86c2be8e9a3e1ab4d841709c1d856b9af4037451911240f7e",
+    "outputs/joint_rift_v6_review_20261014/evidence_overview.png": "5439974b09e86df5b6a0b038cfc6b2995063006ba6386bfaf25fcd9803a48f69",
+    "outputs/joint_rift_v6_review_20261014/exposure.json": "91efb584beb58518155fe922ce464025baa395deacc84a644624ad8ac59325ba",
+    "outputs/joint_rift_v6_review_20261014/overfit_gate_probe_console.log": "db0f6f30cf65d07ad5d319ab2c1ef3a51b71348fe648fbb4da80da18c097f90d",
+    "outputs/joint_rift_v6_review_20261014/overfit_interaction_console.log": "d714b37f88644ce285170fec73631c9bd5c7e337e6a5ac29422137ef5924f4bd",
+    "outputs/joint_rift_v6_review_20261014/overfit_interaction_gate_probe.json": "1443dde2a1bb5c08e4e08568a95d72682c93d9517ef8ec309fd6bbba9475ad36",
+    "outputs/joint_rift_v6_review_20261014/per_state.csv": "6f3639f88498fe7518b03e1cc77a886734dbab459088b4dff1aceda34bf15e9e",
+    "outputs/joint_rift_v6_review_20261014/per_state.json": "998a622f0987e04fb5e4c1db77ac7e5752712772b6bbaaaa192ff30612459b47",
+    "outputs/joint_rift_v6_review_20261014/reproduction_console.log": "b54e94ca3a16305468b9f6da72239137154292f0fc25f81a5d7862e4dee2a714",
+    "outputs/joint_rift_v6_review_20261014/route_interaction_joint_console.log": "63dce8dae59216971a573fd56aa87c2d66c2c4eba325c078b164e82978fbcf32",
+    "outputs/joint_rift_v6_review_20261014/route_interaction_joint_gate_probe.json": "e35a5031b9e65dcb0055fef8552c4d60c42b48d8f6cd8a6b12cec37e191cc7d6",
+    "outputs/joint_rift_v6_review_20261014/route_interaction_unary_guarded_console.log": "e84c15200a9560d731fdfaf4937fdfc285499bed8e130aae52e697087a0f2e50",
+    "outputs/joint_rift_v6_review_20261014/structural_extra.json": "a7307907df58bda9fe15afc73098b4d56b1cc2c01372fee73baf230431f8f25e",
+    "outputs/joint_rift_v6_review_20261014/overfit_interaction/summary.json": "e35376f7448f9b047cee7935c322699b01adacb4ae11e99a7bfc494da7aa8e69",
+    "outputs/joint_rift_v6_review_20261014/route_interaction_joint/summary.json": "5c0c66acaf2fe924764e8f3db241201099575777270f424e37bc5ba49f3a2d7d",
+    "outputs/joint_rift_v6_review_20261014/route_interaction_unary_guarded/summary.json": "f9e1d6610650a6b3b63db5b98d40b2a6b51eae93036da15e2fda29f558a14f14"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "arguments": {
+    "mode": "stats",
+    "cache": "outputs\\v5_capture_spatial_seed0_20261013_151751\\v5_cache_20261014_040945.zip",
+    "output_dir": "outputs\\joint_rift_v6_validation\\old_cache_teacher_audit",
+    "backbone_ckpt": null,
+    "resume_head": null,
+    "teacher": "joint",
+    "head_kind": "joint",
+    "steps": 1500,
+    "batch_size": 8,
+    "lr": 0.001,
+    "seed": 0,
+    "device": "cpu",
+    "overfit_opportunities": false,
+    "validation_routes": "",
+    "unary_budget": null,
+    "min_gain": 0.05,
+    "min_joint_gain": 0.01,
+    "min_member_pressure": 0.01,
+    "min_coalition": 0.01,
+    "quality_threshold": 0.8,
+    "nominal_conflict_policy": "reject"
+  },
+  "decision_teacher_config": {
+    "min_gain": 0.05,
+    "min_joint_gain": 0.01,
+    "min_member_pressure": 0.01,
+    "min_coalition": 0.01,
+    "nominal_conflict_policy": "reject",
+    "enabled": true,
+    "pressure_weight": 1.0,
+    "coalition_weight": 1.0
+  },
+  "states": 144,
+  "routes": [
+    "17569",
+    "2091",
+    "25378",
+    "25381",
+    "26405",
+    "27494",
+    "28198",
+    "3255"
+  ],
+  "strata": {
+    "no_feasible": {
+      "states": 51,
+      "segments": 17
+    },
+    "quality": {
+      "states": 37,
+      "segments": 12
+    },
+    "preserve": {
+      "states": 47,
+      "segments": 11
+    },
+    "interaction": {
+      "states": 9,
+      "segments": 3
+    }
+  },
+  "scope": "Frozen-generator teacher distillation; no on-policy PPO or closed-loop guarantee."
+}

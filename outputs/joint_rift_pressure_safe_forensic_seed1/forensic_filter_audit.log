@@ -1,0 +1,17 @@
+JSONL files: 1 NPZ count: 0
+Joint states: 253 route counts: {'3255': 65, '26405': 25, '28198': 163}
+Filter: {"target_routes": ["26405", "28198", "3255"], "target_repetitions": {"3255": [1], "28198": [1], "26405": [1]}, "target_time_windows": {"3255": [132, 165], "28198": [67, 82], "26405": [95, 120]}, "min_coalition_std": 0.005, "min_p12_std": 0.02, "max_pair_collision_rate": 0.05}
+CUMULATIVE survivors (ordered):
+  target_route 253
+  target_repetition 91
+  target_time_window 32
+  coalition_std 0
+  p12_std 0
+  pair_collision_rate 0
+Eligible: 0
+First rejection reasons: {'target_repetition': 162, 'target_time_window': 59, 'coalition_std': 32}
+Missing diagnostic fields: {}
+Eligible route/rep/step samples: []
+Summary: /zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/joint_rift_pressure_safe_forensic_seed1/forensic_filter_audit.json
+Target route records: /zeron-vepfs/tjqc/njl/multi_adv_rift_scenario_dreamer_betop_2/outputs/joint_rift_pressure_safe_forensic_seed1/forensic_filter_audit.csv
+DIAGNOSIS: no state passed the target filters in this run. Inspect per-stage counts; do not blame learning or writer.

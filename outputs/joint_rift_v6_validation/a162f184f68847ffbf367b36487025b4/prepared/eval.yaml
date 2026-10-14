@@ -1,0 +1,82 @@
+policy_name: joint_rift_audited
+policy_type: il
+obs_type: cbv_rift_pluto_obs
+reward_model: dense
+data_keys:
+- CBVs_actions
+- joint_rollout_states
+- CBVs_obs
+- CBVs_next_obs
+- CBVs_reward
+- CBVs_terminated
+- CBVs_done
+buffer_capacity: 4096
+num_joint_cbv: 2
+num_modes: 12
+joint_horizon: 40
+gamma: 0.98
+save_freq: 50
+eval_joint_diagnostics: true
+oracle_eval_mode: diagnose
+joint_eval_action_mode: policy
+oracle_min_joint_gain: 10.0
+oracle_min_nonfactorizable_ratio: 0.01
+oracle_require_both_necessary: true
+oracle_max_pair_collision_rate: 0.05
+high_value_reweight:
+  enabled: false
+  min_joint_gain: 10.0
+  min_nonfactorizable_ratio: 0.01
+  max_pair_collision_rate: 0.05
+  weight: 4.0
+rlft_config_path: config
+rlft_config_name: joint_rift_training.yaml
+ckpt_path: rift/cbv/planning/model_ckpt/pluto/pluto_1M_aux_cil.ckpt
+base_rift_model_path: rift/cbv/planning/model_ckpt/rift_pluto
+base_rift_ckpt_path: C:\Users\Lenovo\Desktop\pycharm_project\multi_adv_rift_scenario_dreamer_betop_2\outputs\joint_rift_v6_validation\a162f184f68847ffbf367b36487025b4\base.ckpt
+joint_ckpt_path: C:\Users\Lenovo\Desktop\pycharm_project\multi_adv_rift_scenario_dreamer_betop_2\outputs\joint_rift_v6_validation\a162f184f68847ffbf367b36487025b4\prepared\student_merged.ckpt
+model_path: C:\Users\Lenovo\Desktop\pycharm_project\multi_adv_rift_scenario_dreamer_betop_2\outputs\joint_rift_v6_validation\a162f184f68847ffbf367b36487025b4\prepared\models
+model_type: cbv
+use_prediction: false
+topk: 10
+obs:
+  max_agent: 48
+  radius: 120
+  history_horizon: 2.0
+  sample_interval: 0.1
+CBV_action_dim: 3
+joint:
+  lambda_delta: 1.0
+  representation_dim: 128
+  latent_dim: 64
+  traj_sample_interval: 5
+  stage: 1
+  geometry_horizon: 40
+  residual_scale_floor: 1.0
+  head_type: nominal_direct
+  candidate_dim: 4
+  hidden_dim: 64
+  trajectory_frames: 40
+  trajectory_stride: 5
+  prior_weight: 0.05
+  quality_threshold: 0.8
+  min_gain: 0.05
+  head_kind: joint
+reward:
+  interaction_semantics: spatial_temporal
+training:
+  lr_joint: 0.0001
+  lr_pi: 1.0e-05
+  train_pi_head: false
+cooperation: {}
+decision_teacher:
+  min_gain: 0.05
+  min_joint_gain: 0.01
+  min_member_pressure: 0.01
+  min_coalition: 0.01
+  nominal_conflict_policy: reject
+  enabled: true
+  pressure_weight: 1.0
+  coalition_weight: 1.0
+candidate_dump:
+  enabled: false

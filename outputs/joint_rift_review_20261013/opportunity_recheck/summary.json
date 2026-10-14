@@ -1,0 +1,1336 @@
+{
+  "input": "outputs\\joint_rift_pressure_rep0_capture_seed1.zip",
+  "sha256": "66a931f9c3fabb8d667961699162a8de050c26d00f8904a3c6704879ae7be24c",
+  "states": 36,
+  "routes": [
+    "28198"
+  ],
+  "means": {
+    "nfr_q": 0.01944567610157001,
+    "nfr_pressure": 0.008330121854296817,
+    "nfr_delta": 0.0021122189325131265,
+    "q_gain": 66.11518498191101,
+    "unary_gain_at_q_oracle": 63.435166272165134,
+    "pressure_gain_at_q_oracle": -0.09775906803189184,
+    "collision_gain_at_q_oracle": 2.7777777777777777,
+    "pair_collision_rate": 0.39800347222222215,
+    "safe_joint_over_safe_unary_q_gain": 0.0,
+    "lambda_lower_bound_for_oracle": 1.2288483984350185
+  },
+  "counts": {
+    "policy_equals_independent": 28,
+    "policy_equals_oracle": 0,
+    "policy_collision": 10,
+    "oracle_collision": 5,
+    "current_hv_eligible": 0
+  },
+  "pressure_nonadditive_states_gt_1e_8": 30,
+  "states_with_safe_pairs": 33,
+  "safe_q_oracle_equals_safe_unary_oracle": 33,
+  "oracle_exceeds_lambda_1_bound_states": 28,
+  "reconstruction_max_error": 1.4210854715202004e-14,
+  "logit_reconstruction_max_error": 3.814697265625e-06,
+  "scale_sweep": [
+    {
+      "alpha": 0,
+      "changed_states": 0,
+      "oracle_hits": 0,
+      "mean_q_gain": 0.0,
+      "mean_pressure_gain": 0.0,
+      "collision_states": 10
+    },
+    {
+      "alpha": 0.5,
+      "changed_states": 2,
+      "oracle_hits": 0,
+      "mean_q_gain": 1.2073572768349983,
+      "mean_pressure_gain": 0.0,
+      "collision_states": 10
+    },
+    {
+      "alpha": 1,
+      "changed_states": 8,
+      "oracle_hits": 0,
+      "mean_q_gain": 1.524449340803549,
+      "mean_pressure_gain": -0.00885479734551194,
+      "collision_states": 10
+    },
+    {
+      "alpha": 2,
+      "changed_states": 20,
+      "oracle_hits": 0,
+      "mean_q_gain": 17.039306292493237,
+      "mean_pressure_gain": 0.004896900147577374,
+      "collision_states": 11
+    },
+    {
+      "alpha": 5,
+      "changed_states": 31,
+      "oracle_hits": 0,
+      "mean_q_gain": 33.529547319656146,
+      "mean_pressure_gain": 0.006691729822150054,
+      "collision_states": 11
+    },
+    {
+      "alpha": 10,
+      "changed_states": 34,
+      "oracle_hits": 0,
+      "mean_q_gain": 35.1459636406122,
+      "mean_pressure_gain": 0.006102684493970704,
+      "collision_states": 12
+    }
+  ],
+  "opportunity_counts": {
+    "full_q_oracle_gain_gt_1e_6": 36,
+    "learned_q_gain_gt_1e_6": 6,
+    "learned_q_gain_lt_minus_1e_6": 2,
+    "independent_safe_states": 26,
+    "independent_safe_with_pressure_gain_no_unary_sum_loss": 26,
+    "safe_nominal_both_states_epsilon_0_1": 8,
+    "safe_nominal_both_and_no_unary_sum_loss_states": 5,
+    "safe_nominal_both_pressure_gain_and_no_unary_sum_loss_states": 4
+  },
+  "limitations": [
+    "Consecutive states are correlated; no inferential confidence interval is computed.",
+    "Q oracle is a virtual evaluator optimum, not closed-loop cooperation.",
+    "Saved arrays lack raw Pluto features, candidate latent and executed rollout traces; exact scorer refitting is unavailable. The nominal both-necessary proxy can be recovered from coalition_gain > epsilon, but separate p1/p2 marginals and real counterfactuals are unavailable.",
+    "Alpha sweep rescales the existing residual; it is not retraining lambda_delta.",
+    "Safe support residual is a least-squares descriptive projection; feasibility masks alone can couple otherwise additive policies.",
+    "Safe means predicted CBV-CBV collision-free only; a nondecreasing aggregate unary return is not a guarantee that each safety/comfort constraint is met."
+  ],
+  "reward_weights": {
+    "pressure": 1,
+    "coalition": 1,
+    "collision": 20
+  },
+  "formal_archive_sha256": "c6f5df71175f403ddcee27e3940664e5654f68488c6fc8c98d4952d1548e1bd1",
+  "formal_holdout_runs": [
+    {
+      "run": "holdout10_hv4_independent_seed0",
+      "joint_states": 1494,
+      "independent_same_as_joint_rate": 0.9585006693440429,
+      "joint_same_as_oracle_rate": 0.006024096385542169,
+      "oracle_both_necessary": 0.0013386880856760374,
+      "oracle_pair_collision": 0.004016064257028112,
+      "policy_pair_collision": 0.018072289156626505,
+      "oracle_joint_gain": 19.272728200966313,
+      "reward_scale_unary_return_std": 17.33913623461943,
+      "reward_scale_p12_std": 0.03426350086310128,
+      "reward_scale_coalition_std": 0.0015147488664709165,
+      "by_route": {
+        "17569": {
+          "states": 178,
+          "policy_differs_from_independent_rate": 0.06741573033707865,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 146,
+          "policy_differs_from_independent_rate": 0.0136986301369863,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 87,
+          "policy_differs_from_independent_rate": 0.08045977011494253,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 98,
+          "policy_differs_from_independent_rate": 0.030612244897959183,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 73,
+          "policy_differs_from_independent_rate": 0.0273972602739726,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 539,
+          "policy_differs_from_independent_rate": 0.022263450834879406,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 207,
+          "policy_differs_from_independent_rate": 0.0966183574879227,
+          "oracle_both_necessary_rate": 0.00966183574879227
+        },
+        "3255": {
+          "states": 143,
+          "policy_differs_from_independent_rate": 0.027972027972027972,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "3514": {
+          "states": 23,
+          "policy_differs_from_independent_rate": 0.0,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    },
+    {
+      "run": "holdout10_hv4_independent_seed1",
+      "joint_states": 1518,
+      "independent_same_as_joint_rate": 0.9433465085638999,
+      "joint_same_as_oracle_rate": 0.011198945981554678,
+      "oracle_both_necessary": 0.005270092226613966,
+      "oracle_pair_collision": 0.002635046113306983,
+      "policy_pair_collision": 0.021080368906455864,
+      "oracle_joint_gain": 17.93919134773273,
+      "reward_scale_unary_return_std": 18.04325999368875,
+      "reward_scale_p12_std": 0.03272616508275131,
+      "reward_scale_coalition_std": 0.001927409000184461,
+      "by_route": {
+        "17569": {
+          "states": 169,
+          "policy_differs_from_independent_rate": 0.03550295857988166,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 205,
+          "policy_differs_from_independent_rate": 0.04878048780487805,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 95,
+          "policy_differs_from_independent_rate": 0.06315789473684211,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 99,
+          "policy_differs_from_independent_rate": 0.020202020202020204,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 77,
+          "policy_differs_from_independent_rate": 0.03896103896103896,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 556,
+          "policy_differs_from_independent_rate": 0.07014388489208633,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 221,
+          "policy_differs_from_independent_rate": 0.08597285067873303,
+          "oracle_both_necessary_rate": 0.027149321266968326
+        },
+        "3255": {
+          "states": 81,
+          "policy_differs_from_independent_rate": 0.012345679012345678,
+          "oracle_both_necessary_rate": 0.024691358024691357
+        },
+        "3514": {
+          "states": 15,
+          "policy_differs_from_independent_rate": 0.0,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    },
+    {
+      "run": "holdout10_hv4_independent_seed2",
+      "joint_states": 1439,
+      "independent_same_as_joint_rate": 0.9451007644197359,
+      "joint_same_as_oracle_rate": 0.004169562195969423,
+      "oracle_both_necessary": 0.007644197359277276,
+      "oracle_pair_collision": 0.022932592077831826,
+      "policy_pair_collision": 0.03961084086170952,
+      "oracle_joint_gain": 20.578997580906087,
+      "reward_scale_unary_return_std": 19.69584627264252,
+      "reward_scale_p12_std": 0.03926010834773382,
+      "reward_scale_coalition_std": 0.002333698113435499,
+      "by_route": {
+        "17569": {
+          "states": 168,
+          "policy_differs_from_independent_rate": 0.08333333333333333,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 188,
+          "policy_differs_from_independent_rate": 0.0797872340425532,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 95,
+          "policy_differs_from_independent_rate": 0.05263157894736842,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 98,
+          "policy_differs_from_independent_rate": 0.030612244897959183,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25424": {
+          "states": 29,
+          "policy_differs_from_independent_rate": 0.034482758620689655,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 73,
+          "policy_differs_from_independent_rate": 0.0410958904109589,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 382,
+          "policy_differs_from_independent_rate": 0.04712041884816754,
+          "oracle_both_necessary_rate": 0.005235602094240838
+        },
+        "28198": {
+          "states": 236,
+          "policy_differs_from_independent_rate": 0.059322033898305086,
+          "oracle_both_necessary_rate": 0.0211864406779661
+        },
+        "3255": {
+          "states": 102,
+          "policy_differs_from_independent_rate": 0.0392156862745098,
+          "oracle_both_necessary_rate": 0.0392156862745098
+        },
+        "3514": {
+          "states": 68,
+          "policy_differs_from_independent_rate": 0.029411764705882353,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    },
+    {
+      "run": "holdout10_hv4_independent_seed3",
+      "joint_states": 1592,
+      "independent_same_as_joint_rate": 0.9560301507537688,
+      "joint_same_as_oracle_rate": 0.0037688442211055275,
+      "oracle_both_necessary": 0.0018844221105527637,
+      "oracle_pair_collision": 0.011306532663316583,
+      "policy_pair_collision": 0.024497487437185928,
+      "oracle_joint_gain": 18.91939838435922,
+      "reward_scale_unary_return_std": 20.234372747328422,
+      "reward_scale_p12_std": 0.026837594462868115,
+      "reward_scale_coalition_std": 0.0011649213624456561,
+      "by_route": {
+        "17569": {
+          "states": 162,
+          "policy_differs_from_independent_rate": 0.018518518518518517,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 268,
+          "policy_differs_from_independent_rate": 0.06716417910447761,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 96,
+          "policy_differs_from_independent_rate": 0.07291666666666667,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 98,
+          "policy_differs_from_independent_rate": 0.02040816326530612,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25424": {
+          "states": 11,
+          "policy_differs_from_independent_rate": 0.0,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 72,
+          "policy_differs_from_independent_rate": 0.027777777777777776,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 550,
+          "policy_differs_from_independent_rate": 0.02727272727272727,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 218,
+          "policy_differs_from_independent_rate": 0.0871559633027523,
+          "oracle_both_necessary_rate": 0.013761467889908258
+        },
+        "3255": {
+          "states": 98,
+          "policy_differs_from_independent_rate": 0.04081632653061224,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "3514": {
+          "states": 19,
+          "policy_differs_from_independent_rate": 0.0,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    },
+    {
+      "run": "holdout10_hv4_policy_seed0",
+      "joint_states": 1456,
+      "independent_same_as_joint_rate": 0.9567307692307693,
+      "joint_same_as_oracle_rate": 0.0027472527472527475,
+      "oracle_both_necessary": 0.0006868131868131869,
+      "oracle_pair_collision": 0.007554945054945055,
+      "policy_pair_collision": 0.029532967032967032,
+      "oracle_joint_gain": 19.972277380153766,
+      "reward_scale_unary_return_std": 19.489456772141942,
+      "reward_scale_p12_std": 0.031005194897188715,
+      "reward_scale_coalition_std": 0.0008951703391585086,
+      "by_route": {
+        "17569": {
+          "states": 174,
+          "policy_differs_from_independent_rate": 0.05747126436781609,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 226,
+          "policy_differs_from_independent_rate": 0.030973451327433628,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 82,
+          "policy_differs_from_independent_rate": 0.08536585365853659,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 99,
+          "policy_differs_from_independent_rate": 0.030303030303030304,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 73,
+          "policy_differs_from_independent_rate": 0.0136986301369863,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 492,
+          "policy_differs_from_independent_rate": 0.02032520325203252,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 211,
+          "policy_differs_from_independent_rate": 0.10900473933649289,
+          "oracle_both_necessary_rate": 0.004739336492890996
+        },
+        "3255": {
+          "states": 99,
+          "policy_differs_from_independent_rate": 0.020202020202020204,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    },
+    {
+      "run": "holdout10_hv4_policy_seed1",
+      "joint_states": 1609,
+      "independent_same_as_joint_rate": 0.947172156619018,
+      "joint_same_as_oracle_rate": 0.0018645121193287756,
+      "oracle_both_necessary": 0.0018645121193287756,
+      "oracle_pair_collision": 0.009322560596643879,
+      "policy_pair_collision": 0.019266625233064015,
+      "oracle_joint_gain": 18.979481369041004,
+      "reward_scale_unary_return_std": 19.286255573283544,
+      "reward_scale_p12_std": 0.03218727358177092,
+      "reward_scale_coalition_std": 0.0010886275486753207,
+      "by_route": {
+        "17569": {
+          "states": 176,
+          "policy_differs_from_independent_rate": 0.0625,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 160,
+          "policy_differs_from_independent_rate": 0.03125,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 85,
+          "policy_differs_from_independent_rate": 0.03529411764705882,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 101,
+          "policy_differs_from_independent_rate": 0.039603960396039604,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25424": {
+          "states": 33,
+          "policy_differs_from_independent_rate": 0.12121212121212122,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 73,
+          "policy_differs_from_independent_rate": 0.0136986301369863,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 574,
+          "policy_differs_from_independent_rate": 0.04529616724738676,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 235,
+          "policy_differs_from_independent_rate": 0.11063829787234042,
+          "oracle_both_necessary_rate": 0.01276595744680851
+        },
+        "3255": {
+          "states": 104,
+          "policy_differs_from_independent_rate": 0.028846153846153848,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "3514": {
+          "states": 68,
+          "policy_differs_from_independent_rate": 0.029411764705882353,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    },
+    {
+      "run": "holdout10_hv4_policy_seed2",
+      "joint_states": 1307,
+      "independent_same_as_joint_rate": 0.9517980107115531,
+      "joint_same_as_oracle_rate": 0.00306044376434583,
+      "oracle_both_necessary": 0.00306044376434583,
+      "oracle_pair_collision": 0.0045906656465187455,
+      "policy_pair_collision": 0.0252486610558531,
+      "oracle_joint_gain": 20.821846482086702,
+      "reward_scale_unary_return_std": 19.642707060238074,
+      "reward_scale_p12_std": 0.03738248858471034,
+      "reward_scale_coalition_std": 0.001254431702408305,
+      "by_route": {
+        "17569": {
+          "states": 162,
+          "policy_differs_from_independent_rate": 0.08024691358024691,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 223,
+          "policy_differs_from_independent_rate": 0.04932735426008968,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 98,
+          "policy_differs_from_independent_rate": 0.05102040816326531,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 98,
+          "policy_differs_from_independent_rate": 0.01020408163265306,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25424": {
+          "states": 14,
+          "policy_differs_from_independent_rate": 0.0,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 86,
+          "policy_differs_from_independent_rate": 0.023255813953488372,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 242,
+          "policy_differs_from_independent_rate": 0.049586776859504134,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 214,
+          "policy_differs_from_independent_rate": 0.08411214953271028,
+          "oracle_both_necessary_rate": 0.004672897196261682
+        },
+        "3255": {
+          "states": 100,
+          "policy_differs_from_independent_rate": 0.0,
+          "oracle_both_necessary_rate": 0.03
+        },
+        "3514": {
+          "states": 70,
+          "policy_differs_from_independent_rate": 0.014285714285714285,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    },
+    {
+      "run": "holdout10_hv4_policy_seed3",
+      "joint_states": 1478,
+      "independent_same_as_joint_rate": 0.9485791610284168,
+      "joint_same_as_oracle_rate": 0.0013531799729364006,
+      "oracle_both_necessary": 0.0020297699594046007,
+      "oracle_pair_collision": 0.009472259810554804,
+      "policy_pair_collision": 0.018267929634641408,
+      "oracle_joint_gain": 19.80536100930652,
+      "reward_scale_unary_return_std": 20.368902125135094,
+      "reward_scale_p12_std": 0.029433051793665628,
+      "reward_scale_coalition_std": 0.0020026434548021392,
+      "by_route": {
+        "17569": {
+          "states": 165,
+          "policy_differs_from_independent_rate": 0.04242424242424243,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 239,
+          "policy_differs_from_independent_rate": 0.03347280334728033,
+          "oracle_both_necessary_rate": 0.0041841004184100415
+        },
+        "25378": {
+          "states": 96,
+          "policy_differs_from_independent_rate": 0.0625,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 100,
+          "policy_differs_from_independent_rate": 0.04,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25424": {
+          "states": 37,
+          "policy_differs_from_independent_rate": 0.08108108108108109,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 70,
+          "policy_differs_from_independent_rate": 0.04285714285714286,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 348,
+          "policy_differs_from_independent_rate": 0.04597701149425287,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 228,
+          "policy_differs_from_independent_rate": 0.10964912280701754,
+          "oracle_both_necessary_rate": 0.008771929824561403
+        },
+        "3255": {
+          "states": 96,
+          "policy_differs_from_independent_rate": 0.010416666666666666,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "3514": {
+          "states": 99,
+          "policy_differs_from_independent_rate": 0.030303030303030304,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    },
+    {
+      "run": "holdout10_uniform_independent_seed0",
+      "joint_states": 1522,
+      "independent_same_as_joint_rate": 0.9441524310118266,
+      "joint_same_as_oracle_rate": 0.006570302233902759,
+      "oracle_both_necessary": 0.002628120893561104,
+      "oracle_pair_collision": 0.005913272010512484,
+      "policy_pair_collision": 0.040735873850197106,
+      "oracle_joint_gain": 17.436519842517946,
+      "reward_scale_unary_return_std": 17.466689162146896,
+      "reward_scale_p12_std": 0.04116762002147693,
+      "reward_scale_coalition_std": 0.001927108873929465,
+      "by_route": {
+        "17569": {
+          "states": 160,
+          "policy_differs_from_independent_rate": 0.06875,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 174,
+          "policy_differs_from_independent_rate": 0.040229885057471264,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 84,
+          "policy_differs_from_independent_rate": 0.13095238095238096,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 103,
+          "policy_differs_from_independent_rate": 0.019417475728155338,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25424": {
+          "states": 15,
+          "policy_differs_from_independent_rate": 0.0,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 74,
+          "policy_differs_from_independent_rate": 0.013513513513513514,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 597,
+          "policy_differs_from_independent_rate": 0.038525963149078725,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 217,
+          "policy_differs_from_independent_rate": 0.12442396313364056,
+          "oracle_both_necessary_rate": 0.009216589861751152
+        },
+        "3255": {
+          "states": 98,
+          "policy_differs_from_independent_rate": 0.030612244897959183,
+          "oracle_both_necessary_rate": 0.02040816326530612
+        }
+      }
+    },
+    {
+      "run": "holdout10_uniform_independent_seed1",
+      "joint_states": 1651,
+      "independent_same_as_joint_rate": 0.9466989703210176,
+      "joint_same_as_oracle_rate": 0.005451241671714113,
+      "oracle_both_necessary": 0.0018170805572380376,
+      "oracle_pair_collision": 0.004239854633555421,
+      "policy_pair_collision": 0.02483343428225318,
+      "oracle_joint_gain": 18.765750059877988,
+      "reward_scale_unary_return_std": 17.035284102179272,
+      "reward_scale_p12_std": 0.03741867696065588,
+      "reward_scale_coalition_std": 0.0009991718738287148,
+      "by_route": {
+        "17569": {
+          "states": 166,
+          "policy_differs_from_independent_rate": 0.08433734939759036,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 183,
+          "policy_differs_from_independent_rate": 0.03278688524590164,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 86,
+          "policy_differs_from_independent_rate": 0.16279069767441862,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 104,
+          "policy_differs_from_independent_rate": 0.057692307692307696,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25424": {
+          "states": 28,
+          "policy_differs_from_independent_rate": 0.14285714285714285,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 69,
+          "policy_differs_from_independent_rate": 0.028985507246376812,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 576,
+          "policy_differs_from_independent_rate": 0.020833333333333332,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 216,
+          "policy_differs_from_independent_rate": 0.125,
+          "oracle_both_necessary_rate": 0.009259259259259259
+        },
+        "3255": {
+          "states": 140,
+          "policy_differs_from_independent_rate": 0.007142857142857143,
+          "oracle_both_necessary_rate": 0.007142857142857143
+        },
+        "3514": {
+          "states": 83,
+          "policy_differs_from_independent_rate": 0.024096385542168676,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    },
+    {
+      "run": "holdout10_uniform_independent_seed2",
+      "joint_states": 1273,
+      "independent_same_as_joint_rate": 0.9269442262372348,
+      "joint_same_as_oracle_rate": 0.004713275726630008,
+      "oracle_both_necessary": 0.009426551453260016,
+      "oracle_pair_collision": 0.01335428122545169,
+      "policy_pair_collision": 0.037706205813040065,
+      "oracle_joint_gain": 19.352222162152756,
+      "reward_scale_unary_return_std": 19.094464840356093,
+      "reward_scale_p12_std": 0.03220196929543578,
+      "reward_scale_coalition_std": 0.0019037022802349348,
+      "by_route": {
+        "17569": {
+          "states": 170,
+          "policy_differs_from_independent_rate": 0.058823529411764705,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 242,
+          "policy_differs_from_independent_rate": 0.0371900826446281,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 97,
+          "policy_differs_from_independent_rate": 0.14432989690721648,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 102,
+          "policy_differs_from_independent_rate": 0.058823529411764705,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25424": {
+          "states": 35,
+          "policy_differs_from_independent_rate": 0.05714285714285714,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 71,
+          "policy_differs_from_independent_rate": 0.09859154929577464,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 214,
+          "policy_differs_from_independent_rate": 0.09345794392523364,
+          "oracle_both_necessary_rate": 0.009345794392523364
+        },
+        "28198": {
+          "states": 177,
+          "policy_differs_from_independent_rate": 0.1016949152542373,
+          "oracle_both_necessary_rate": 0.022598870056497175
+        },
+        "3255": {
+          "states": 101,
+          "policy_differs_from_independent_rate": 0.039603960396039604,
+          "oracle_both_necessary_rate": 0.0594059405940594
+        },
+        "3514": {
+          "states": 64,
+          "policy_differs_from_independent_rate": 0.046875,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    },
+    {
+      "run": "holdout10_uniform_independent_seed3",
+      "joint_states": 1272,
+      "independent_same_as_joint_rate": 0.9150943396226415,
+      "joint_same_as_oracle_rate": 0.010220125786163521,
+      "oracle_both_necessary": 0.0,
+      "oracle_pair_collision": 0.00550314465408805,
+      "policy_pair_collision": 0.02830188679245283,
+      "oracle_joint_gain": 21.993571843153557,
+      "reward_scale_unary_return_std": 19.801246411356093,
+      "reward_scale_p12_std": 0.03307876091760542,
+      "reward_scale_coalition_std": 0.0017766913396381197,
+      "by_route": {
+        "17569": {
+          "states": 170,
+          "policy_differs_from_independent_rate": 0.09411764705882353,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 188,
+          "policy_differs_from_independent_rate": 0.047872340425531915,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 104,
+          "policy_differs_from_independent_rate": 0.2403846153846154,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 104,
+          "policy_differs_from_independent_rate": 0.009615384615384616,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 70,
+          "policy_differs_from_independent_rate": 0.02857142857142857,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 270,
+          "policy_differs_from_independent_rate": 0.08148148148148149,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 207,
+          "policy_differs_from_independent_rate": 0.12560386473429952,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "3255": {
+          "states": 97,
+          "policy_differs_from_independent_rate": 0.061855670103092786,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "3514": {
+          "states": 62,
+          "policy_differs_from_independent_rate": 0.016129032258064516,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    },
+    {
+      "run": "holdout10_uniform_policy_seed0",
+      "joint_states": 1307,
+      "independent_same_as_joint_rate": 0.9433817903596021,
+      "joint_same_as_oracle_rate": 0.0038255547054322878,
+      "oracle_both_necessary": 0.0,
+      "oracle_pair_collision": 0.005355776587605203,
+      "policy_pair_collision": 0.018362662586074982,
+      "oracle_joint_gain": 19.156141596029364,
+      "reward_scale_unary_return_std": 19.486846789823097,
+      "reward_scale_p12_std": 0.03418231741238545,
+      "reward_scale_coalition_std": 0.001255626016413474,
+      "by_route": {
+        "17569": {
+          "states": 162,
+          "policy_differs_from_independent_rate": 0.07407407407407407,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 142,
+          "policy_differs_from_independent_rate": 0.04225352112676056,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 87,
+          "policy_differs_from_independent_rate": 0.1839080459770115,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 100,
+          "policy_differs_from_independent_rate": 0.03,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25424": {
+          "states": 19,
+          "policy_differs_from_independent_rate": 0.10526315789473684,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 84,
+          "policy_differs_from_independent_rate": 0.047619047619047616,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 345,
+          "policy_differs_from_independent_rate": 0.02608695652173913,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 200,
+          "policy_differs_from_independent_rate": 0.08,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "3255": {
+          "states": 99,
+          "policy_differs_from_independent_rate": 0.020202020202020204,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "3514": {
+          "states": 69,
+          "policy_differs_from_independent_rate": 0.057971014492753624,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    },
+    {
+      "run": "holdout10_uniform_policy_seed1",
+      "joint_states": 1482,
+      "independent_same_as_joint_rate": 0.9365721997300944,
+      "joint_same_as_oracle_rate": 0.0020242914979757085,
+      "oracle_both_necessary": 0.001349527665317139,
+      "oracle_pair_collision": 0.0,
+      "policy_pair_collision": 0.005398110661268556,
+      "oracle_joint_gain": 18.40128894782084,
+      "reward_scale_unary_return_std": 17.92501663031997,
+      "reward_scale_p12_std": 0.025832956874940364,
+      "reward_scale_coalition_std": 0.00132865505823517,
+      "by_route": {
+        "17569": {
+          "states": 168,
+          "policy_differs_from_independent_rate": 0.09523809523809523,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 179,
+          "policy_differs_from_independent_rate": 0.0335195530726257,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 87,
+          "policy_differs_from_independent_rate": 0.14942528735632185,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 99,
+          "policy_differs_from_independent_rate": 0.04040404040404041,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 70,
+          "policy_differs_from_independent_rate": 0.08571428571428572,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 568,
+          "policy_differs_from_independent_rate": 0.035211267605633804,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 213,
+          "policy_differs_from_independent_rate": 0.11267605633802817,
+          "oracle_both_necessary_rate": 0.004694835680751174
+        },
+        "3255": {
+          "states": 98,
+          "policy_differs_from_independent_rate": 0.05102040816326531,
+          "oracle_both_necessary_rate": 0.01020408163265306
+        }
+      }
+    },
+    {
+      "run": "holdout10_uniform_policy_seed2",
+      "joint_states": 1205,
+      "independent_same_as_joint_rate": 0.9327800829875519,
+      "joint_same_as_oracle_rate": 0.0008298755186721991,
+      "oracle_both_necessary": 0.0024896265560165973,
+      "oracle_pair_collision": 0.010788381742738589,
+      "policy_pair_collision": 0.03568464730290456,
+      "oracle_joint_gain": 20.998642839529406,
+      "reward_scale_unary_return_std": 21.439963518909952,
+      "reward_scale_p12_std": 0.038004642780643014,
+      "reward_scale_coalition_std": 0.001722974819435574,
+      "by_route": {
+        "17569": {
+          "states": 165,
+          "policy_differs_from_independent_rate": 0.08484848484848485,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 198,
+          "policy_differs_from_independent_rate": 0.06565656565656566,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 102,
+          "policy_differs_from_independent_rate": 0.0784313725490196,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 98,
+          "policy_differs_from_independent_rate": 0.05102040816326531,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25424": {
+          "states": 15,
+          "policy_differs_from_independent_rate": 0.0,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 73,
+          "policy_differs_from_independent_rate": 0.0273972602739726,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 164,
+          "policy_differs_from_independent_rate": 0.04878048780487805,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 213,
+          "policy_differs_from_independent_rate": 0.1267605633802817,
+          "oracle_both_necessary_rate": 0.014084507042253521
+        },
+        "3255": {
+          "states": 149,
+          "policy_differs_from_independent_rate": 0.006711409395973154,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "3514": {
+          "states": 28,
+          "policy_differs_from_independent_rate": 0.10714285714285714,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    },
+    {
+      "run": "holdout10_uniform_policy_seed3",
+      "joint_states": 1369,
+      "independent_same_as_joint_rate": 0.9320672023374726,
+      "joint_same_as_oracle_rate": 0.0014609203798392988,
+      "oracle_both_necessary": 0.0,
+      "oracle_pair_collision": 0.010226442658875092,
+      "policy_pair_collision": 0.045288531775018265,
+      "oracle_joint_gain": 22.440286595282803,
+      "reward_scale_unary_return_std": 22.071970925433188,
+      "reward_scale_p12_std": 0.037389017463108826,
+      "reward_scale_coalition_std": 0.001831744344449845,
+      "by_route": {
+        "17569": {
+          "states": 174,
+          "policy_differs_from_independent_rate": 0.07471264367816093,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "2091": {
+          "states": 185,
+          "policy_differs_from_independent_rate": 0.05945945945945946,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25378": {
+          "states": 100,
+          "policy_differs_from_independent_rate": 0.12,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25381": {
+          "states": 99,
+          "policy_differs_from_independent_rate": 0.020202020202020204,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "25424": {
+          "states": 35,
+          "policy_differs_from_independent_rate": 0.08571428571428572,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "26405": {
+          "states": 73,
+          "policy_differs_from_independent_rate": 0.0547945205479452,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "27494": {
+          "states": 318,
+          "policy_differs_from_independent_rate": 0.04716981132075472,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "28198": {
+          "states": 222,
+          "policy_differs_from_independent_rate": 0.14414414414414414,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "3255": {
+          "states": 96,
+          "policy_differs_from_independent_rate": 0.010416666666666666,
+          "oracle_both_necessary_rate": 0.0
+        },
+        "3514": {
+          "states": 67,
+          "policy_differs_from_independent_rate": 0.0,
+          "oracle_both_necessary_rate": 0.0
+        }
+      }
+    }
+  ],
+  "formal_results": {
+    "runs": {
+      "holdout10_hv4_independent_seed0": {
+        "records": 20,
+        "scores": {
+          "score_composed": 87.815,
+          "score_route": 89.815,
+          "score_penalty": 0.98
+        },
+        "statuses": {
+          "Completed": 17,
+          "Failed - Agent timed out": 1,
+          "Failed - Agent got blocked": 2
+        }
+      },
+      "holdout10_hv4_independent_seed1": {
+        "records": 20,
+        "scores": {
+          "score_composed": 90.92398,
+          "score_route": 94.4795,
+          "score_penalty": 0.948
+        },
+        "statuses": {
+          "Completed": 18,
+          "Failed - Agent timed out": 2
+        }
+      },
+      "holdout10_hv4_independent_seed2": {
+        "records": 20,
+        "scores": {
+          "score_composed": 94.467,
+          "score_route": 96.467,
+          "score_penalty": 0.98
+        },
+        "statuses": {
+          "Completed": 18,
+          "Failed - Agent timed out": 2
+        }
+      },
+      "holdout10_hv4_independent_seed3": {
+        "records": 20,
+        "scores": {
+          "score_composed": 93.622,
+          "score_route": 93.622,
+          "score_penalty": 1.0
+        },
+        "statuses": {
+          "Completed": 18,
+          "Failed - Agent timed out": 1,
+          "Failed - Agent got blocked": 1
+        }
+      },
+      "holdout10_hv4_policy_seed0": {
+        "records": 20,
+        "scores": {
+          "score_composed": 89.069,
+          "score_route": 89.069,
+          "score_penalty": 1.0
+        },
+        "statuses": {
+          "Completed": 17,
+          "Failed - Agent timed out": 1,
+          "Failed - Agent got blocked": 2
+        }
+      },
+      "holdout10_hv4_policy_seed1": {
+        "records": 20,
+        "scores": {
+          "score_composed": 92.255,
+          "score_route": 94.255,
+          "score_penalty": 0.98
+        },
+        "statuses": {
+          "Completed": 18,
+          "Failed - Agent timed out": 2
+        }
+      },
+      "holdout10_hv4_policy_seed2": {
+        "records": 20,
+        "scores": {
+          "score_composed": 87.995,
+          "score_route": 89.995,
+          "score_penalty": 0.98
+        },
+        "statuses": {
+          "Completed": 17,
+          "Failed - Agent timed out": 1,
+          "Failed - Agent got blocked": 2
+        }
+      },
+      "holdout10_hv4_policy_seed3": {
+        "records": 20,
+        "scores": {
+          "score_composed": 90.9765,
+          "score_route": 92.9765,
+          "score_penalty": 0.98
+        },
+        "statuses": {
+          "Completed": 18,
+          "Failed - Agent timed out": 1,
+          "Failed - Agent got blocked": 1
+        }
+      },
+      "holdout10_uniform_independent_seed0": {
+        "records": 20,
+        "scores": {
+          "score_composed": 87.5645,
+          "score_route": 89.5645,
+          "score_penalty": 0.98
+        },
+        "statuses": {
+          "Completed": 17,
+          "Failed - Agent timed out": 1,
+          "Failed - Agent got blocked": 2
+        }
+      },
+      "holdout10_uniform_independent_seed1": {
+        "records": 20,
+        "scores": {
+          "score_composed": 94.21,
+          "score_route": 94.21,
+          "score_penalty": 1.0
+        },
+        "statuses": {
+          "Completed": 18,
+          "Failed - Agent timed out": 2
+        }
+      },
+      "holdout10_uniform_independent_seed2": {
+        "records": 20,
+        "scores": {
+          "score_composed": 93.6825,
+          "score_route": 93.6825,
+          "score_penalty": 1.0
+        },
+        "statuses": {
+          "Completed": 18,
+          "Failed - Agent timed out": 1,
+          "Failed - Agent got blocked": 1
+        }
+      },
+      "holdout10_uniform_independent_seed3": {
+        "records": 20,
+        "scores": {
+          "score_composed": 89.335,
+          "score_route": 89.335,
+          "score_penalty": 1.0
+        },
+        "statuses": {
+          "Completed": 17,
+          "Failed - Agent timed out": 1,
+          "Failed - Agent got blocked": 2
+        }
+      },
+      "holdout10_uniform_policy_seed0": {
+        "records": 20,
+        "scores": {
+          "score_composed": 89.1185,
+          "score_route": 89.1185,
+          "score_penalty": 1.0
+        },
+        "statuses": {
+          "Completed": 17,
+          "Failed - Agent timed out": 1,
+          "Failed - Agent got blocked": 2
+        }
+      },
+      "holdout10_uniform_policy_seed1": {
+        "records": 20,
+        "scores": {
+          "score_composed": 90.938,
+          "score_route": 90.938,
+          "score_penalty": 1.0
+        },
+        "statuses": {
+          "Completed": 17,
+          "Failed - Agent timed out": 2,
+          "Failed - Agent got blocked": 1
+        }
+      },
+      "holdout10_uniform_policy_seed2": {
+        "records": 20,
+        "scores": {
+          "score_composed": 86.94,
+          "score_route": 90.14,
+          "score_penalty": 0.968
+        },
+        "statuses": {
+          "Completed": 17,
+          "Failed - Agent timed out": 1,
+          "Failed - Agent got blocked": 2
+        }
+      },
+      "holdout10_uniform_policy_seed3": {
+        "records": 20,
+        "scores": {
+          "score_composed": 86.854,
+          "score_route": 92.854,
+          "score_penalty": 0.94
+        },
+        "statuses": {
+          "Completed": 18,
+          "Failed - Agent timed out": 1,
+          "Failed - Agent got blocked": 1
+        }
+      }
+    },
+    "independent_control_drift": [
+      {
+        "seed": 0,
+        "hv4_independent_minus_uniform_independent_score": 0.2505000000000024
+      },
+      {
+        "seed": 1,
+        "hv4_independent_minus_uniform_independent_score": -3.2860199999999935
+      },
+      {
+        "seed": 2,
+        "hv4_independent_minus_uniform_independent_score": 0.7844999999999942
+      },
+      {
+        "seed": 3,
+        "hv4_independent_minus_uniform_independent_score": 4.287000000000006
+      }
+    ],
+    "interpretation": "Same-seed independent runs should be an A/A control if frozen model tensors and initial states are identical. Score differences alone cannot distinguish simulator variation, setup drift, or a frozen-model regression. Verify tensor hashes and action traces."
+  }
+}

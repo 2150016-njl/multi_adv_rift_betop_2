@@ -36,6 +36,15 @@ class UnaryEvaluation:
     rollout_vertices: np.ndarray     # [G, T, 4, 2]
     collision_matrix: np.ndarray     # [G, T], background + nominal Ego
     off_road_matrix: np.ndarray      # [G, T]
+    interaction_sign: Optional[np.ndarray] = None  # optional signed braid onset
+    uncomfortable_matrix: Optional[np.ndarray] = None
+    collision_ego_matrix: Optional[np.ndarray] = None
+    collision_background_matrix: Optional[np.ndarray] = None
+    rollout_center: Optional[np.ndarray] = None
+    rollout_heading: Optional[np.ndarray] = None
+    aligned_ego_nominal: Optional[np.ndarray] = None
+    collision_ego_aabb_matrix: Optional[np.ndarray] = None
+    collision_background_aabb_matrix: Optional[np.ndarray] = None
 
 
 class JointTrajEvaluator(TrajEvaluator):
@@ -167,6 +176,7 @@ class JointTrajEvaluator(TrajEvaluator):
             rollout_vertices=rollout_vertices,
             collision_matrix=collision_matrix,
             off_road_matrix=off_road_matrix,
+            uncomfortable_matrix=(np.abs(rollout_acc) > 4) | (np.abs(rollout_angular_acc) > 4),
         )
 
     def evaluate_joint(
@@ -224,7 +234,7 @@ class JointTrajEvaluator(TrajEvaluator):
             - self.lambda_pair_collision * pair_collision.astype(np.float64)
         )
         joint_advantage = _masked_standardise(joint_q, valid_mask)
-        return {
+        result = {
             "joint_advantage": joint_advantage,
             "joint_q": joint_q,
             "p12": p12,
@@ -237,7 +247,31 @@ class JointTrajEvaluator(TrajEvaluator):
             "interaction_trace_2": trace_2,
             "p1": pressure_1,
             "p2": pressure_2,
+            "unary_collision_1": np.asarray(unary_1.collision_matrix).any(axis=-1),
+            "unary_collision_2": np.asarray(unary_2.collision_matrix).any(axis=-1),
+            "unary_offroad_1": np.asarray(unary_1.off_road_matrix).any(axis=-1),
+            "unary_offroad_2": np.asarray(unary_2.off_road_matrix).any(axis=-1),
+            "interaction_sign_1": np.zeros_like(trace_1) if unary_1.interaction_sign is None else unary_1.interaction_sign,
+            "interaction_sign_2": np.zeros_like(trace_2) if unary_2.interaction_sign is None else unary_2.interaction_sign,
+            "unary_uncomfortable_1": np.zeros(group_1, dtype=bool) if unary_1.uncomfortable_matrix is None else unary_1.uncomfortable_matrix.any(axis=-1),
+            "unary_uncomfortable_2": np.zeros(group_2, dtype=bool) if unary_2.uncomfortable_matrix is None else unary_2.uncomfortable_matrix.any(axis=-1),
         }
+        for axis, unary in ((1, unary_1), (2, unary_2)):
+            suffix = "_" + str(axis)
+            for label, value in (("collision_ego_trace", unary.collision_ego_matrix),
+                                 ("collision_background_trace", unary.collision_background_matrix),
+                                 ("collision_aabb_ego_trace", unary.collision_ego_aabb_matrix),
+                                 ("collision_aabb_background_trace", unary.collision_background_aabb_matrix),
+                                 ("rollout_center", unary.rollout_center), ("rollout_heading", unary.rollout_heading)):
+                if value is not None:
+                    result[label + suffix] = np.asarray(value)
+            if unary.collision_ego_matrix is not None:
+                result["unary_collision_ego" + suffix] = unary.collision_ego_matrix.any(axis=-1)
+            if unary.collision_background_matrix is not None:
+                result["unary_collision_background" + suffix] = unary.collision_background_matrix.any(axis=-1)
+        if unary_1.aligned_ego_nominal is not None:
+            result["ego_nominal_aligned_global"] = unary_1.aligned_ego_nominal
+        return result
 
     @staticmethod
     def pair_collision_from_vertices(

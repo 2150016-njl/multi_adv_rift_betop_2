@@ -1,0 +1,187 @@
+{
+  "array_shapes": {
+    "base_logits": [
+      3,
+      3
+    ],
+    "candidate_features_1": [
+      3,
+      4
+    ],
+    "candidate_features_2": [
+      3,
+      4
+    ],
+    "cbv_1_common_trajectories": [
+      3,
+      80,
+      3
+    ],
+    "cbv_1_global_trajectories": [
+      3,
+      80,
+      3
+    ],
+    "cbv_2_common_trajectories": [
+      3,
+      80,
+      3
+    ],
+    "cbv_2_global_trajectories": [
+      3,
+      80,
+      3
+    ],
+    "coalition_gain": [
+      3,
+      3
+    ],
+    "ego_nominal_common": [
+      40,
+      4
+    ],
+    "ego_nominal_global": [
+      40,
+      4
+    ],
+    "interaction_sign_1": [
+      3,
+      40
+    ],
+    "interaction_sign_2": [
+      3,
+      40
+    ],
+    "interaction_trace_1": [
+      3,
+      40
+    ],
+    "interaction_trace_2": [
+      3,
+      40
+    ],
+    "joint_logits": [
+      3,
+      3
+    ],
+    "joint_q": [
+      3,
+      3
+    ],
+    "joint_residual": [
+      3,
+      3
+    ],
+    "p1": [
+      3
+    ],
+    "p12": [
+      3,
+      3
+    ],
+    "p2": [
+      3
+    ],
+    "pair_collision": [
+      3,
+      3
+    ],
+    "raw_residual": [
+      3,
+      3
+    ],
+    "raw_trajectories_1": [
+      3,
+      80,
+      6
+    ],
+    "raw_trajectories_2": [
+      3,
+      80,
+      6
+    ],
+    "unary_collision_1": [
+      3
+    ],
+    "unary_collision_2": [
+      3
+    ],
+    "unary_logits_1": [
+      3
+    ],
+    "unary_logits_2": [
+      3
+    ],
+    "unary_offroad_1": [
+      3
+    ],
+    "unary_offroad_2": [
+      3
+    ],
+    "unary_return_1": [
+      3
+    ],
+    "unary_return_2": [
+      3
+    ],
+    "valid_pair_mask": [
+      3,
+      3
+    ]
+  },
+  "checkpoint_sha256": "d44f96657e077d87d93af46ab42501374f70245ad6f212017feb3766b4d45e6a",
+  "collection_mode": "eval",
+  "cooperation_config": {},
+  "diagnostics": {},
+  "dump_kind": "broad",
+  "env_id": 0,
+  "executed_indices": [
+    0,
+    0
+  ],
+  "frames": {
+    "cbv_candidate_common": "ego-centred common frame",
+    "cbv_candidate_global": "CARLA global frame",
+    "ego_nominal_common": "ego-centred common frame",
+    "ego_nominal_global": "CARLA global frame"
+  },
+  "group_id": "1",
+  "independent_indices": [
+    0,
+    0
+  ],
+  "oracle_indices": [
+    1,
+    2
+  ],
+  "pair_ids": [
+    7,
+    9
+  ],
+  "policy_checkpoint": "C:\\Users\\Lenovo\\Desktop\\pycharm_project\\multi_adv_rift_scenario_dreamer_betop_2\\outputs\\joint_rift_v5_validation\\fce6d425bb9c409faae01b208a2c7bb9\\base.ckpt",
+  "policy_indices": [
+    0,
+    0
+  ],
+  "repetition_index": 0,
+  "reward_config": {},
+  "route_id": "1",
+  "route_name": "",
+  "schema_version": 2,
+  "scorer_config": {
+    "base_temperature": 2.0,
+    "candidate_dim": 4,
+    "fixed_residual_scale": 1.0,
+    "geometry_hidden_dim": 4,
+    "geometry_horizon": 40,
+    "lambda_delta": 4.0,
+    "pair_dim": 4,
+    "representation_dim": 8,
+    "residual_scale_floor": 1.0,
+    "residual_scale_mode": "base_std",
+    "trajectory_frames": 40,
+    "trajectory_stride": 5
+  },
+  "time_step": 10,
+  "town_name": ""
+}
